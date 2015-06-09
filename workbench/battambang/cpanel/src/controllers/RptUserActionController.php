@@ -67,6 +67,10 @@ class RptUserActionController extends BaseController
             $condition.=" AND a.cp_user_id = '".$data['user']."' ";
         }
 
+        if(\Auth::user()->id!='1'){
+            $condition.=" AND a.cp_user_id <> 1 ";
+        }
+
         $data['result'] = DB::select("select a.cp_office_id,f.en_name,a.cp_user_id,u.username,a.`event`,a.page
 ,a.package_type,STR_TO_DATE(a.created_at,'%Y-%m-%d %H:%i:%s') created_at,a.detail
  FROM cp_user_action a
