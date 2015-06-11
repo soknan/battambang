@@ -15,7 +15,7 @@ class Validator extends ValidatorService
 
         );
         static::$messages = array(
-            'chk_date'=>'Please do not choose perverse date!'
+            'chk_date'=>'Please do not choose previous date!'
         );
     }
 }
