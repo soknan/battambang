@@ -24,6 +24,9 @@ class Validator extends ValidatorService
     $data = PrePaid::where('ln_disburse_client_id','=',\Input::get('ln_disburse_client_id'))
         ->orderBy('id','desc')->limit(1)
         ->first();
+    if($data ==null){
+        return true;
+    }
     if(date('Y-m-d',strtotime($value)) < date('Y-m-d',strtotime($data->activated_at))){
         return false;
     }
