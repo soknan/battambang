@@ -283,6 +283,7 @@
            $total_pen+=$con_pen[$staff]->total;
            $total_amount+=$con_pri[$staff]->total + $con_int[$staff]->total + $con_pen[$staff]->total;
            $total_bal+=$con_bal[$staff]->total;
+
            $total_arr+=$con_arr[$staff]->total;
 
            $client_dis =new Battambang\Loan\RptProductActivityController();
@@ -310,8 +311,8 @@
     <Cell ss:StyleID="s80"><Data ss:Type="Number"><?php echo $con_bal[$staff]->total;?></Data></Cell>
     <Cell ss:StyleID="s77"><Data ss:Type="Number"><?php echo $all_c;?></Data></Cell>
     <Cell ss:StyleID="s80"><Data ss:Type="Number"><?php echo $con_arr[$staff]->total;?></Data></Cell>
-    <Cell ss:StyleID="s80"><Data ss:Type="String"><?php echo (number_format($con_par_n[$staff]->total/$con_bal[$staff]->total*100,2)).'%';?></Data></Cell>
-    <Cell ss:StyleID="s80"><Data ss:Type="String"><?php echo (number_format($con_par[$staff]->total/$con_bal[$staff]->total*100,2)).'%';?></Data></Cell>
+    <Cell ss:StyleID="s80"><Data ss:Type="String"><?php if($con_bal[$staff]->total==0){echo '100%';}else{ echo (number_format($con_par_n[$staff]->total/$con_bal[$staff]->total*100,2)).'%';}?></Data></Cell>
+    <Cell ss:StyleID="s80"><Data ss:Type="String"><?php if($con_bal[$staff]->total==0){echo '100%';}else{ echo (number_format($con_par[$staff]->total/$con_bal[$staff]->total*100,2)).'%';}?></Data></Cell>
    </Row>
    <?php }?>
 
