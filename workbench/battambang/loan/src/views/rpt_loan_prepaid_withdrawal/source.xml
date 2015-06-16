@@ -407,21 +407,21 @@
               foreach($result as $key=>$row){
                   switch ($row->cp_currency_id){
                       case 1:
-                          $pri_khr+=$con_cur->toKHR(1,$row->amount_pay,$exchange_rate_id);
+                          $pri_khr+=$con_cur->toKHR(1,$row->amount_paid,$exchange_rate_id);
 
-              $pri=$con_cur->toKHR(1,$row->amount_pay,$exchange_rate_id);
+              $pri=$con_cur->toKHR(1,$row->amount_paid,$exchange_rate_id);
 
                       break;
                       case 2:
-                          $pri_usd+=$con_cur->toUSD(2,$row->amount_pay,$exchange_rate_id);
+                          $pri_usd+=$con_cur->toUSD(2,$row->amount_paid,$exchange_rate_id);
 
-              $pri=$con_cur->toUSD(2,$row->amount_pay,$exchange_rate_id);
+              $pri=$con_cur->toUSD(2,$row->amount_paid,$exchange_rate_id);
 
                       break;
                       case 3:
-                          $pri_thb+=$con_cur->toTHB(3,$row->amount_pay,$exchange_rate_id);
+                          $pri_thb+=$con_cur->toTHB(3,$row->amount_paid,$exchange_rate_id);
 
-              $pri=$con_cur->toTHB(3,$row->amount_pay,$exchange_rate_id);
+              $pri=$con_cur->toTHB(3,$row->amount_paid,$exchange_rate_id);
 
                       break;
                   }
