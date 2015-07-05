@@ -56,22 +56,26 @@ Menu::make(
                 $dropdown->add('Penalty', route('loan.penalty.index'));
                 $dropdown->add('Penalty Closing', route('loan.penalty_closing.index'));
                 $dropdown->add('Holiday', route('loan.holiday.index'));*/
-                $dropdown->add(
-                    'Product',
-                    function ($dropdown) {
-                        $arr = array('loan.category.index'=>'Category',
-                            'loan.product.index'=>'Type',
-                        );
-                        if(UserSession::read()->permission==null) return;
-                        foreach($arr as $key=> $value){
-                            if(in_array($key,UserSession::read()->permission)){
-                                $dropdown->add($value, route($key));
+                if(in_array( array('loan.category.index'=>'Category',
+                    'loan.product.index'=>'Type',
+                ),UserSession::read()->permission)) {
+                    $dropdown->add(
+                        'Product',
+                        function ($dropdown) {
+                            $arr = array('loan.category.index' => 'Category',
+                                'loan.product.index' => 'Type',
+                            );
+                            if (UserSession::read()->permission == null) return;
+                            foreach ($arr as $key => $value) {
+                                if (in_array($key, UserSession::read()->permission)) {
+                                    $dropdown->add($value, route($key));
+                                }
                             }
+                            /*$dropdown->add('Category', route('loan.category.index'));
+                            $dropdown->add('Type', route('loan.product.index'));*/
                         }
-                        /*$dropdown->add('Category', route('loan.category.index'));
-                        $dropdown->add('Type', route('loan.product.index'));*/
-                    }
-                );
+                    );
+                }
                 /*$dropdown->add('Staff', route('loan.staff.index'));
                 $dropdown->add('Lookup', route('loan.lookup.index'));
                 $dropdown->add('Lookup Value', route('loan.lookup_value.index'));*/

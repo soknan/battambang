@@ -320,6 +320,7 @@ class LookupValueList
     public function getExchange()
     {
         $data = Exchange::all();
+        $arr = array();
         foreach ($data as $row) {
             $arr[$row->id] = $row->exchange_at . ' | ' . $row->khr_usd . ' KHR = ' . $row->usd . ' USD | ' . $row->khr_thb . ' KHR = ' . $row->thb . ' THB';
         }
