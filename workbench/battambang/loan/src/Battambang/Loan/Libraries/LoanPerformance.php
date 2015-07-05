@@ -404,7 +404,8 @@ class LoanPerformance
                         $this->_due_closing['principal_closing'] = $this->_balance_principal - $this->_arrears['cur']['principal'];
                         //Accrued interest
                         $this->_getAccrueInt();
-                        $this->_due_closing['interest_closing'] = $this->_getPenaltyClosing($this->_balance_interest - $this->_arrears['cur']['principal'] - $this->_accru_int);
+                        $this->_due_closing['interest_closing'] = $this->_getPenaltyClosing($this->_balance_interest - $this->_arrears['cur']['interest'] - $this->_accru_int);
+                        //echo $this->_balance_interest.$this->_due_closing['interest_closing']; exit;
                         //Penalty
                         $this->_last_perform_date = $row->activated_at;
                         if ($this->_isDate($this->_arrears['cur']['date'])) {
@@ -438,7 +439,7 @@ class LoanPerformance
                     '.date('d-M-Y',strtotime($this->_next_due['date']));
 
                     $this->_getAccrueInt();
-                    $this->_due_closing['interest_closing'] = $this->_getPenaltyClosing($this->_balance_interest - $this->_arrears['cur']['principal'] - $this->_accru_int);
+                    $this->_due_closing['interest_closing'] = $this->_getPenaltyClosing($this->_balance_interest - $this->_arrears['cur']['interest'] - $this->_accru_int);
 
                     $this->_due['num_day'] = 0;
                     $this->_due['principal'] = 0;
