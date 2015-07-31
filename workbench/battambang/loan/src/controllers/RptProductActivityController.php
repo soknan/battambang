@@ -133,6 +133,7 @@ order by ln_disburse.disburse_date DESC
         $con_dis = array();
         $con_fee = array();
         $con_arr = array();
+        $con_arr_int = array();
         $con_par= array();
         $con_acc = array();
         $con_par_n = array();
@@ -171,6 +172,10 @@ order by ln_disburse.disburse_date DESC
                     $con_arr[$row->_disburse->ln_staff_id] = array();
                     $con_arr[$row->_disburse->ln_staff_id] = new \stdClass();
                     $con_arr[$row->_disburse->ln_staff_id]->total = 0;
+
+                    $con_arr_int[$row->_disburse->ln_staff_id] = array();
+                    $con_arr_int[$row->_disburse->ln_staff_id] = new \stdClass();
+                    $con_arr_int[$row->_disburse->ln_staff_id]->total = 0;
 
                     $con_par[$row->_disburse->ln_staff_id] = array();
                     $con_par[$row->_disburse->ln_staff_id] = new \stdClass();
@@ -226,6 +231,7 @@ order by ln_disburse.disburse_date DESC
                 $total = $row->_arrears['cur']['principal'] + $row->_arrears['cur']['interest'];
                 if($row->_arrears['cur']['num_day']>0 and $total>0){
                     $con_arr[$row->_disburse->ln_staff_id]->total+= \Currency::$ccy($row->_disburse->cp_currency_id,$row->_arrears['cur']['principal'], $data['exchange_rate_id']);
+                    $con_arr_int[$row->_disburse->ln_staff_id]->total+= \Currency::$ccy($row->_disburse->cp_currency_id,$row->_arrears['cur']['interest'], $data['exchange_rate_id']);
                     $con_par_n[$row->_disburse->ln_staff_id]->total+= \Currency::$ccy($row->_disburse->cp_currency_id,$row->_arrears['cur']['principal'], $data['exchange_rate_id']);
                 }
 
@@ -243,6 +249,7 @@ order by ln_disburse.disburse_date DESC
         $data['con_dis'] = $con_dis;
         $data['con_fee'] = $con_fee;
         $data['con_arr'] = $con_arr;
+        $data['con_arr_int'] = $con_arr_int;
         $data['con_par'] = $con_par;
         $data['con_par_n'] = $con_par_n;
         $data['con_acc'] = $con_acc;

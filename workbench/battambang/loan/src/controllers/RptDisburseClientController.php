@@ -135,7 +135,8 @@ class RptDisburseClientController extends BaseController
         $data['result'] = DB::select("select d.*,dc.*,dc.id as id,
 dc.voucher_id as voucher_id,
 dc.ln_disburse_id as ln_disburse_id,
-concat(c.`kh_last_name`,' ',c.`kh_first_name`) AS `client_name`,
+concat(c.`kh_last_name`,' ',c.`kh_first_name`) AS `kh_client_name`,
+concat(st.`kh_last_name`,' ',st.`kh_first_name`) AS `kh_staff_name`,
 d.cp_currency_id AS `cp_currency_id`,
 d.`disburse_date` AS `disburse_date`,
 p.maturity_date as maturity_date,
@@ -152,6 +153,7 @@ left join ln_perform p on p.ln_disburse_client_id = dc.id
 left join ln_lookup_value  account_type on account_type.id  = d.ln_lv_account_type
 left join ln_product pr on pr.id = d.ln_product_id
 left join ln_center cn on cn.id = d.ln_center_id
+left join ln_staff st on st.id = cn.ln_staff_id
 where $condition
 GROUP BY dc.id ORDER BY d.disburse_date desc");
         // User action
