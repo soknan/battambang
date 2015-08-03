@@ -463,12 +463,13 @@
               $c_dis = array();
               $c_com = array();
               $c_vil = array();
-              foreach($con_dis[$pro] as $dis=>$com){
-                $c_dis[]=$dis;
-                $c_com[]= $com;
-
-                foreach($com as $vil){
-                    $c_vil[]=$vil;
+              foreach($con_dis[$pro] as $dis=>$t_com){
+                $c_dis[]= $dis;
+                foreach($t_com as $com){
+                    $c_com[]=$com;
+                    foreach($com as $vill){
+                        $c_vil[] = $vill;
+                    }
                 }
               }
 
