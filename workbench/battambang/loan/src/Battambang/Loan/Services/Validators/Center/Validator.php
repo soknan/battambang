@@ -8,7 +8,8 @@ class Validator extends ValidatorService
         parent::__construct($data = null);
 
         static::$rules = array(
-            'name'=>'required|unique:ln_center,name,"'.\Request::segment(4).'"',
+            //'name'=>'required|unique:ln_center,name,"'.\Request::segment(4).'"',
+            'name'=>'required',
             'meeting_weekly'=>'required',
             'meeting_monthly'=>'required',
             'cp_location_id'=>'chk_location',
