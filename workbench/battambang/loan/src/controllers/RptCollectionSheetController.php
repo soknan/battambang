@@ -47,6 +47,7 @@ class RptCollectionSheetController extends BaseController
         $data['location_cat'] = Input::get('location_cat');
         $data['cp_location'] = \Input::get('cp_location_id');
         $data['exchange_rate_id'] = \Input::get('exchange_rate');
+        $data['type'] = \Input::get('type');
 
         if($data['date_from'] > $data['date_to']){
             return \Redirect::back()->withInput()->with('error', 'Date From > Date to');
@@ -140,6 +141,14 @@ and p.ln_disburse_client_id not in(SELECT p1.ln_disburse_client_id FROM ln_perfo
                 continue;
             }
             if($row->_due['date'] <= $data['date_to'] and $row->_arrears['cur']['principal'] + $row->_arrears['cur']['interest']!=0){
+                if($data['type']=='draft'){
+                    if($row->_disburse->ln_lv_repay_frequency ==3){
+                        $row->_due['date'] = \Carbon::createFromFormat('Y-m-d',$row->_due['date'])->subWeek()->toDateString();
+                    }
+                    if($row->_disburse->ln_lv_repay_frequency=4){
+                        $row->_due['date'] = \Carbon::createFromFormat('Y-m-d',$row->_due['date'])->subMonth()->toDateString();
+                    }
+                }
                 $tmp[] = $row;
             }
 
@@ -152,7 +161,7 @@ and p.ln_disburse_client_id not in(SELECT p1.ln_disburse_client_id FROM ln_perfo
                     return $v1 - $v2; // $v2 - $v1 to reverse direction
                 });
         }
-        //var_dump($tmp[0]->_arrears['cur']['principal']); exit;
+        //var_dump($tmp); exit;
 
         $data['result']= $tmp;
 
