@@ -137,11 +137,13 @@ and p.ln_disburse_client_id not in(SELECT p1.ln_disburse_client_id FROM ln_perfo
                 $row->_arrears['cur']['principal'] = abs($row->_arrears['cur']['principal'] - $row->_due['principal']);
                 $row->_arrears['cur']['interest'] = abs($row->_arrears['cur']['interest'] - $row->_due['interest']);
                 if($data['type']=='draft'){
-                    if($row->_disburse->ln_lv_repay_frequency == 3){
+                    if($row->_disburse->ln_lv_repay_frequency ==3){
                         $row->_due['date'] = \Carbon::createFromFormat('Y-m-d',$row->_due['date'])->subWeek()->toDateString();
+                        $row->_arrears['cur']['date'] = \Carbon::createFromFormat('Y-m-d',$row->_arrears['cur']['date'])->subWeek()->toDateString();
                     }
                     if($row->_disburse->ln_lv_repay_frequency==4){
                         $row->_due['date'] = \Carbon::createFromFormat('Y-m-d',$row->_due['date'])->subMonth()->toDateString();
+                        $row->_arrears['cur']['date'] = \Carbon::createFromFormat('Y-m-d',$row->_arrears['cur']['date'])->subMonth()->toDateString();
                     }
                 }
                 $tmp[]= $row;
