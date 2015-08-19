@@ -50,7 +50,7 @@
         ->class('select2')
         ->required().''
     .Former::select('type','Report Type')
-                ->options(array('normal'=>'Normal','draft'=>'Draft'))->class('select2')
+                ->options(array('normal'=>'Normal'))->class('select2')
                 ->required().''
     .Former::text('date_from','From',date('d-m-Y'))->append('dd-mm-yyyy')->required().''
     .Former::text('date_to','To',date('d-m-Y'))->append('dd-mm-yyyy')->required().''

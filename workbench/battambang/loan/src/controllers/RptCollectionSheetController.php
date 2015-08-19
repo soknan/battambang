@@ -120,10 +120,10 @@ and p.ln_disburse_client_id not in(SELECT p1.ln_disburse_client_id FROM ln_perfo
         ");
 // User action
         \Event::fire('user_action.report', array('rpt_collection_sheet'));
+
         $perform = array();
         foreach ($sql as $row) {
             $loanPerform = new LoanPerformance();
-            //$loanPerform->_last_perform_date = $data['date_from'];
             $perform[]= $loanPerform->get($row->ln_disburse_client_id,$data['date_to'],true);
         }
 
@@ -136,30 +136,11 @@ and p.ln_disburse_client_id not in(SELECT p1.ln_disburse_client_id FROM ln_perfo
                 $row->_arrears['cur']['date'] =  $row->_new_due['date'];
                 $row->_arrears['cur']['principal'] = abs($row->_arrears['cur']['principal'] - $row->_due['principal']);
                 $row->_arrears['cur']['interest'] = abs($row->_arrears['cur']['interest'] - $row->_due['interest']);
-                if($data['type']=='draft'){
-                    if($row->_disburse->ln_lv_repay_frequency ==3){
-                        $row->_due['date'] = \Carbon::createFromFormat('Y-m-d',$row->_due['date'])->subWeek()->toDateString();
-                        $row->_arrears['cur']['date'] = \Carbon::createFromFormat('Y-m-d',$row->_arrears['cur']['date'])->subWeek()->toDateString();
-                    }
-                    if($row->_disburse->ln_lv_repay_frequency==4){
-                        $row->_due['date'] = \Carbon::createFromFormat('Y-m-d',$row->_due['date'])->subMonth()->toDateString();
-                        $row->_arrears['cur']['date'] = \Carbon::createFromFormat('Y-m-d',$row->_arrears['cur']['date'])->subMonth()->toDateString();
-                    }
-                }
+
                 $tmp[]= $row;
                 continue;
             }
             if($row->_due['date'] <= $data['date_to'] and $row->_arrears['cur']['principal'] + $row->_arrears['cur']['interest']!=0){
-                if($data['type']=='draft'){
-                    if($row->_disburse->ln_lv_repay_frequency ==3){
-                        $row->_due['date'] = \Carbon::createFromFormat('Y-m-d',$row->_due['date'])->subWeek()->toDateString();
-                        $row->_arrears['cur']['date'] = \Carbon::createFromFormat('Y-m-d',$row->_arrears['cur']['date'])->subWeek()->toDateString();
-                    }
-                    if($row->_disburse->ln_lv_repay_frequency==4){
-                        $row->_due['date'] = \Carbon::createFromFormat('Y-m-d',$row->_due['date'])->subMonth()->toDateString();
-                        $row->_arrears['cur']['date'] = \Carbon::createFromFormat('Y-m-d',$row->_arrears['cur']['date'])->subMonth()->toDateString();
-                    }
-                }
                 $tmp[] = $row;
             }
 
