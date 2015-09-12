@@ -11,12 +11,12 @@ echo FormPanel2::make(
     . Former::select('meeting_weekly', 'Meeting Weekly')
         ->options($work_week)
         ->required()
-        ->placeholder('--Select One--')
+        ///->placeholder('--Select One--')
     ,
     Former::select('meeting_monthly', 'Meeting Monthly')
         ->options($work_month)
         ->required()
-        ->placeholder('--Select One--') . ''
+        //->placeholder('--Select One--') . ''
     . Former::text('joining_date', 'Joining Date')
         ->required()
         ->append('dd-mm-yyyy')
@@ -34,7 +34,7 @@ echo FormPanel2::make(
         ->options(LookupValueList::getLocation())
         ->required()
         ->class('select2')
-        ->placeholder('--Select One--')
+        //->placeholder('--Select One--')
     ,
     Former::select('ln_lv_geography', 'Geography')
                 ->options(LookupValueList::getBy('geography'))
