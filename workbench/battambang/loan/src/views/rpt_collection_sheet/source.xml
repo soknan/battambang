@@ -437,7 +437,6 @@
               $due_pen = $row->_arrears['cur']['penalty'];
                   $total_due = $due_pri + $due_int;
 
-
                   $type ='DateTime';
                   if($data['date_to'] > $row->_maturity_date){
                         $row->_due['date']= "NA";
