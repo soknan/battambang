@@ -532,6 +532,7 @@ class LoanPerformance
         }
 
         $data = $this->_getSchedule($first, $second);
+        //var_dump($data[0]['due_date']); exit;
         $lnumDay=0;
 
         $pen = $this->_getLastArreasPen();
@@ -762,6 +763,7 @@ WHERE ln_disburse_client.id = "'.$this->_disburse_client_id.'" ');
                 ->where('ln_disburse_client_id', '=', $this->_disburse_client_id)
                 ->where('due_date', '>=', $this->_arrears['cur']['date'])
                 ->where('due_date', '<=', $this->_endOfDate($this->_last_perform_date))
+                ->orderBy('due_date','asc')
                 ->get();
 
             $cPen=0;
@@ -808,6 +810,7 @@ WHERE ln_disburse_client.id = "'.$this->_disburse_client_id.'" ');
             ->where('ln_disburse_client_id', '=', $this->_disburse_client_id)
             ->where('due_date', '>', $lastDate)
             ->where('due_date', '<=', $performDate)
+            ->orderBy('due_date','asc')
             ->get();
         return $data;
     }
