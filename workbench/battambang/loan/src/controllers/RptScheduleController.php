@@ -140,7 +140,11 @@ class RptScheduleController extends BaseController{
                 $objWorkSheet->getCell('E'.$rowNum)->setValue($value->interest);
 
                 if($data['dis']->interest_type_code=='ANT'){
-                    $objWorkSheet->getCell('F'.$rowNum)->setValue($installPrinAmount);
+                    if($key==0){
+                        $objWorkSheet->getCell('F'.$rowNum)->setValue(0);
+                    }else{
+                        $objWorkSheet->getCell('F'.$rowNum)->setValue($installPrinAmount);
+                    }
                 }else{
                     $objWorkSheet->getCell('F'.$rowNum)->setValue('=D'.$rowNum.'+E'.$rowNum);
                 }
@@ -245,7 +249,12 @@ class RptScheduleController extends BaseController{
                 $objWorkSheet->getCell('D'.$rowNum)->setValue($value->principal);
                 $objWorkSheet->getCell('E'.$rowNum)->setValue($value->interest);
                 if($data['dis']->interest_type_code=='ANT'){
-                    $objWorkSheet->getCell('F'.$rowNum)->setValue($installPrinAmount);
+                    if($key==0){
+                        $objWorkSheet->getCell('F'.$rowNum)->setValue(0);
+                    }else{
+                        $objWorkSheet->getCell('F'.$rowNum)->setValue($installPrinAmount);
+                    }
+
                 }else{
                     $objWorkSheet->getCell('F'.$rowNum)->setValue('=D'.$rowNum.'+E'.$rowNum);
                 }
