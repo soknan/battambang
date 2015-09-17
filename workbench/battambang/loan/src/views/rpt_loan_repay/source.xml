@@ -438,7 +438,7 @@
               ?>
    <Row ss:AutoFitHeight="0">
     <Cell ss:StyleID="s77"><Data ss:Type="Number"><?php echo $key+1;?></Data></Cell>
-       <Cell ss:StyleID="s77"><Data ss:Type="String"><?php echo substr($row->voucher_id,-6);?></Data></Cell>
+       <Cell ss:StyleID="s77"><Data ss:Type="String"><?php echo substr($row->repayment_voucher_id,-6);?></Data></Cell>
     <Cell ss:StyleID="s77"><Data ss:Type="String"><?php echo $row->ln_disburse_client_id;?></Data></Cell>
     <Cell ss:StyleID="s77"><Data ss:Type="String"><?php echo $row->client_name;?></Data></Cell>
     <Cell ss:StyleID="s77"><Data ss:Type="Number"><?php echo $row->cp_currency_id;?></Data></Cell>
