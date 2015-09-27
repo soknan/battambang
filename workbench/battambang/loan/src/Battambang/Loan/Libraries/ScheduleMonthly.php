@@ -108,6 +108,7 @@ class ScheduleMonthly
         $feePayment = array();
         $principalBalance = array();
         $schedule = array();
+        $tmpP=0;
 
 //        for ($i = 1; $i <= $numPayment; $i++) {
         for ($i = 0; $i <= $numPayment; $i++) {
@@ -168,7 +169,9 @@ class ScheduleMonthly
                                 $temInstallPrinFrequency = $numPayment;
                             }
                         } else {
-                            $principalPayment[$i] = $temLoanAmount;
+                            //$principalPayment[$i] = $temLoanAmount;
+                            $principalPayment[$i] = $loanAmount - $tmpP;
+                            $interestPayment[$i] =  $installPrinAmount-$principalPayment[$i];
                             $temLoanAmount = 0.00;
                         }
                     } else {
@@ -180,6 +183,7 @@ class ScheduleMonthly
                     $principalPayment[$i] = \Currency::round($currency,$principalPayment[$i]);
                     $interestPayment[$i] = \Currency::round($currency,$interestPayment[$i]);
                     $principalBalance[$i] = \Currency::round($currency,$principalBalance[$i]);
+                    $tmpP+= $principalPayment[$i];
 
                 }
 
