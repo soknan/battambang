@@ -52,8 +52,9 @@ class ScheduleMonthly
         $installPrinPercentage = $data->installment_principal_percentage / 100; // of (%)
         $installPrinAmount = \Currency::round($currency, ($loanAmount / $numPaymentPrin) * $installPrinPercentage);
         if($interestType==129){
-            $tmpRate = 1-pow((1+$interestRate),-$numPayment);
-            $installPrinAmount = ($loanAmount*$interestRate)/$tmpRate;
+            //$tmpRate = 1-pow((1+$interestRate),-$numPayment);
+            //$installPrinAmount = ($loanAmount*$interestRate)/$tmpRate;
+            $installPrinAmount = $interestRate * -$loanAmount*pow((1+$interestRate),$numPayment)/(1-pow((1+$interestRate),$numPayment));
         }
 
         $meetingDay = $data->ln_lv_meeting_schedule; // 13-Month(...-None, 33-1, 34-2,..., 57-25...28)
