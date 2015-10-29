@@ -250,6 +250,16 @@ class ScheduleDaily
     {
         $date = Carbon::createFromFormat('Y-m-d', $date);
 
+        $temDate = $date->copy();
+        for ($i = $date->day; $i <= $date->endOfWeek()->day; $i++) {
+            if (!in_array($temDate->day, $holidayInDay)) {
+                return $temDate->toDateString();
+            }
+            $temDate = $temDate->addDay();
+        }
+        return false;
+        /*$date = Carbon::createFromFormat('Y-m-d', $date);
+
         // Work Day (validate with activatedDate)
         $workDay = $this->_getWorkDay($date);
 
@@ -267,12 +277,8 @@ class ScheduleDaily
                 return $temDate->toDateString();
             }
             $temDate = $temDate->addDay();
-            /*if (!in_array($temDate->day, $holidayInDay)) {
-                return $temDate->toDateString();
-            }
-            $temDate = $temDate->addDay();*/
         }
-        return false;
+        return false;*/
     }
 
     private function toPrevious($date, $holidayInDay)
@@ -308,6 +314,11 @@ class ScheduleDaily
 
         if ($workDay->work_week == 'MS') {
             $endWorkDay = $endWorkDay->subDays(1);
+            $holiday[] = $date->copy()->endOfWeek()->day;
+        }
+
+        if ($workDay->work_week == 'MSD') {
+            $endWorkDay = $endWorkDay;
             $holiday[] = $date->copy()->endOfWeek()->day;
         }
 
