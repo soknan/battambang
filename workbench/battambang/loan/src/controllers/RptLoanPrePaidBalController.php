@@ -114,6 +114,7 @@ class RptLoanPrePaidBalController extends BaseController
         ln_disburse_client.id as ln_disburse_client_id,
 concat(`ln_client`.`kh_last_name`,' ',`ln_client`.`kh_first_name`) AS `client_name`,
 account_type.`code` as account_type
+,ln_pre_paid.activated_at as activated_at
 FROM
 (SELECT * from ln_pre_paid ORDER BY activated_at desc)ln_pre_paid
 inner JOIN ln_disburse_client on ln_disburse_client.id = ln_pre_paid.ln_disburse_client_id

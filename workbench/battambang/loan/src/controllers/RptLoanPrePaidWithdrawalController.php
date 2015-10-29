@@ -59,7 +59,7 @@ class RptLoanPrePaidWithdrawalController extends BaseController
         $data['exchange_rate'] = '1.00 $ = ' . $ex->khr_usd . ' ៛ , 1.00 B = ' . $ex->khr_thb . '៛';
 
         $condition = ' 1=1 ';
-        $condition.= " AND ln_pre_paid.activated_at BETWEEN
+        $condition.= " AND ln_perform.activated_at BETWEEN
                         STR_TO_DATE('".$data['date_from']." " . " 00:00:00" . "','%Y-%m-%d %H:%i:%s')
                         AND STR_TO_DATE('".$data['date_to']." " . " 23:59:59" . "','%Y-%m-%d %H:%i:%s')
                         and ln_pre_paid.amount_paid >0 ";
@@ -115,6 +115,7 @@ class RptLoanPrePaidWithdrawalController extends BaseController
         ln_disburse_client.id as ln_disburse_client_id,
 concat(`ln_client`.`kh_last_name`,' ',`ln_client`.`kh_first_name`) AS `client_name`,
 account_type.`code` as account_type
+,ln_pre_paid.activated_at as activated_at
 FROM
 ln_pre_paid
 inner JOIN ln_disburse_client on ln_disburse_client.id = ln_pre_paid.ln_disburse_client_id
