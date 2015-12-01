@@ -149,7 +149,7 @@ $(document).ready(function() {
                     label: "OK",
                     className: "btn-success",
                     callback: function() {
-                        //if($('#txt').val() != decode64(codeRandom)){  return false;}
+                        if($('#txt').val() != decode64(codeRandom)){  return false;}
                         var form =
                             $('<form>', {
                                 'method': 'POST',
