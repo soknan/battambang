@@ -32,7 +32,7 @@ echo FormPanel2::make(
     Former::text('ln_disburse_id', 'Disburse ID', $row->ln_disburse_id)
         ->required()
         ->readonly() . ''
-    . Former::text('amount', 'Amount', 1)
+    .Former::number('amount', 'Amount', $row->amount)
         ->min($pro->min_amount)
         ->max($pro->max_amount)
         ->step('0.01')
