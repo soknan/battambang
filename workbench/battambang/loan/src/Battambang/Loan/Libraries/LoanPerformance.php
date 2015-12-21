@@ -796,12 +796,15 @@ WHERE ln_disburse_client.id = "'.$this->_disburse_client_id.'" ');
 
         if(\DateTime::createFromFormat('Y-m-d',$this->_activated_at) > \DateTime::createFromFormat('Y-m-d',$this->_due['date'])){
             $renum = $this->_countDate($this->_due['date'],$this->_activated_at);
-            $this->_accru_int = \Currency::round($this->_disburse->cp_currency_id,($this->_due_closing['principal_closing'] * $renum * $int_rate));
+            if($this->_due_closing['principal_closing']>0){
+                $this->_accru_int = \Currency::round($this->_disburse->cp_currency_id,($this->_due_closing['principal_closing'] * $renum * $int_rate));
+            }else{
+                $this->_accru_int = \Currency::round($this->_disburse->cp_currency_id,($this->_balance_principal * $renum * $int_rate));
+            }
         }
         if(\DateTime::createFromFormat('Y-m-d',$this->_activated_at) >= \DateTime::createFromFormat('Y-m-d',$this->_maturity_date)){
             $this->_accru_int =0;
         }
-
     }
 
     private function _getSchedule($lastDate, $performDate)
