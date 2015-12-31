@@ -380,7 +380,7 @@
               $pen_usd+=$con_cur->toUSD(2,$row->repayment_penalty,$exchange_rate_id);
               $pri=$con_cur->toUSD(2,$row->repayment_principal,$exchange_rate_id);
               $int=$con_cur->toUSD(2,$row->repayment_interest,$exchange_rate_id);
-              $pen=$con_cur->toUSD(1,$row->repayment_penalty,$exchange_rate_id);
+              $pen=$con_cur->toUSD(2,$row->repayment_penalty,$exchange_rate_id);
               $loss_int_usd+=$row->balance_interest;
                   break;
                   case 3:
@@ -389,7 +389,7 @@
               $pen_thb+=$con_cur->toTHB(3,$row->repayment_penalty,$exchange_rate_id);
               $pri=$con_cur->toTHB(3,$row->repayment_principal,$exchange_rate_id);
               $int=$con_cur->toTHB(3,$row->repayment_interest,$exchange_rate_id);
-              $pen=$con_cur->toTHB(1,$row->repayment_penalty,$exchange_rate_id);
+              $pen=$con_cur->toTHB(3,$row->repayment_penalty,$exchange_rate_id);
               $loss_int_thb+=$row->balance_interest;
                   break;
                   }
