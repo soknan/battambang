@@ -11,9 +11,9 @@ class Perform extends Eloquent {
 	public $timestamps = true;
 	protected $softDelete = false;
 
-    public function disburseClient() {
+    /*public function disburseClient() {
         return $this->belongsTo('DisburseClient','ln_disburse_client_id');
-    }
+    }*/
 
     /*public function setActivatedAtAttribute($value)
     {

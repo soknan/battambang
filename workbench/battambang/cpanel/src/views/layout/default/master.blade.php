@@ -29,7 +29,7 @@
     <?php /*echo HTML::style('packages/battambang/cpanel/jcombo/jcombo.css'); */?>
     <?php echo HTML::style('packages/battambang/cpanel/datepicker/css/datepicker.css'); ?>
     <?php echo HTML::style('packages/battambang/cpanel/datatable/css/jquery.dataTables.css') ?>
-
+    <?php echo HTML::style('packages/battambang/cpanel/jquery-ui-1.11.4/jquery-ui.min.css'); ?>
     @yield('css')
 
     <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
@@ -94,6 +94,7 @@
 <?php /*echo HTML::script('packages/battambang/cpanel/jcombo/jcombo.js'); */?>
 <?php echo HTML::script('packages/battambang/cpanel/datepicker/js/bootstrap-datepicker.js'); ?>
 <?php echo HTML::script('packages/battambang/cpanel/datatable/js/jquery.dataTables.min.js'); ?>
+<?php echo HTML::script('packages/battambang/cpanel/jquery-ui-1.11.4/jquery-ui.min.js'); ?>
 @yield('js')
 <script>
     $.ajaxSetup({

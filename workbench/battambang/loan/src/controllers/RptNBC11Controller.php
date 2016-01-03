@@ -217,7 +217,6 @@ and ln_disburse_client.id not in(SELECT p.ln_disburse_client_id FROM ln_perform 
             return \Redirect::back()->withInput(Input::except('cp_office_id'))->with('error', 'No Data Found !.');
         }
 
-        //var_dump($data['con_dis']);
         //exit;
 
         \Report::setReportName('Network Information')

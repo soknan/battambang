@@ -132,7 +132,7 @@ class ProvinceController extends BaseController
             ->addColumn(
                 'action',
                 function ($model) {
-                    //return '';
+                    //return str_limit($model->kh_name, 3);
                     return Action::make()
                         ->edit(route('cpanel.province.edit', $model->id))
                         ->delete(route('cpanel.province.destroy', $model->id), $model->id)
