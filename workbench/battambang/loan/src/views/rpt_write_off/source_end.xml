@@ -427,21 +427,20 @@
               foreach($result as $key=>$row){
               switch ($row->cp_currency_id){
               case 1:
-              $pri_khr+=$con_cur->toKHR(1,$row->repayment_principal,$exchange_rate_id);
-              $int_khr+=$con_cur->toKHR(1,$row->repayment_interest,$exchange_rate_id);
-              //$pen_khr+=$con_cur->toKHR(1,$row->repayment_penalty,$exchange_rate_id);
+              $pri_khr+=$row->repayment_principal;
+              $int_khr+=$row->repayment_interest;
+
 
               break;
               case 2:
-              $pri_usd+=$con_cur->toUSD(2,$row->repayment_principal,$exchange_rate_id);
-              $int_usd+=$con_cur->toUSD(2,$row->repayment_interest,$exchange_rate_id);
-              //$pen_usd+=$con_cur->toUSD(2,$row->repayment_penalty,$exchange_rate_id);
+              $pri_usd+=$row->repayment_principal;
+              $int_usd+=$row->repayment_interest;
+
 
               break;
               case 3:
-              $pri_thb+=$con_cur->toTHB(3,$row->repayment_principal,$exchange_rate_id);
-              $int_thb+=$con_cur->toTHB(3,$row->repayment_interest,$exchange_rate_id);
-              //$pen_thb+=$con_cur->toTHB(3,$row->repayment_penalty,$exchange_rate_id);
+              $pri_thb+=$row->repayment_principal;
+              $int_thb+=$row->repayment_interest;
 
               break;
               }

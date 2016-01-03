@@ -420,9 +420,7 @@
                       break;
                       case 3:
                           $pri_thb+=$con_cur->toTHB(3,$row->bal,$exchange_rate_id);
-
-              $pri=$con_cur->toTHB(3,$row->bal,$exchange_rate_id);
-
+                          $pri=$con_cur->toTHB(3,$row->bal,$exchange_rate_id);
                       break;
                   }
 

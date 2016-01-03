@@ -411,41 +411,33 @@
 
            switch ($row->_disburse->cp_currency_id){
            case 1:
-           $pri_khr+=$con_cur->toKHR(1,$row->_arrears['cur']['principal'],$exchange_rate_id);
-           $int_khr+=$con_cur->toKHR(1,$row->_arrears['cur']['interest'],$exchange_rate_id);
-           $bal_pri_khr+=$con_cur->toKHR(1,$row->_balance_principal,$exchange_rate_id);
-           $bal_int_khr+=$con_cur->toKHR(1,$row->_balance_interest,$exchange_rate_id);
-
-           $pri=$con_cur->toKHR(1,$row->_arrears['cur']['principal'],$exchange_rate_id);
-           $int=$con_cur->toKHR(1,$row->_arrears['cur']['interest'],$exchange_rate_id);
-           $bal_pri=$con_cur->toKHR(1,$row->_balance_principal,$exchange_rate_id);
-           $bal_int=$con_cur->toKHR(1,$row->_balance_interest,$exchange_rate_id);
+           $pri_khr+=$row->_arrears['cur']['principal'];
+           $int_khr+=$row->_arrears['cur']['interest'];
+           $bal_pri_khr+=$row->_balance_principal;
+           $bal_int_khr+=$row->_balance_interest;
 
            break;
            case 2:
-           $pri_usd+=$con_cur->toUSD(2,$row->_arrears['cur']['principal'],$exchange_rate_id);
-           $int_usd+=$con_cur->toUSD(2,$row->_arrears['cur']['interest'],$exchange_rate_id);
-           $bal_pri_usd+=$con_cur->toUSD(2,$row->_balance_principal,$exchange_rate_id);
-           $bal_int_usd+=$con_cur->toUSD(2,$row->_balance_interest,$exchange_rate_id);
-
-           $pri=$con_cur->toUSD(2,$row->_arrears['cur']['principal'],$exchange_rate_id);
-           $int=$con_cur->toUSD(2,$row->_arrears['cur']['interest'],$exchange_rate_id);
-           $bal_pri=$con_cur->toUSD(2,$row->_balance_principal,$exchange_rate_id);
-           $bal_int=$con_cur->toUSD(2,$row->_balance_interest,$exchange_rate_id);
+           $pri_usd+=$row->_arrears['cur']['principal'];
+           $int_usd+=$row->_arrears['cur']['interest'];
+           $bal_pri_usd+=$row->_balance_principal;
+           $bal_int_usd+=$row->_balance_interest;
 
            break;
            case 3:
-           $pri_thb+=$con_cur->toTHB(3,$row->_arrears['cur']['principal'],$exchange_rate_id);
-           $int_thb+=$con_cur->toTHB(3,$row->_arrears['cur']['interest'],$exchange_rate_id);
-           $bal_pri_thb+=$con_cur->toTHB(3,$row->_balance_principal,$exchange_rate_id);
-           $bal_int_thb+=$con_cur->toTHB(3,$row->_balance_interest,$exchange_rate_id);
-           $pri=$con_cur->toTHB(3,$row->_arrears['cur']['principal'],$exchange_rate_id);
-           $int=$con_cur->toTHB(3,$row->_arrears['cur']['interest'],$exchange_rate_id);
-           $bal_pri=$con_cur->toTHB(3,$row->_balance_principal,$exchange_rate_id);
-           $bal_int=$con_cur->toTHB(3,$row->_balance_interest,$exchange_rate_id);
+           $pri_thb+=$row->_arrears['cur']['principal'];
+           $int_thb+=$row->_arrears['cur']['interest'];
+           $bal_pri_thb+=$row->_balance_principal;
+           $bal_int_thb+=$row->_balance_interest;
+
 
            break;
            }
+           $pri=$row->_arrears['cur']['principal'];
+           $int=$row->_arrears['cur']['interest'];
+           $bal_pri=$row->_balance_principal;
+           $bal_int=$row->_balance_interest;
+
            if($row->_current_product_status!=''){
            $classify = Battambang\Loan\ProductStatus::where('id',$row->_current_product_status)->first()->code;
            }

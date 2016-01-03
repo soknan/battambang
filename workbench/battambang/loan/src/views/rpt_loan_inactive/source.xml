@@ -365,33 +365,30 @@
               foreach($result as $key=>$row){
                   switch ($row->cp_currency_id){
                   case 1:
-              $pri_khr+=$con_cur->toKHR(1,$row->repayment_principal,$exchange_rate_id);
-              $int_khr+=$con_cur->toKHR(1,$row->repayment_interest,$exchange_rate_id);
-              $pen_khr+=$con_cur->toKHR(1,$row->repayment_penalty,$exchange_rate_id);
-              $pri=$con_cur->toKHR(1,$row->repayment_principal,$exchange_rate_id);
-              $int=$con_cur->toKHR(1,$row->repayment_interest,$exchange_rate_id);
-              $pen=$con_cur->toKHR(1,$row->repayment_penalty,$exchange_rate_id);
-                  $loss_int_khr+=$con_cur->toKHR(1,$row->balance_interest,$exchange_rate_id);
+              $pri_khr+=$row->repayment_principal;
+              $int_khr+=$row->repayment_interest;
+              $pen_khr+=$row->repayment_penalty;
+
+                  $loss_int_khr+=$row->balance_interest;
                   break;
                   case 2:
-              $pri_usd+=$con_cur->toUSD(2,$row->repayment_principal,$exchange_rate_id);
-              $int_usd+=$con_cur->toUSD(2,$row->repayment_interest,$exchange_rate_id);
-              $pen_usd+=$con_cur->toUSD(2,$row->repayment_penalty,$exchange_rate_id);
-              $pri=$con_cur->toUSD(2,$row->repayment_principal,$exchange_rate_id);
-              $int=$con_cur->toUSD(2,$row->repayment_interest,$exchange_rate_id);
-              $pen=$con_cur->toUSD(1,$row->repayment_penalty,$exchange_rate_id);
+              $pri_usd+=$row->repayment_principal;
+              $int_usd+=$row->repayment_interest;
+              $pen_usd+=$row->repayment_penalty;
+
               $loss_int_usd+=$row->balance_interest;
                   break;
                   case 3:
-              $pri_thb+=$con_cur->toTHB(3,$row->repayment_principal,$exchange_rate_id);
-              $int_thb+=$con_cur->toTHB(3,$row->repayment_interest,$exchange_rate_id);
-              $pen_thb+=$con_cur->toTHB(3,$row->repayment_penalty,$exchange_rate_id);
-              $pri=$con_cur->toTHB(3,$row->repayment_principal,$exchange_rate_id);
-              $int=$con_cur->toTHB(3,$row->repayment_interest,$exchange_rate_id);
-              $pen=$con_cur->toTHB(1,$row->repayment_penalty,$exchange_rate_id);
+              $pri_thb+=$row->repayment_principal;
+              $int_thb+=$row->repayment_interest;
+              $pen_thb+=$row->repayment_penalty;
               $loss_int_thb+=$row->balance_interest;
                   break;
                   }
+              $pri=$row->repayment_principal;
+              $int=$row->repayment_interest;
+              $pen=$row->repayment_penalty;
+
               ?>
    <Row ss:AutoFitHeight="0" ss:Height="12" ss:StyleID="s74">
     <Cell ss:StyleID="s131"><Data ss:Type="Number"><?php echo $key+1;?></Data></Cell>

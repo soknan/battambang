@@ -407,19 +407,19 @@
 
               switch ($row->cp_currency_id){
                   case 1:
-                      $amount_khr+=$con_cur->toKHR(1,$row->amount,$exchange_rate_id);
-                      $fee_khr+=$con_cur->toKHR(1,$row->fee,$exchange_rate_id);
-                      $pro_int_khr+= $con_cur->toKHR(1,$row->project_interest,$exchange_rate_id);
+                      $amount_khr+=$row->amount;
+                      $fee_khr+=$row->fee;
+                      $pro_int_khr+= $row->project_interest;
                   break;
                   case 2:
-                      $amount_usd+=$con_cur->toUSD(2,$row->amount,$exchange_rate_id);
-                      $fee_usd+=$con_cur->toUSD(2,$row->fee,$exchange_rate_id);
-                      $pro_int_usd+= $con_cur->toUSD(2,$row->project_interest,$exchange_rate_id);
+                      $amount_usd+=$row->amount;
+                      $fee_usd+=$row->fee;
+                      $pro_int_usd+= $row->project_interest;
                   break;
                   case 3:
-                      $amount_thb+=$con_cur->toTHB(3,$row->amount,$exchange_rate_id);
-                      $fee_thb+=$con_cur->toTHB(3,$row->fee,$exchange_rate_id);
-                      $pro_int_thb+= $con_cur->toTHB(3,$row->project_interest,$exchange_rate_id);
+                      $amount_thb+=$row->amount;
+                      $fee_thb+=$row->fee;
+                      $pro_int_thb+= $row->project_interest;
                   break;
               }
               ?>

@@ -373,21 +373,21 @@
               foreach($result as $key=>$row){
               switch ($row->cp_currency_id){
               case 1:
-                  $pri_khr+=$con_cur->toKHR(1,$row->balance_principal,$exchange_rate_id);
-                  $int_khr+=$con_cur->toKHR(1,$row->balance_interest,$exchange_rate_id);
-                  $pen_khr+=$con_cur->toKHR(1,$row->arrears_penalty,$exchange_rate_id);
+                  $pri_khr+=$row->balance_principal;
+                  $int_khr+=$row->balance_interest;
+                  $pen_khr+=$row->arrears_penalty;
 
               break;
               case 2:
-                  $pri_usd+=$con_cur->toUSD(2,$row->balance_principal,$exchange_rate_id);
-                  $int_usd+=$con_cur->toUSD(2,$row->balance_interest,$exchange_rate_id);
-                  $pen_usd+=$con_cur->toUSD(2,$row->arrears_penalty,$exchange_rate_id);
+                  $pri_usd+=$row->balance_principal;
+                  $int_usd+=$row->balance_interest;
+                  $pen_usd+=$row->arrears_penalty;
 
               break;
               case 3:
-                  $pri_thb+=$con_cur->toTHB(3,$row->balance_principal,$exchange_rate_id);
-                  $int_thb+=$con_cur->toTHB(3,$row->balance_interest,$exchange_rate_id);
-                  $pen_thb+=$con_cur->toTHB(3,$row->arrears_penalty,$exchange_rate_id);
+                  $pri_thb+=$row->balance_principal;
+                  $int_thb+=$row->balance_interest;
+                  $pen_thb+=$row->arrears_penalty;
 
               break;
               }

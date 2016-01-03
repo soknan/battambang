@@ -406,21 +406,18 @@
               foreach($result as $key=>$row){
                   switch ($row->cp_currency_id){
                       case 1:
-                          $pri_khr+=$con_cur->toKHR(1,$row->repayment_fee,$exchange_rate_id);
-              $pri=$con_cur->toKHR(1,$row->repayment_fee,$exchange_rate_id);
-
-
-                      break;
+                          $pri_khr+=$row->repayment_fee;
+                          break;
                       case 2:
-                          $pri_usd+=$con_cur->toUSD(2,$row->repayment_fee,$exchange_rate_id);
-              $pri=$con_cur->toUSD(2,$row->repayment_fee,$exchange_rate_id);
+                          $pri_usd+=$row->repayment_fee;
+
                       break;
                       case 3:
-                          $pri_thb+=$con_cur->toTHB(3,$row->repayment_fee,$exchange_rate_id);
-              $pri=$con_cur->toTHB(3,$row->repayment_fee,$exchange_rate_id);
+                          $pri_thb+=$row->repayment_fee;
+
                       break;
                   }
-
+              $pri=$row->repayment_fee;
               ?>
    <Row ss:AutoFitHeight="0">
     <Cell ss:StyleID="s77"><Data ss:Type="Number"><?php echo $key+1;?></Data></Cell>
