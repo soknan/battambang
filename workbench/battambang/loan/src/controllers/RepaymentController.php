@@ -187,8 +187,8 @@ class RepaymentController extends BaseController
             $pre_paid_bal = ($pre_paid - $totalArrears > 0 ? $pre_paid - $totalArrears : 0  );
             if (Input::has('confirm')) {
                 $msg = 'Due Date = <strong>' . date('d-M-Y',strtotime($data->_due['date'])) . '</strong> ,</br> '
-                    . 'Pri Amount = <strong>' . number_format($pri_amount,2) . '</strong>' . $pri_closing . ' , '
-                    . 'Int Amount = <strong>' . number_format($int_amount,2) . '</strong>' . $int_closing . ' , '
+                    . 'Pri Amount = <strong>' . number_format($pri_amount,2) . '</strong>' . $pri_closing . ' ,</br> '
+                    . 'Int Amount = <strong>' . number_format($int_amount,2) . '</strong>' . $int_closing . ' ,</br> '
                     . 'Total Amount = <strong>' . number_format($totalArrears,2) . ' ' . $currency->code . '</strong> ,</br> '
                     . 'Penalty Amount = <strong>' . number_format($data->_arrears['cur']['penalty'],2) . '</strong> ( Cur : ' . number_format($data->_new_due['penalty'],2) . ', Late : ' . number_format($data->_arrears['last']['penalty'],2) . ')</br>'
                     . 'Pre-Paid Amount = <strong>'.number_format($pre_paid,2).'</strong>'.' ( Cur Pay = '.number_format($total_pay,2).', Bal = '.number_format($pre_paid_bal,2).')'
@@ -197,35 +197,75 @@ class RepaymentController extends BaseController
                     . \Former::text_hidden('ln_client_id',$data->_disburse->ln_client_id)
                     . \Former::text_hidden('view_at',date('d-m-Y'))
                     . \Former::primary_submit('History') . \Former::close()*/;
-                /*$msg = '<table width="100%" border="1">
+                /*$msg = '<table class="table table-striped small" width="100%"><tr><td width="60%"><table class="table table-striped" width="100%" border="0">
                             <tr>
-                                <td colspan="4">Due Date : '. date('d-M-Y',strtotime($data->_due['date'])).'</td>
+                                <th align="right">Due Date : </th>
+                                <td colspan="9"> '. date('d-M-Y',strtotime($data->_due['date'])).'</td>
                             </tr>
-                            <tr align="left">
+                            <tr>
+                                <th></th>
+                                <th></th><td></td>
+                                <th>Current</th><td></td>
+                                <th>Late</th><td></td>
+                                <th>Closing</th><td></td>
+                                <th>Accru-interest</th>
+                            </tr>
+                            <tr>
+                                <th>Principal : </th>
+                                <td>' .number_format($pri_amount,2). '</td><td>=</td>
+                                <td>' . $data->_due['principal'] . '</td><td>+</td>
+                                <td>' . $data->_due['interest'] . '</td><td>+</td>
+                                <td>0</td><td>+</td>
+                                <td>0</td>
+                            </tr>
+                            <tr>
+                                <th>Interest : </th>
+                                <td>' .number_format($int_amount,2) . '</td><td>=</td>
+                                <td>' . ($data->_arrears['cur']['principal'] - $data->_due['principal']) . '</td><td>+</td>
+                                <td>' . (($data->_arrears['cur']['interest'] - $data->_due['interest'])) . '</td><td>+</td>
+                                <td>0</td><td>+</td>
+                                <td>0</td>
+
+                            </tr>
+                            <tr>
+                                <th align="right">Total : </th>
+                                <th colspan="9">' . number_format($totalArrears,2) . '</th>
+
+                            </tr>
+                        </table></td>
+                        <td>
+                        <table class="table table-striped" width="100%" border="0">
+                            <tr>
                                 <td></td>
-                                <td>Principal</td>
-                                <td>Interest</td>
-                                <td>Penalty</td>
+                                <td></td><td></td>
+                                <th>Current</th><td></td>
+                                <th>Late</th>
                             </tr>
                             <tr>
-                                <td>Due</td>
-                                <td>' . $data->_due['principal'] . '</td>
-                                <td>' . $data->_due['interest'] . '</td>
-                                <td>' . $data->_new_due['penalty'] . '</td>
+                                <th>Penalty</th>
+                                <td>1000</td><td>=</td>
+                                <td>33000</td><td>+</td>
+                                <td>34234</td>
+                            </tr>
+                             <tr>
+                                <td></td>
+                                <td></td><td></td>
+                                <th>Current Pay</th><td></td>
+                                <th>Balance</th>
                             </tr>
                             <tr>
-                                <td>Late</td>
-                                <td>' . ($data->_arrears['cur']['principal'] - $data->_due['principal']) . '</td>
-                                <td>' . (($data->_arrears['cur']['interest'] - $data->_due['interest'])) . '</td>
-                                <td>' . $data->_arrears['last']['penalty']. '</td>
+                                <th>Pre-Paid</th>
+                                <td>234234</td><td>=</td>
+                                <td>324234</td><td>+</td>
+                                <td>234234</td>
                             </tr>
-                            <tr>
-                                <td align="right">Total</td>
-                                <td>' . $data->_arrears['cur']['principal'] . '</td>
-                                <td>' . $data->_arrears['cur']['interest'] . '</td>
-                                <td>' . $data->_arrears['cur']['penalty'] . '</td>
-                            </tr>
-                        </table>';*/
+                        </table>
+
+                        </td>
+                        </tr></table>
+
+
+                        ';*/
                 return Redirect::back()
                     ->with('data', $data)
                     ->with('info', $msg);
@@ -620,7 +660,9 @@ class RepaymentController extends BaseController
         try {
             $data = Perform::where('id','=',$id)->first();
             //delete pre-paid
+            //echo $data->repayment_voucher_id; exit();
             PrePaid::where('voucher_code', '=',$data->repayment_voucher_id)
+                ->where('ln_disburse_client_id','=',$id)
                 ->delete();
            $data->delete();
             // User action
@@ -636,6 +678,7 @@ class RepaymentController extends BaseController
             $data = Perform::where('id','=',$id)->first();
             //delete pre-paid
             PrePaid::where('voucher_code', '=',$data->repayment_voucher_id)
+                ->where('ln_disburse_client_id','=',$id)
                 ->delete();
             $data->delete();
 
@@ -720,6 +763,21 @@ class RepaymentController extends BaseController
         $p->bal= $bal;
         $p->voucher_code = $voucher;
         $p->save();
+    }
+
+    public function getActiveLoan()
+    {
+        $id = \Input::get('ln_disburse_client_id');
+        $result = array();
+        $sql = DB::table('ln_disburse_client')
+            ->whereRaw(" substr(id,1,-4) like '".$id."%' ")
+            ->first();
+        //foreach ($sql as $q) {
+            $result[] = ['id'=>$sql->id,'value'=>$sql->id];
+        //}
+
+        return \Response::json($result);
+
     }
 
 }
