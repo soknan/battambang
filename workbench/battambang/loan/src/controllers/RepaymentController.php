@@ -401,7 +401,8 @@ class RepaymentController extends BaseController
             if ($validation->passes()) {
                 $curData = Perform::where('id', '=', $id)->get()->toArray();
                 $curP = PrePaid::where('ln_disburse_client_id','=',$loan_acc)
-                    ->where('voucher_code','=',$curData[0]['repayment_voucher_id'])->get()->toArray();
+                    ->where('voucher_code','=',$curData[0]['repayment_voucher_id'])
+                    ->where('created_at','=',$curData[0]['created_at'])->get()->toArray();
                 $this->_delete($id);
                 //$perform->delete($id);
 
@@ -518,22 +519,25 @@ class RepaymentController extends BaseController
                     unset($curData['created_at']);
                     unset($curData['updated_at']);
                     unset($curData['id']);
-                    if(count($curP)>0){
-                        PrePaid::insert($curP);
+                    //if(count($curP)>0){
                         unset($curP['created_at']);
                         unset($curP['updated_at']);
-                    }
+                        unset($curP['id']);
+                        PrePaid::insert($curP);
+
+                    //}
 
                     Perform::insert($curData);
                     return Redirect::route('loan.repayment.edit',$curData[0]['id'])->withInput()
                         ->with('data', $data)
                         ->with('info', $msg);
                 }
-                if(count($curP)>0) {
+                //if(count($curP)>0) {
+                    unset($curP['id']);
                     unset($curP['created_at']);
                     unset($curP['updated_at']);
                     PrePaid::insert($curP);
-                }
+                //}
                 unset($curData['id']);
                 unset($curData['created_at']);
                 unset($curData['updated_at']);
@@ -667,6 +671,9 @@ class RepaymentController extends BaseController
             //echo $data->repayment_voucher_id; exit();
             PrePaid::where('voucher_code', '=',$data->repayment_voucher_id)
                 ->where('ln_disburse_client_id','=',$data->ln_disburse_client_id)
+                ->where('activated_at','=',$data->activated_at)
+                ->where('created_at','=',$data->created_at)
+                ->where('amount_paid','>',0)
                 ->delete();
            $data->delete();
             // User action
@@ -683,6 +690,9 @@ class RepaymentController extends BaseController
             //delete pre-paid
             PrePaid::where('voucher_code', '=',$data->repayment_voucher_id)
                 ->where('ln_disburse_client_id','=',$data->ln_disburse_client_id)
+                ->where('activated_at','=',$data->activated_at)
+                ->where('created_at','=',$data->created_at)
+                ->where('amount_paid','>',0)
                 ->delete();
             $data->delete();
 
