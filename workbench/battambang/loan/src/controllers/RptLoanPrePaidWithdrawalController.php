@@ -124,7 +124,7 @@ INNER JOIN ln_client ON ln_client.id = ln_disburse_client.ln_client_id
 INNER JOIN ln_lookup_value account_type on account_type.id = ln_disburse.ln_lv_account_type
 INNER JOIN ln_product ON ln_product.id = ln_disburse.ln_product_id
 INNER JOIN ln_center ON ln_center.id = ln_disburse.ln_center_id
-INNER JOIN ln_perform on ln_perform.ln_disburse_client_id =ln_pre_paid.ln_disburse_client_id
+INNER JOIN ln_perform on ln_perform.ln_disburse_client_id =ln_pre_paid.ln_disburse_client_id and ln_perform.created_at = ln_pre_paid.created_at
 and ln_perform.perform_type='repayment' and ln_perform.repayment_type <>'fee'
         where $condition
         order by ln_pre_paid.ln_disburse_client_id
