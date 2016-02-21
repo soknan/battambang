@@ -116,7 +116,8 @@ concat(`ln_client`.`kh_last_name`,' ',`ln_client`.`kh_first_name`) AS `client_na
 account_type.`code` as account_type
 ,ln_pre_paid.activated_at as activated_at
 FROM
-(SELECT * from ln_pre_paid ORDER BY activated_at desc)ln_pre_paid
+(select p.ln_disburse_client_id,max(p.activated_at) activated_at,p.bal,p.voucher_code from ln_pre_paid p
+group by p.ln_disburse_client_id HAVING p.bal >0) ln_pre_paid
 inner JOIN ln_disburse_client on ln_disburse_client.id = ln_pre_paid.ln_disburse_client_id
 inner JOIN ln_disburse ON ln_disburse_client.ln_disburse_id = ln_disburse.id
 INNER JOIN ln_client ON ln_client.id = ln_disburse_client.ln_client_id
@@ -124,8 +125,7 @@ INNER JOIN ln_lookup_value account_type on account_type.id = ln_disburse.ln_lv_a
 INNER JOIN ln_product ON ln_product.id = ln_disburse.ln_product_id
 INNER JOIN ln_center ON ln_center.id = ln_disburse.ln_center_id
 INNER JOIN ln_perform on ln_perform.ln_disburse_client_id =ln_pre_paid.ln_disburse_client_id and ln_perform.perform_type='disburse'
-where $condition and ln_pre_paid.bal > 0
-GROUP BY ln_pre_paid.ln_disburse_client_id
+where $condition
         ");
 // User action
         \Event::fire('user_action.report', array('rpt_loan_prepaid_bal'));
