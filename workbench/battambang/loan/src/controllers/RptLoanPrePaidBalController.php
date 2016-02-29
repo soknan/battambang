@@ -115,9 +115,10 @@ class RptLoanPrePaidBalController extends BaseController
 concat(`ln_client`.`kh_last_name`,' ',`ln_client`.`kh_first_name`) AS `client_name`,
 account_type.`code` as account_type
 ,ln_pre_paid.activated_at as activated_at
-FROM
-(select p.ln_disburse_client_id,max(p.activated_at) activated_at,p.bal,p.voucher_code from ln_pre_paid p
-group by p.ln_disburse_client_id HAVING p.bal >0) ln_pre_paid
+FROM ln_pre_paid
+inner join(select pp.ln_disburse_client_id,max(pp.created_at) as created_at
+					from ln_pre_paid pp GROUP BY pp.ln_disburse_client_id) m on m.ln_disburse_client_id = ln_pre_paid.ln_disburse_client_id
+and ln_pre_paid.bal >0 and ln_pre_paid.created_at = m.created_at
 inner JOIN ln_disburse_client on ln_disburse_client.id = ln_pre_paid.ln_disburse_client_id
 inner JOIN ln_disburse ON ln_disburse_client.ln_disburse_id = ln_disburse.id
 INNER JOIN ln_client ON ln_client.id = ln_disburse_client.ln_client_id
