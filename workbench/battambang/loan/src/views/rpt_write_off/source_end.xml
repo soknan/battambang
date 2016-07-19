@@ -253,7 +253,7 @@
   </Style>
  </Styles>
  <Worksheet ss:Name="Writ-Off End">
-  <Table ss:ExpandedColumnCount="14" ss:ExpandedRowCount="36" x:FullColumns="1"
+  <Table  x:FullColumns="1"
    x:FullRows="1" ss:DefaultRowHeight="15">
    <Column ss:AutoFitWidth="0" ss:Width="21.75"/>
    <Column ss:AutoFitWidth="0" ss:Width="88.5"/>
@@ -459,8 +459,8 @@
     <Cell ss:StyleID="s73"><Data ss:Type="Number"><?php echo $row->repayment_principal;?></Data></Cell>
     <Cell ss:StyleID="s73"><Data ss:Type="Number"><?php echo $row->repayment_interest;?></Data></Cell>
     <Cell ss:StyleID="s73"><Data ss:Type="Number"><?php echo ($row->repayment_principal + $row->repayment_interest);?></Data></Cell>
-   <!-- <Cell ss:StyleID="s73"><Data ss:Type="Number"><?php echo $row->balance_principal;?></Data></Cell>
-    <Cell ss:StyleID="s73"><Data ss:Type="Number"><?php echo $row->balance_interest;?></Data></Cell>-->
+    <!-- <Cell ss:StyleID="s73"><Data ss:Type="Number"><?php echo $row->balance_principal;?></Data></Cell>
+     <Cell ss:StyleID="s73"><Data ss:Type="Number"><?php echo $row->balance_interest;?></Data></Cell>-->
    </Row>
    <?php }
 

@@ -259,7 +259,7 @@
   </Style>
  </Styles>
  <Worksheet ss:Name="Write-Off Dur">
-  <Table ss:ExpandedColumnCount="14" ss:ExpandedRowCount="26" x:FullColumns="1"
+  <Table  x:FullColumns="1"
    x:FullRows="1" ss:DefaultRowHeight="15">
    <Column ss:AutoFitWidth="0" ss:Width="30"/>
    <Column ss:AutoFitWidth="0" ss:Width="76.5"/>
