@@ -477,13 +477,13 @@
 
               $sub_pri_usd_usd=$con_cur->toUSD(2,$pri_usd,$exchange_rate_id);
               $sub_int_usd_usd=$con_cur->toUSD(2,$int_usd,$exchange_rate_id);
-              $sub_total_usd_usd= $con_cur->toUSD(1,$total_arrears_usd,$exchange_rate_id);
+              $sub_total_usd_usd= $con_cur->toUSD(2,$total_arrears_usd,$exchange_rate_id);
               $sub_bal_pri_usd_usd=$con_cur->toUSD(2,$bal_pri_usd,$exchange_rate_id);
               $sub_bal_int_usd_usd=$con_cur->toUSD(2,$bal_int_usd,$exchange_rate_id);
 
               $sub_pri_thb_usd=$con_cur->toUSD(3,$pri_thb,$exchange_rate_id);
               $sub_int_thb_usd=$con_cur->toUSD(3,$int_thb,$exchange_rate_id);
-              $sub_total_thb_usd= $con_cur->toUSD(1,$total_arrears_thb,$exchange_rate_id);
+              $sub_total_thb_usd= $con_cur->toUSD(3,$total_arrears_thb,$exchange_rate_id);
               $sub_bal_pri_thb_usd=$con_cur->toUSD(3,$bal_pri_thb,$exchange_rate_id);
               $sub_bal_int_thb_usd=$con_cur->toUSD(3,$bal_int_thb,$exchange_rate_id);
 
