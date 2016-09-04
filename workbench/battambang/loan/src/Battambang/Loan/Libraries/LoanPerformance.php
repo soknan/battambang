@@ -386,7 +386,7 @@ class LoanPerformance
 
                         return $this;
                 }
-
+                    //echo $row->activated_at; echo $this->_activated_at;
                 if ($this->_isEqualDate($row->activated_at, $this->_activated_at)) { //echo 'yes'; exit;
                     if($this->_arrears['cur']['principal']+$this->_arrears['cur']['interest']>0){
 
@@ -465,6 +465,7 @@ class LoanPerformance
                     return $this;
                     }
                 }else{
+                    //echo 'a'; exit;
                     $this->_last_perform_date = $row->activated_at;
                     $this->_new_due['principal'] = 0;
                     $this->_new_due['interest'] = 0;
@@ -530,10 +531,11 @@ class LoanPerformance
             $second = $second->endOfMonth();
 
         }
-
+        //echo $first;
+        //echo $second; exit;
         $data = $this->_getSchedule($first, $second);
         //var_dump($data[0]['due_date']); exit;
-        $lnumDay=0;
+        //$lnumDay=0;
 
         $pen = $this->_getLastArreasPen();
         if ($data->count() > 0) {
@@ -548,6 +550,7 @@ class LoanPerformance
                 $pen+= $this->_getPenalty($row->principal + $row->interest,$lnumDay);
 
                 if ($this->_isEqualDate($row->due_date, $this->_activated_at)) {
+                    //echo $row->due_date; exit;
                     $this->_due['date'] = $row->due_date;
                     $this->_due['num_day'] = $this->_countDate($row->due_date,$this->_activated_at);
                     $this->_due['principal'] = $row->principal;
@@ -720,16 +723,20 @@ WHERE ln_disburse_client.id = "'.$this->_disburse_client_id.'" ');
         $date = new Carbon();
         $first = $date->createFromFormat('Y-m-d',$date1);
         $second = $date->createFromFormat('Y-m-d',$date2);
-
+        //$this->_disburse->installment_frequency
         if($this->_disburse->ln_lv_repay_frequency == 3){
-            $first = $first->endOfWeek();
-            $second = $second->endOfWeek();
+            $first_s = $date->createFromFormat('Y-m-d',$date1)->startOfWeek();
+            $first = $first->addWeeks($this->_disburse->installment_frequency - 1)->endOfWeek();
+            //$second = $second;
         }elseif($this->_disburse->ln_lv_repay_frequency == 4){
-            $first = $first->endOfMonth();
-            $second = $second->endOfMonth();
+            $first_s = $date->createFromFormat('Y-m-d',$date1)->startOfMonth();
+            $first = $first->addMonths($this->_disburse->installment_frequency - 1)->endOfMonth();
+            //$second = $second->endOfMonth();
         }
+        //echo $first_s.'</br>'; echo $first; exit;
+        return $second->between($first_s,$first);
 
-        return $second->eq($first);
+        //return $second->eq($first);
     }
 
     private  function _endOfDate($active_date)
@@ -792,10 +799,13 @@ WHERE ln_disburse_client.id = "'.$this->_disburse_client_id.'" ');
         }elseif($this->_disburse->ln_lv_repay_frequency == 4){
             $rate_type = 30;
         }
+
         $int_rate = $this->_disburse->interest_rate / $rate_type / 100;
 
         if(\DateTime::createFromFormat('Y-m-d',$this->_activated_at) > \DateTime::createFromFormat('Y-m-d',$this->_due['date'])){
+
             $renum = $this->_countDate($this->_due['date'],$this->_activated_at);
+            //echo $renum; exit;
             if($this->_due_closing['principal_closing']>0){
                 $this->_accru_int = \Currency::round($this->_disburse->cp_currency_id,($this->_due_closing['principal_closing'] * $renum * $int_rate));
             }else{
