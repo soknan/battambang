@@ -17,6 +17,8 @@ echo FormPanel2::make(
         ->options($currency_arr)
         ->required()
         ->placeholder('--Select One--') . ''
+    .Former::text('first_due_date', 'First Due_Date')
+            ->append('dd/mm/yyyy') . ''. ''
 );
 echo FormPanel2::make(
     'Center',
@@ -141,6 +143,6 @@ echo FormPanel2::make(
     });
 </script>
 
-<?php echo DatePicker::make('disburse_date'); ?>
+<?php echo DatePicker::make('disburse_date');echo DatePicker::make('first_due_date'); ?>
 @stop
 

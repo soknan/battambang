@@ -18,6 +18,8 @@ echo FormPanel2::make(
         ->options($currency_arr, $row->cp_currency_id)
         ->required()
         ->placeholder('--Select One--') . ''
+    .Former::text('first_due_date', 'First Due_Date',date('d-m-Y',strtotime($row->first_due_date)))
+            ->append('dd/mm/yyyy') . ''. ''
 );
 
 echo FormPanel2::make(
@@ -83,7 +85,7 @@ echo FormPanel2::make(
 
 @stop
 @section('js')
-<?php echo DatePicker::make('disburse_date'); ?>
+    <?php echo DatePicker::make('disburse_date');echo DatePicker::make('first_due_date'); ?>
 <script>
     $(document).ready(function () {
         //$('[name="num_installment"]').ready(changeNumInstall);

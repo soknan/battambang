@@ -113,6 +113,16 @@ class ScheduleDaily
                 $principalBalance[$i] = $loanAmount;
             } else {
                 $temDueDate = $temDisburseDate->copy()->addDays($temInstallmentFrequency);
+                // if set first due date
+                if($data->first_due_date != null){
+                    $firstDueDate = Carbon::createFromFormat('Y-m-d', $data->first_due_date);
+                    if($i==1){
+                        $temDueDate = $firstDueDate;
+                    }
+                    if($i>1){
+                        $temDueDate = $firstDueDate->copy()->addDays($temInstallmentFrequency-1);
+                    }
+                }
                 //echo $temDueDate; exit;
                 $dueDate[$i] = $this->holidayCheck($temDueDate->toDateString(), $holidayRule);
 

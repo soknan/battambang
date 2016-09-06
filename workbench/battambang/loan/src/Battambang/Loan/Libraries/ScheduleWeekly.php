@@ -19,7 +19,6 @@ class ScheduleWeekly
         $disburseDate = Carbon::createFromFormat('Y-m-d', $disburseDate);
         $temDisburseDate = $disburseDate->copy();
 
-
         // Currency
         $currency = $data->cp_currency_id; // 1-KHR, 2-USD, 3-THB
         $loanAmount = $data->ln_disburse_client_amount; // USD
@@ -115,6 +114,18 @@ class ScheduleWeekly
                 $principalBalance[$i] = $loanAmount;
             } else {
                 $temDueDate = $temDisburseDate->copy()->addWeeks($temInstallmentFrequency);
+                // if set first due date
+                if($data->first_due_date != null){
+                    $firstDueDate = Carbon::createFromFormat('Y-m-d', $data->first_due_date);
+                    if($i==1){
+                        $temDueDate = $firstDueDate;
+                    }
+                    if($i>1){
+                        $temDueDate = $firstDueDate->copy()->addWeeks($temInstallmentFrequency-1);
+                    }
+                }
+
+
                 $dueDate[$i] = $this->holidayCheck($temDueDate->toDateString(), $holidayRule);
 
                 // Calculate num of days

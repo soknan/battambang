@@ -18,7 +18,6 @@ class ScheduleMonthly
 
         // General
         $disburseDate = Carbon::createFromFormat('Y-m-d', $data->disburse_date);
-
         $temDisburseDate = $disburseDate->copy();
         // Work Day (validate with activatedDate)
         $workMonth = $this->_getWorkDay($activatedDate)->work_month; //
@@ -121,6 +120,16 @@ class ScheduleMonthly
                 $principalBalance[$i] = $loanAmount;
             } else {
                 $temDueDate = $temDisburseDate->copy()->addMonths($temInstallmentFrequency);
+                // if set first due date
+                if($data->first_due_date != null){
+                    $firstDueDate = Carbon::createFromFormat('Y-m-d', $data->first_due_date);
+                    if($i==1){
+                        $temDueDate = $firstDueDate;
+                    }
+                    if($i>1){
+                        $temDueDate = $firstDueDate->copy()->addMonths($temInstallmentFrequency-1);
+                    }
+                }
                 $dueDate[$i] = $this->holidayCheck($temDueDate->toDateString(), $holidayRule);
 
                 // Calculate num of days
