@@ -114,7 +114,7 @@ class ScheduleDaily
             } else {
                 $temDueDate = $temDisburseDate->copy()->addDays($temInstallmentFrequency);
                 // if set first due date
-                if($data->first_due_date != null){
+                if($this->_isDate($data->first_due_date)){
                     $firstDueDate = Carbon::createFromFormat('Y-m-d', $data->first_due_date);
                     if($i==1){
                         $temDueDate = $firstDueDate;
@@ -348,5 +348,14 @@ class ScheduleDaily
             ->first();
 
         return $getData;
+    }
+
+    private function _isDate($val)
+    {
+        if (in_array($val, array('', '0000-00-00'))) {
+            return false;
+        } else {
+            return true;
+        }
     }
 }

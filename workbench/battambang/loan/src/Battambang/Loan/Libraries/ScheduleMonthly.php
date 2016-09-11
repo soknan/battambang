@@ -121,13 +121,16 @@ class ScheduleMonthly
             } else {
                 $temDueDate = $temDisburseDate->copy()->addMonths($temInstallmentFrequency);
                 // if set first due date
-                if($data->first_due_date != null){
+                if($this->_isDate($data->first_due_date)){
                     $firstDueDate = Carbon::createFromFormat('Y-m-d', $data->first_due_date);
                     if($i==1){
                         $temDueDate = $firstDueDate;
                     }
-                    if($i>1){
+                    if($i>1 && $data->ln_lv_meeting_schedule==125){
                         $temDueDate = $firstDueDate->copy()->addMonths($temInstallmentFrequency-1);
+                    }
+                    if($i>1 && $data->ln_lv_meeting_schedule!=125){
+                        $temDueDate = $temDisburseDate->copy()->addMonths($temInstallmentFrequency);
                     }
                 }
                 $dueDate[$i] = $this->holidayCheck($temDueDate->toDateString(), $holidayRule);
@@ -352,5 +355,14 @@ class ScheduleMonthly
             ->first();
 
         return $getData;
+    }
+
+    private function _isDate($val)
+    {
+        if (in_array($val, array('', '0000-00-00'))) {
+            return false;
+        } else {
+            return true;
+        }
     }
 }

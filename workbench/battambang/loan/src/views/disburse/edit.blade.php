@@ -5,6 +5,11 @@
 {{ Former::open(route('loan.disburse.update', $row->id))->method('PUT')->enctype('multipart/form-data') }}
 
 <?php
+if (in_array($row->first_due_date, array('', '0000-00-00'))) {
+    $first_due_date = '';
+} else {
+    $first_due_date = date('d-m-Y',strtotime($row->first_due_date));
+};
 echo FormPanel2::make(
     'General',
     Former::text('disburse_date', 'Disburse Date', date('d-m-Y',strtotime($row->disburse_date)))
@@ -18,7 +23,7 @@ echo FormPanel2::make(
         ->options($currency_arr, $row->cp_currency_id)
         ->required()
         ->placeholder('--Select One--') . ''
-    .Former::text('first_due_date', 'First Due_Date',date('d-m-Y',strtotime($row->first_due_date)))
+    .Former::text('first_due_date', 'First Due_Date',$first_due_date)
             ->append('dd/mm/yyyy') . ''. ''
 );
 
@@ -85,7 +90,8 @@ echo FormPanel2::make(
 
 @stop
 @section('js')
-    <?php echo DatePicker::make('disburse_date');echo DatePicker::make('first_due_date'); ?>
+    <?php echo DatePicker::make('disburse_date');
+    echo DatePicker::make('first_due_date'); ?>
 <script>
     $(document).ready(function () {
         //$('[name="num_installment"]').ready(changeNumInstall);
