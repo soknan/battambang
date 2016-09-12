@@ -307,8 +307,10 @@ class DisburseController extends BaseController
         $data->installment_principal_percentage = Input::get('installment_principal_percentage');
         $data->interest_rate = Input::get('interest_rate');
         $data->ln_fund_id = Input::get('ln_fund_id');
-        if(Input::get('first_due_date') != null){
+        if(Input::get('first_due_date')!=null){
             $data->first_due_date = \Carbon::createFromFormat('d-m-Y',Input::get('first_due_date'))->toDateString();
+        }else{
+            $data->first_due_date = null;
         }
 
         $attach_file = Input::file('attach_file');
