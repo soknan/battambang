@@ -18,6 +18,10 @@ echo FormPanel2::make(
         ->options($account_type_arr, $row->ln_lv_account_type)
         ->required()
         ->placeholder('--Select One--')
+    . Former::select('ln_lv_round_type', 'Round Schedule Type')
+            ->options(array('NONE'=>'NONE','ASC'=>'ASC','DESC'=>'DESC'),$row->round_schedule)
+            ->required()
+            ->placeholder('--Select One--')
     ,
     Former::select('cp_currency_id', 'Currency')
         ->options($currency_arr, $row->cp_currency_id)

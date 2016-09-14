@@ -109,6 +109,13 @@ class ScheduleMonthly
         $schedule = array();
         $tmpP=0;
 
+        $tmpBefRound =0;
+        $tmpAftRound = 0;
+
+        $tmpBefRoundPri=0;
+        $tmpAftRoundPri=0;
+        $tmpBal = $temLoanAmount;
+
 //        for ($i = 1; $i <= $numPayment; $i++) {
         for ($i = 0; $i <= $numPayment; $i++) {
             if ($i == 0) {
@@ -211,6 +218,41 @@ class ScheduleMonthly
 
             // Check num installment for closing
             $closing = ($i == $numInstallmentForClosing) ? 'closing' : '';
+
+            // Check for round schedule
+            if($data->round_schedule == 'ASC'){
+                $tmpBefRound += $interestPayment[$i];
+
+                $principalPayment[$i] = round($principalPayment[$i],0,PHP_ROUND_HALF_DOWN);
+                $interestPayment[$i] = round($interestPayment[$i],0,PHP_ROUND_HALF_DOWN);
+
+                if($i==$numPayment){
+                    $principalPayment[$i] = $data->ln_disburse_client_amount - $tmpAftRoundPri;
+                    $interestPayment[$i] = $tmpBefRound - $tmpAftRound;
+                }
+                $tmpAftRound += $interestPayment[$i];
+                $tmpAftRoundPri += $principalPayment[$i];
+
+                $principalBalance[$i] = $tmpBal - $principalPayment[$i];
+                $tmpBal = $principalBalance[$i];
+            }
+            if($data->round_schedule =='DESC'){
+                $tmpBefRound += $interestPayment[$i];
+
+                $principalPayment[$i] = ceil($principalPayment[$i]);
+                $interestPayment[$i] = round($interestPayment[$i],0,PHP_ROUND_HALF_UP);
+
+                if($i==$numPayment){
+                    $principalPayment[$i] = $data->ln_disburse_client_amount - $tmpAftRoundPri;
+                    $interestPayment[$i] = $tmpBefRound - $tmpAftRound;
+                }
+                $tmpAftRoundPri += $principalPayment[$i];
+                $tmpAftRound += $interestPayment[$i];
+
+                $principalBalance[$i] = $tmpBal - $principalPayment[$i];
+                $tmpBal = $principalBalance[$i];
+            }
+            // End check round schedule
 
             $schedule[] = array(
                 'due_date' => $dueDate[$i],

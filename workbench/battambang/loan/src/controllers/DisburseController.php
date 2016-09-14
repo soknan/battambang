@@ -49,7 +49,7 @@ class DisburseController extends BaseController
         $center = Center::where('id','=',Input::get('ln_center_id'))->get();
 
         $product = Product::where('id','=',Input::get('ln_product_id'))->get();
-
+        //var_dump($product[0]['ln_lv_account_type_arr']);exit;
         foreach ($product as $row) {
             $data['ln_product_id'] = " and ln_product.id = '".$row->id."'";
 
@@ -307,6 +307,7 @@ class DisburseController extends BaseController
         $data->installment_principal_percentage = Input::get('installment_principal_percentage');
         $data->interest_rate = Input::get('interest_rate');
         $data->ln_fund_id = Input::get('ln_fund_id');
+        $data->round_schedule = Input::get('ln_lv_round_type');
         if(Input::get('first_due_date')!=null){
             $data->first_due_date = \Carbon::createFromFormat('d-m-Y',Input::get('first_due_date'))->toDateString();
         }else{
