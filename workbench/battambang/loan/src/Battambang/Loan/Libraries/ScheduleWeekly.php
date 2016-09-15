@@ -109,6 +109,7 @@ class ScheduleWeekly
         $tmpBefRoundPri=0;
         $tmpAftRoundPri=0;
         $tmpBal = $temLoanAmount;
+        $tmpDesc = 0;
 
 //        for ($i = 1; $i <= $numPayment; $i++) {
         for ($i = 0; $i <= $numPayment; $i++) {
@@ -213,40 +214,46 @@ class ScheduleWeekly
             // Check num installment for closing
             $closing = ($i == $numInstallmentForClosing) ? 'closing' : '';
 
-            // Check for round schedule
-            if($data->round_schedule == 'ASC'){
-                $tmpBefRound += $interestPayment[$i];
+            if($currency=='2'){
+                // Check for round schedule
+                if($data->round_schedule == 'ASC'){
+                    $tmpBefRound += $interestPayment[$i];
 
-                $principalPayment[$i] = round($principalPayment[$i],0,PHP_ROUND_HALF_DOWN);
-                $interestPayment[$i] = round($interestPayment[$i],0,PHP_ROUND_HALF_DOWN);
+                    $principalPayment[$i] = floor($principalPayment[$i]);
+                    $interestPayment[$i] = floor($interestPayment[$i]);
 
-                if($i==$numPayment){
-                    $principalPayment[$i] = $data->ln_disburse_client_amount - $tmpAftRoundPri;
-                    $interestPayment[$i] = $tmpBefRound - $tmpAftRound;
+                    if($i==$numPayment){
+                        $principalPayment[$i] = $data->ln_disburse_client_amount - $tmpAftRoundPri;
+                        $interestPayment[$i] = $tmpBefRound - $tmpAftRound;
+                    }
+                    $tmpAftRound += $interestPayment[$i];
+                    $tmpAftRoundPri += $principalPayment[$i];
+
+                    $principalBalance[$i] = $tmpBal - $principalPayment[$i];
+                    $tmpBal = $principalBalance[$i];
                 }
-                $tmpAftRound += $interestPayment[$i];
-                $tmpAftRoundPri += $principalPayment[$i];
+                if($data->round_schedule =='DESC'){
+                    $tmpBefRound += $interestPayment[$i];
 
-                $principalBalance[$i] = $tmpBal - $principalPayment[$i];
-                $tmpBal = $principalBalance[$i];
-            }
-            if($data->round_schedule =='DESC'){
-                $tmpBefRound += $interestPayment[$i];
+                    $principalPayment[$i] = ceil($principalPayment[$i]);
+                    $interestPayment[$i] = floor($interestPayment[$i]);
 
-                $principalPayment[$i] = ceil($principalPayment[$i]);
-                $interestPayment[$i] = round($interestPayment[$i],0,PHP_ROUND_HALF_UP);
+                    if($i==1){
+                        $tmpDesc = $interestPayment[$i];
+                    }
 
-                if($i==$numPayment){
-                    $principalPayment[$i] = $data->ln_disburse_client_amount - $tmpAftRoundPri;
-                    $interestPayment[$i] = $tmpBefRound - $tmpAftRound;
+                    if($i==$numPayment){
+                        $principalPayment[$i] = $data->ln_disburse_client_amount - $tmpAftRoundPri;
+                        $tmpBefRound =  $tmpDesc + ($tmpBefRound - ($tmpAftRound + $interestPayment[$i])) ;
+                    }
+                    $tmpAftRoundPri += $principalPayment[$i];
+                    $tmpAftRound += $interestPayment[$i];
+
+                    $principalBalance[$i] = $tmpBal - $principalPayment[$i];
+                    $tmpBal = $principalBalance[$i];
                 }
-                $tmpAftRoundPri += $principalPayment[$i];
-                $tmpAftRound += $interestPayment[$i];
-
-                $principalBalance[$i] = $tmpBal - $principalPayment[$i];
-                $tmpBal = $principalBalance[$i];
+                // End check round schedule
             }
-            // End check round schedule
 
             $schedule[] = array(
                 'due_date' => $dueDate[$i],
@@ -259,6 +266,16 @@ class ScheduleWeekly
                 'closing' => $closing,
             );
         }
+
+        if($data->round_schedule =='DESC' and $currency == '2'){
+            foreach($schedule as $key => $value)
+            {
+                if($key==1){
+                    $schedule[$key]['interest'] = $tmpBefRound;
+                }
+            }
+        }
+
         return $schedule;
     }
 
