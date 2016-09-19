@@ -164,7 +164,7 @@ $(function() {
 		    		"class": "btn-danger",
 		    		"callback": function()
 		    		{
-                        if($('#txt').val() != decode64(codeRandom)){  return false;}
+                        if($('#txt').val() != decode64(codeRandom)){  return;}
 		    			var form =
 					        $('<form>', {
 					            'method': 'POST',

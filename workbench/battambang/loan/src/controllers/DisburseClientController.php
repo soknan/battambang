@@ -242,7 +242,7 @@ class DisburseClientController extends BaseController
             \Event::fire('user_action.add', array('disburse_client'));
             if($disburseDate->ln_lv_account_type == 1){
                 return Redirect::route('loan.disburse_client.index', $disburseClient->ln_disburse_id)
-                    ->with('info','Now your currency account type is single, so can not add more client !')
+                    ->with('info','Now your current account type is single, so can not add more client !')
                     ->with('success', trans('battambang/loan::disburse_client.create_success')
                         . \Former::open(route('loan.rpt_schedule.report'))
                         . \Former::text_hidden('ln_disburse_client_id',$id)

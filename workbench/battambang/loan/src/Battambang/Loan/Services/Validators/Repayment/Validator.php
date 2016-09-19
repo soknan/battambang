@@ -10,11 +10,12 @@ class Validator extends ValidatorService
         parent::__construct($data = null);
 
         static::$rules = array(
-            //'repayment_date' => 'required|chk_repay_date' ,
+            'ln_disburse_client_id' => 'required|chk_acc' ,
 
         );
         static::$messages = array(
-            'chk_repay_date'=>'Please do not choose future date!'
+            'chk_repay_date'=>'Please do not choose future date!',
+            'chk_acc'=>'Invalid Loan Account Number!'
         );
     }
 
@@ -22,6 +23,14 @@ class Validator extends ValidatorService
 
 \Validator::extend('chk_repay_date', function ($attribute, $value, $parameters){
     if(new \DateTime($value) > new \DateTime()){
+        return false;
+    }
+    return true;
+});
+
+\Validator::extend('chk_acc', function ($attribute, $value, $parameters){
+    $acc = \DB::table('ln_disburse_client')->where('id',$value)->count();
+    if($acc <=0){
         return false;
     }
     return true;

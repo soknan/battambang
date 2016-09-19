@@ -299,7 +299,7 @@ class RptScheduleController extends BaseController{
             $objWorkSheet->getCell('D5')->setValue('រំលស់ការ៖ '.$data['dis']->installment_frequency.' '.$frequency.'ម្តង');
             $objWorkSheet->getCell('D6')->setValue('រំលស់ដើម៖ '.$data['dis']->installment_principal_frequency.' វគ្គម្តង');
             $objWorkSheet->getCell('D7')->setValue('រំលស់ដើម៖ '.$data['dis']->installment_principal_percentage.' %');
-            $objWorkSheet->getCell('D8')->setValue('លេខទូរស័ព្ទ៖ '.$data['dis']->telephone.' %');
+            //$objWorkSheet->getCell('D8')->setValue('លេខទូរស័ព្ទ៖ '.$data['dis']->telephone.' %');
             $objWorkSheet->getCell('D9')->setValue('ចំនួនលើកនៃការខ្ចី៖ '.$data['dis']->cycle);
 
             $objWorkSheet->getCell('F5')->setValue('កាលបរិច្ឆេទខ្ចី៖ '.date('d-m-Y',strtotime($data['dis']->ln_disburse_date)));

@@ -7,12 +7,12 @@ Menu::make(
             'Manage Data',
             function ($dropdown) {
                 $arr = array('loan.client.index'=>'Clients',
-                            'loan.disburse.index'=>'Disbursement',
-                            'loan.repayment.index'=>'Repayment',
-                            'loan.pre_paid.index'=>'Pre-Paid',
-                            'loan.write_off.index'=>'Loan Write-Off',
-                            'loan.exchange.index'=>'Exchange',
-                            'loan.center.index'=>'Centers'
+                    'loan.disburse.index'=>'Disbursement',
+                    'loan.repayment.index'=>'Repayment',
+                    'loan.pre_paid.index'=>'Pre-Paid',
+                    'loan.write_off.index'=>'Loan Write-Off',
+                    'loan.exchange.index'=>'Exchange',
+                    'loan.center.index'=>'Centers'
                 );
                 if(UserSession::read()->permission==null) return;
                 foreach($arr as $key=> $value){
@@ -56,26 +56,22 @@ Menu::make(
                 $dropdown->add('Penalty', route('loan.penalty.index'));
                 $dropdown->add('Penalty Closing', route('loan.penalty_closing.index'));
                 $dropdown->add('Holiday', route('loan.holiday.index'));*/
-                if(in_array( array('loan.category.index'=>'Category',
-                    'loan.product.index'=>'Type',
-                ),UserSession::read()->permission)) {
-                    $dropdown->add(
-                        'Product',
-                        function ($dropdown) {
-                            $arr = array('loan.category.index' => 'Category',
-                                'loan.product.index' => 'Type',
-                            );
-                            if (UserSession::read()->permission == null) return;
-                            foreach ($arr as $key => $value) {
-                                if (in_array($key, UserSession::read()->permission)) {
-                                    $dropdown->add($value, route($key));
-                                }
+                $dropdown->add(
+                    'Product',
+                    function ($dropdown) {
+                        $arr = array('loan.category.index'=>'Category',
+                            'loan.product.index'=>'Type',
+                        );
+                        if(UserSession::read()->permission==null) return;
+                        foreach($arr as $key=> $value){
+                            if(in_array($key,UserSession::read()->permission)){
+                                $dropdown->add($value, route($key));
                             }
-                            /*$dropdown->add('Category', route('loan.category.index'));
-                            $dropdown->add('Type', route('loan.product.index'));*/
                         }
-                    );
-                }
+                        /*$dropdown->add('Category', route('loan.category.index'));
+                        $dropdown->add('Type', route('loan.product.index'));*/
+                    }
+                );
                 /*$dropdown->add('Staff', route('loan.staff.index'));
                 $dropdown->add('Lookup', route('loan.lookup.index'));
                 $dropdown->add('Lookup Value', route('loan.lookup_value.index'));*/
@@ -132,11 +128,11 @@ Menu::make(
                                 $dropdown->add($value, route($key));
                             }
                         }
-                       /* $dropdown->add('Deposit', route('loan.rpt_loan_prepaid_deposit.index'));
-                        $dropdown->add('Withdrawal', route('loan.rpt_loan_prepaid_withdrawal.index'));
-                        $dropdown->add('Balance', route('loan.rpt_loan_prepaid_bal.index'));*/
+                        /* $dropdown->add('Deposit', route('loan.rpt_loan_prepaid_deposit.index'));
+                         $dropdown->add('Withdrawal', route('loan.rpt_loan_prepaid_withdrawal.index'));
+                         $dropdown->add('Balance', route('loan.rpt_loan_prepaid_bal.index'));*/
                     }
-                    );
+                );
                 $dropdown->add(
                     'Summary',
                     function ($dropdown) {
