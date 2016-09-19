@@ -24,7 +24,8 @@ if(Session::has('errors')){
     $ln_lv_handicap='';
     $ln_lv_contact_type ='';
 }
-if($pro->interest_type_id==129){
+//if($pro->interest_type_id==129){
+if(false){
 echo FormPanel2::make(
         'Additional Info',
         Former::number('pre_amount', 'Pre_Amount',$pro->default_amount)->required()->min(0)
@@ -138,7 +139,8 @@ echo FormPanel2::make(
 
 @stop
 @section('js')
-    <?php  if($pro->interest_type_id==129){ ?>
+    <?php  //if($pro->interest_type_id==129){
+    if(false){ ?>
     <script>
         $(document).ready(function () {
             $('[name="pre_amount"]').change(function() {changeAmount()});

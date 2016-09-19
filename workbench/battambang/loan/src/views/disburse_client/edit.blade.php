@@ -15,7 +15,8 @@
 {{Former::open( route('loan.disburse_client.update',$row->id))->method('PUT')}}
 
 <?php
-if($pro->interest_type_id==129){
+//if($pro->interest_type_id==129){
+if(false){
 echo FormPanel2::make(
         'Additional Info',
         Former::number('pre_amount', 'Pre_Amount',$row->pre_amount)->required()
@@ -130,7 +131,8 @@ echo FormPanel2::make(
 @stop
 
 @section('js')
- <?php  if($pro->interest_type_id==129){ ?>
+ <?php  //if($pro->interest_type_id==129){
+ if(false){ ?>
     <script>
         $(document).ready(function () {
             $('[name="pre_amount"]').ready(function() {changeAmount()}).change(function() {changeAmount()});
