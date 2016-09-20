@@ -216,6 +216,7 @@ class DisburseController extends BaseController
                     $arr['default_interest'] = $row1->default_interest;
 
                     $arr['ln_lv_repay_frequency'] = $row1->ln_lv_repay_frequency;
+                    $arr['ln_lv_interest_type'] = $row1->ln_lv_interest_type;
                 }
 
                 foreach ($center as $row2) {

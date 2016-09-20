@@ -105,6 +105,7 @@ echo FormPanel2::make(
         $('[name="installment_frequency"]').change(changeIntFre).change(changeNumPay);
         $('[name="num_payment"]').ready(changeNumPay);
         if($('[name="ln_lv_interest_type"]').val()==9){
+            alert('aa');
             $('[name="installment_principal_frequency"]').html('').append('<option value="' + 1 + '">' + 1 + '</option>');
             $('[name="installment_principal_frequency"]').attr('readOnly', true);
             $('[name="installment_principal_percentage"]').html('').append('<option value="' + 100 + '">' + 100 + '</option>');
@@ -157,6 +158,7 @@ echo FormPanel2::make(
             for (var i = 1; i <= num_payment.val(); i++) {
                 num_installment_fre.append(' <option value = "' + i + '" > ' + i + '</option> ');
             }
+            num_installment_fre.val(<?php echo $row->installment_principal_frequency; ?>);
             if($('[name="ln_lv_interest_type"]').val()==9){
                 $('[name="installment_principal_frequency"]').html('').append('<option value="' + 1 + '">' + 1 + '</option>');
                 $('[name="installment_principal_frequency"]').attr('readOnly', true);

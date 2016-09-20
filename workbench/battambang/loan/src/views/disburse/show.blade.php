@@ -5,6 +5,12 @@
 {{ Former::open() }}
 
 <?php
+
+if (in_array($row->first_due_date, array('', '0000-00-00'))) {
+    $first_due_date = '';
+} else {
+    $first_due_date = date('d-m-Y',strtotime($row->first_due_date));
+};
 echo FormPanel2::make(
     'General',
     Former::text('disburse_date', 'Disburse Date', date('d-m-Y',strtotime($row->disburse_date)))
@@ -21,6 +27,9 @@ echo FormPanel2::make(
         ->required()
         ->disabled()
         ->placeholder('--Select One--') . ''
+    .Former::text('first_due_date', 'First Due_Date',$first_due_date)
+            ->disabled()
+            ->append('dd/mm/yyyy') . ''. ''
 );
 
 echo FormPanel2::make(
@@ -89,7 +98,8 @@ echo FormPanel2::make(
 
 @stop
 @section('js')
-<?php echo DatePicker::make('disburse_date'); ?>
+<?php echo DatePicker::make('disburse_date');
+ echo DatePicker::make('first_due_date'); ?>
 <script>
     $(document).ready(function () {
         //$('[name="num_installment"]').ready(changeNumInstall);
@@ -98,21 +108,27 @@ echo FormPanel2::make(
         //$('[name="installment_frequency"]').ready(changeIntFre);
         $('[name="installment_frequency"]').change(changeIntFre).change(changeNumPay);
         $('[name="num_payment"]').ready(changeNumPay);
+        if($('[name="ln_lv_interest_type"]').val()==9){
+            $('[name="installment_principal_frequency"]').html('').append('<option value="' + 1 + '">' + 1 + '</option>');
+            $('[name="installment_principal_frequency"]').attr('readOnly', true);
+            $('[name="installment_principal_percentage"]').html('').append('<option value="' + 100 + '">' + 100 + '</option>');
+            $('[name="installment_principal_percentage"]').attr('readOnly', true);
+        }
 
         /*$('[name = "num_installment"]').change(function () {
-            changeNumInstall();
-        });
+         changeNumInstall();
+         });
 
-        $('[name = "installment_frequency"]').change(function () {
-            changeIntFre();
-        });
-        $('[name = "installment_frequency"]').focus(function () {
-            changeIntFre();
-        });
+         $('[name = "installment_frequency"]').change(function () {
+         changeIntFre();
+         });
+         $('[name = "installment_frequency"]').focus(function () {
+         changeIntFre();
+         });
 
-        $('[name = "num_payment"]').focus(function () {
-            changeNumPay();
-        });*/
+         $('[name = "num_payment"]').focus(function () {
+         changeNumPay();
+         });*/
 
         function changeNumInstall() {
             var num_installment = $('[name = "num_installment"]');
@@ -144,6 +160,11 @@ echo FormPanel2::make(
             num_installment_fre.html('');
             for (var i = 1; i <= num_payment.val(); i++) {
                 num_installment_fre.append(' <option value = "' + i + '" > ' + i + '</option> ');
+            }
+            num_installment_fre.val(<?php echo $row->installment_principal_frequency; ?>);
+            if($('[name="ln_lv_interest_type"]').val()==9){
+                $('[name="installment_principal_frequency"]').html('').append('<option value="' + 1 + '">' + 1 + '</option>');
+                $('[name="installment_principal_frequency"]').attr('readOnly', true);
             }
         }
 

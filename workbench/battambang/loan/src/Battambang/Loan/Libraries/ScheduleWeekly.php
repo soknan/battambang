@@ -214,7 +214,7 @@ class ScheduleWeekly
             // Check num installment for closing
             $closing = ($i == $numInstallmentForClosing) ? 'closing' : '';
 
-            if($interestType!=129) {
+            if($interestType==129) {
             if($currency=='2') {
                 // Check for round schedule
                 if ($data->round_schedule == 'ASC') {
@@ -269,7 +269,7 @@ class ScheduleWeekly
             );
         }
 
-        if($interestType!=129) {
+        if($interestType==129) {
             if ($data->round_schedule == 'DESC' and $currency == '2') {
                 foreach ($schedule as $key => $value) {
                     if ($key == 1) {
