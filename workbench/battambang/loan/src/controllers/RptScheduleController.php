@@ -35,6 +35,9 @@ class RptScheduleController extends BaseController{
             $tmpRate = 1-pow((1+$data['dis']->interest_rate/100),-$data['dis']->num_payment);
             $installPrinAmount = ($data['dis']->amount*$data['dis']->interest_rate/100)/$tmpRate;
             $installPrinAmount = \Currency::round($data['dis']->cp_currency_code,$installPrinAmount);
+            if($data['dis']->round_schedule !=null){
+                $installPrinAmount = floor($installPrinAmount);
+            }
         }
 
         ($data['dis']->repayment_frequency_type_code == 'W')? $data['dis']->repayment_frequency_type_code = 'សប្ដាហ៍': $data['dis']->repayment_frequency_type_code ='ខែ';

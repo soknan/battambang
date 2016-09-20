@@ -220,6 +220,32 @@ class ScheduleMonthly
             // Check num installment for closing
             $closing = ($i == $numInstallmentForClosing) ? 'closing' : '';
 
+            if($interestType==129 and $currency==2){
+                if($data->round_schedule=='ASC'){
+                    $tmpBefRound = $interestPayment[$i] + $principalPayment[$i];
+                    $tmpAftRound = floor($interestPayment[$i] + $principalPayment[$i]);
+
+                    $principalPayment[$i] -= $tmpBefRound - $tmpAftRound;
+                    if($i==$numPayment){
+                        $principalPayment[$i]+= $tmpAftRoundPri + $tmpBefRound - $tmpAftRound;
+                    }
+                    $tmpAftRoundPri +=  $tmpBefRound - $tmpAftRound;
+                    $principalBalance[$i] = $tmpBal - $principalPayment[$i];
+                    $tmpBal = $principalBalance[$i];
+                }
+
+                if($data->round_schedule=='DESC'){
+                    $tmpBefRound = $interestPayment[$i] + $principalPayment[$i];
+                    $tmpAftRound = floor($interestPayment[$i] + $principalPayment[$i]);
+
+                    $principalPayment[$i] += $tmpBefRound - $tmpAftRound;
+                    if($i==$numPayment){
+                        $principalPayment[$i]-= $tmpAftRoundPri + $tmpBefRound - $tmpAftRound;
+                    }
+                    $tmpAftRoundPri +=  $tmpBefRound - $tmpAftRound;
+                }
+            }
+
             /*if(false) {
             // Check for round schedule
             if($currency=='2') {
