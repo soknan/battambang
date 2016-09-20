@@ -35,7 +35,7 @@ class RptScheduleController extends BaseController{
             $tmpRate = 1-pow((1+$data['dis']->interest_rate/100),-$data['dis']->num_payment);
             $installPrinAmount = ($data['dis']->amount*$data['dis']->interest_rate/100)/$tmpRate;
             $installPrinAmount = \Currency::round($data['dis']->cp_currency_code,$installPrinAmount);
-            if($data['dis']->round_schedule !=null){
+            if($data['dis']->round_schedule =='Y'){
                 $installPrinAmount = floor($installPrinAmount);
             }
         }

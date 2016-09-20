@@ -215,7 +215,7 @@ class ScheduleWeekly
             $closing = ($i == $numInstallmentForClosing) ? 'closing' : '';
 
             if($interestType==129 and $currency==2){
-                if($data->round_schedule=='ASC'){
+                if($data->round_schedule=='Y'){
                     $tmpBefRound = $interestPayment[$i] + $principalPayment[$i];
                     $tmpAftRound = floor($interestPayment[$i] + $principalPayment[$i]);
 
@@ -226,17 +226,6 @@ class ScheduleWeekly
                     $tmpAftRoundPri +=  $tmpBefRound - $tmpAftRound;
                     $principalBalance[$i] = $tmpBal - $principalPayment[$i];
                     $tmpBal = $principalBalance[$i];
-                }
-
-                if($data->round_schedule=='DESC'){
-                    $tmpBefRound = $interestPayment[$i] + $principalPayment[$i];
-                    $tmpAftRound = floor($interestPayment[$i] + $principalPayment[$i]);
-
-                    $principalPayment[$i] += $tmpBefRound - $tmpAftRound;
-                    if($i==$numPayment){
-                        $principalPayment[$i]-= $tmpAftRoundPri + $tmpBefRound - $tmpAftRound;
-                    }
-                    $tmpAftRoundPri +=  $tmpBefRound - $tmpAftRound;
                 }
             }
             /*if(false) {

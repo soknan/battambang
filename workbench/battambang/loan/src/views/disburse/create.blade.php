@@ -13,7 +13,7 @@ echo FormPanel2::make(
         ->required()
         ->placeholder('--Select One--')
     . Former::select('ln_lv_round_type', 'Round Schedule Type')
-            ->options(array('NONE'=>'NONE','ASC'=>'ASC','DESC'=>'DESC'),'NONE')
+            ->options(array('N'=>'NO','Y'=>'YES'),'N')
             ->required()
             ->placeholder('--Select One--')
     ,
