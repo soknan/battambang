@@ -220,7 +220,7 @@ class ScheduleMonthly
             // Check num installment for closing
             $closing = ($i == $numInstallmentForClosing) ? 'closing' : '';
 
-            if($interestType==129) {
+            /*if(false) {
             // Check for round schedule
             if($currency=='2') {
                 if ($data->round_schedule == 'ASC') {
@@ -261,7 +261,7 @@ class ScheduleMonthly
                 }
             }
                 // End check round schedule
-            }
+            }*/
 
             $schedule[] = array(
                 'due_date' => $dueDate[$i],
@@ -276,7 +276,7 @@ class ScheduleMonthly
 
         }
 
-        if($interestType==129) {
+       /* if(false) {
             if ($data->round_schedule == 'DESC' and $currency == '2') {
                 foreach ($schedule as $key => $value) {
                     if ($key == 1) {
@@ -284,7 +284,7 @@ class ScheduleMonthly
                     }
                 }
             }
-        }
+        }*/
 
         return $schedule;
     }

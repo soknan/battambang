@@ -214,7 +214,7 @@ class ScheduleWeekly
             // Check num installment for closing
             $closing = ($i == $numInstallmentForClosing) ? 'closing' : '';
 
-            if($interestType==129) {
+            /*if(false) {
             if($currency=='2') {
                 // Check for round schedule
                 if ($data->round_schedule == 'ASC') {
@@ -236,7 +236,7 @@ class ScheduleWeekly
                 if ($data->round_schedule == 'DESC') {
                     $tmpBefRound += $interestPayment[$i];
 
-                    $principalPayment[$i] = ceil($principalPayment[$i]);
+                    $principalPayment[$i] = floor($principalPayment[$i]);
                     $interestPayment[$i] = floor($interestPayment[$i]);
 
                     if ($i == 1) {
@@ -255,7 +255,7 @@ class ScheduleWeekly
                 }
             }
                 // End check round schedule
-            }
+            }*/
 
             $schedule[] = array(
                 'due_date' => $dueDate[$i],
@@ -269,7 +269,7 @@ class ScheduleWeekly
             );
         }
 
-        if($interestType==129) {
+        /*if(false) {
             if ($data->round_schedule == 'DESC' and $currency == '2') {
                 foreach ($schedule as $key => $value) {
                     if ($key == 1) {
@@ -277,7 +277,7 @@ class ScheduleWeekly
                     }
                 }
             }
-        }
+        }*/
 
         return $schedule;
     }
