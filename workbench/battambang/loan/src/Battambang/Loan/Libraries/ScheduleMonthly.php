@@ -135,10 +135,10 @@ class ScheduleMonthly
                         $temDueDate = $firstDueDate;
                     }
                     if($i>1 && $data->ln_lv_meeting_schedule==125){
-                        $temDueDate = $firstDueDate->copy()->addMonths($temInstallmentFrequency-1);
+                        $temDueDate = $firstDueDate->copy()->addMonths($temInstallmentFrequency - $installmentFrequency);
                     }
                     if($i>1 && $data->ln_lv_meeting_schedule!=125){
-                        $temDueDate = $temDisburseDate->copy()->addMonths($temInstallmentFrequency);
+                        $temDueDate = $temDisburseDate->copy()->addMonths($temInstallmentFrequency - $installmentFrequency);
                     }
                 }
                 $dueDate[$i] = $this->holidayCheck($temDueDate->toDateString(), $holidayRule);

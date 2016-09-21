@@ -128,11 +128,11 @@ class ScheduleWeekly
                     if($i==1){
                         $temDueDate = $firstDueDate;
                     }
-                    if($i>1 && $data->ln_lv_meeting_schedule==128){
-                        $temDueDate = $firstDueDate->copy()->addWeeks($temInstallmentFrequency-1);
+                    if($i>1 && $data->ln_lv_meeting_schedule==125){
+                        $temDueDate = $firstDueDate->copy()->addWeeks($temInstallmentFrequency - $installmentFrequency);
                     }
-                    if($i>1 && $data->ln_lv_meeting_schedule!=128){
-                        $temDueDate = $temDisburseDate->copy()->addWeeks($temInstallmentFrequency);
+                    if($i>1 && $data->ln_lv_meeting_schedule!=125){
+                        $temDueDate = $temDisburseDate->copy()->addWeeks($temInstallmentFrequency - $installmentFrequency);
                     }
                 }
 
