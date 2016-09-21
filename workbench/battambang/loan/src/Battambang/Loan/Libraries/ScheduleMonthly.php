@@ -181,7 +181,7 @@ class ScheduleMonthly
                     // Calculate install principal for payment
                     if ($i == $temInstallPrinFrequency) {
                         if ($i != $numPayment) {
-                            $principalPayment[$i] = $installPrinAmount - $interestPayment[$i];
+                            $principalPayment[$i] = $installPrinAmount + ($temLoanAmount * $interestRate * ($installmentFrequency -1 )) - $interestPayment[$i];
                             $temLoanAmount -= $principalPayment[$i];
                             $temInstallPrinFrequency += $installPrinFrequency;
 
@@ -191,7 +191,7 @@ class ScheduleMonthly
                         } else {
                             //$principalPayment[$i] = $temLoanAmount;
                             $principalPayment[$i] = $loanAmount - $tmpP;
-                            $interestPayment[$i] =  $installPrinAmount-$principalPayment[$i];
+                            $interestPayment[$i] =  $installPrinAmount - $principalPayment[$i];
                             $temLoanAmount = 0.00;
                         }
                     } else {

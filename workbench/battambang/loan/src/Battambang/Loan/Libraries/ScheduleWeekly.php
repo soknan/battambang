@@ -176,7 +176,7 @@ class ScheduleWeekly
                     // Calculate install principal for payment
                     if ($i == $temInstallPrinFrequency) {
                         if ($i != $numPayment) {
-                            $principalPayment[$i] = $installPrinAmount - $interestPayment[$i];
+                            $principalPayment[$i] = $installPrinAmount + ($temLoanAmount * $interestRate * ($installmentFrequency -1 )) - $interestPayment[$i];
                             $temLoanAmount -= $principalPayment[$i];
                             $temInstallPrinFrequency += $installPrinFrequency;
 
