@@ -142,10 +142,11 @@ class RptScheduleController extends BaseController{
                 $objWorkSheet->getCell('D'.$rowNum)->setValue($value->principal);
                 $objWorkSheet->getCell('E'.$rowNum)->setValue($value->interest);
 
-                if($data['dis']->interest_type_code=='ANT'){
+                if($data['dis']->interest_type_code=='ANT' and $data['dis']->round_schedule =='N'){
                     if($key==0){
                         $objWorkSheet->getCell('F'.$rowNum)->setValue(0);
                     }else{
+                        //$installPrinAmount += ($data['dis']->amount*$data['dis']->interest_rate/100 *($data['dis']->installment_frequency -1));
                         $objWorkSheet->getCell('F'.$rowNum)->setValue($installPrinAmount);
                     }
                 }else{
@@ -251,10 +252,11 @@ class RptScheduleController extends BaseController{
                 $objWorkSheet->getCell('C'.$rowNum)->setValue($tmpNumDay);
                 $objWorkSheet->getCell('D'.$rowNum)->setValue($value->principal);
                 $objWorkSheet->getCell('E'.$rowNum)->setValue($value->interest);
-                if($data['dis']->interest_type_code=='ANT'){
+                if($data['dis']->interest_type_code=='ANT' and $data['dis']->round_schedule =='N'){
                     if($key==0){
                         $objWorkSheet->getCell('F'.$rowNum)->setValue(0);
                     }else{
+                        //$installPrinAmount += ($data['dis']->amount*$data['dis']->interest_rate/100 *($data['dis']->installment_frequency -1));
                         $objWorkSheet->getCell('F'.$rowNum)->setValue($installPrinAmount);
                     }
 
@@ -363,10 +365,11 @@ class RptScheduleController extends BaseController{
                 $objWorkSheet->getCell('D'.$rowNum)->setValue($value->principal);
                 $objWorkSheet->getCell('E'.$rowNum)->setValue($value->interest);
 
-                if($data['dis']->interest_type_code=='ANT'){
+                if($data['dis']->interest_type_code=='ANT' and $data['dis']->round_schedule =='N'){
                     if($key==0){
                         $objWorkSheet->getCell('F'.$rowNum)->setValue(0);
                     }else{
+                        //$installPrinAmount += ($data['dis']->amount*$data['dis']->interest_rate/100 *($data['dis']->installment_frequency -1));
                         $objWorkSheet->getCell('F'.$rowNum)->setValue($installPrinAmount);
                     }
                 }else{
