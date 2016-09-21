@@ -177,7 +177,7 @@ class ScheduleMonthly
                     // Calculate principal balance
                     $principalBalance[$i] = $temLoanAmount;
                 }else{
-                    $interestPayment[$i] = $temLoanAmount * $interestRate;
+                    $interestPayment[$i] = $temLoanAmount * $interestRate * $installmentFrequency;
                     // Calculate install principal for payment
                     if ($i == $temInstallPrinFrequency) {
                         if ($i != $numPayment) {
