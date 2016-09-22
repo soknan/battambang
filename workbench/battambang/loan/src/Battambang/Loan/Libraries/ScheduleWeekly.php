@@ -213,63 +213,6 @@ class ScheduleWeekly
             // Check num installment for closing
             $closing = ($i == $numInstallmentForClosing) ? 'closing' : '';
 
-            if($interestType==129 and $currency==2){
-                if($data->round_schedule=='Y'){
-                    $tmpBefRound = $interestPayment[$i] + $principalPayment[$i];
-                    $tmpAftRound = floor($interestPayment[$i] + $principalPayment[$i]);
-
-                    $principalPayment[$i] -= $tmpBefRound - $tmpAftRound;
-                    if($i==$numPayment){
-                        $principalPayment[$i]+= $tmpAftRoundPri + $tmpBefRound - $tmpAftRound;
-                    }
-                    $tmpAftRoundPri +=  $tmpBefRound - $tmpAftRound;
-                    $principalBalance[$i] = $tmpBal - $principalPayment[$i];
-                    $tmpBal = $principalBalance[$i];
-                }
-            }
-            /*if(false) {
-            if($currency=='2') {
-                // Check for round schedule
-                if ($data->round_schedule == 'ASC') {
-                    $tmpBefRound += $interestPayment[$i];
-
-                    $principalPayment[$i] = floor($principalPayment[$i]);
-                    $interestPayment[$i] = floor($interestPayment[$i]);
-
-                    if ($i == $numPayment) {
-                        $principalPayment[$i] = $data->ln_disburse_client_amount - $tmpAftRoundPri;
-                        $interestPayment[$i] = $tmpBefRound - $tmpAftRound;
-                    }
-                    $tmpAftRound += $interestPayment[$i];
-                    $tmpAftRoundPri += $principalPayment[$i];
-
-                    $principalBalance[$i] = $tmpBal - $principalPayment[$i];
-                    $tmpBal = $principalBalance[$i];
-                }
-                if ($data->round_schedule == 'DESC') {
-                    $tmpBefRound += $interestPayment[$i];
-
-                    $principalPayment[$i] = floor($principalPayment[$i]);
-                    $interestPayment[$i] = floor($interestPayment[$i]);
-
-                    if ($i == 1) {
-                        $tmpDesc = $interestPayment[$i];
-                    }
-
-                    if ($i == $numPayment) {
-                        $principalPayment[$i] = $data->ln_disburse_client_amount - $tmpAftRoundPri;
-                        $tmpBefRound = $tmpDesc + ($tmpBefRound - ($tmpAftRound + $interestPayment[$i]));
-                    }
-                    $tmpAftRoundPri += $principalPayment[$i];
-                    $tmpAftRound += $interestPayment[$i];
-
-                    $principalBalance[$i] = $tmpBal - $principalPayment[$i];
-                    $tmpBal = $principalBalance[$i];
-                }
-            }
-                // End check round schedule
-            }*/
-
             $schedule[] = array(
                 'due_date' => $dueDate[$i],
                 'num_day' => $numOfDays[$i],
@@ -281,16 +224,6 @@ class ScheduleWeekly
                 'closing' => $closing,
             );
         }
-
-        /*if(false) {
-            if ($data->round_schedule == 'DESC' and $currency == '2') {
-                foreach ($schedule as $key => $value) {
-                    if ($key == 1) {
-                        $schedule[$key]['interest'] = $tmpBefRound;
-                    }
-                }
-            }
-        }*/
 
         return $schedule;
     }
