@@ -185,7 +185,7 @@ class ScheduleWeekly
                         } else {
                             //$principalPayment[$i] = $temLoanAmount;
                             $principalPayment[$i] = $loanAmount - $tmpP;
-                            $interestPayment[$i] =  $installPrinAmount-$principalPayment[$i];
+                            //$interestPayment[$i] =  $installPrinAmount-$principalPayment[$i];
                             $temLoanAmount = 0.00;
                         }
                     } else {

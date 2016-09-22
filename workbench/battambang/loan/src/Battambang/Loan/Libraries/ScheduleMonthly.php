@@ -188,10 +188,14 @@ class ScheduleMonthly
                             if ($temInstallPrinFrequency > $numPayment) {
                                 $temInstallPrinFrequency = $numPayment;
                             }
+
+                            if($interestPayment[$i] < $installPrinAmount){
+                                $interestPayment[$i] = 0;
+                            }
                         } else {
                             //$principalPayment[$i] = $temLoanAmount;
                             $principalPayment[$i] = $loanAmount - $tmpP;
-                            $interestPayment[$i] =  $installPrinAmount - $principalPayment[$i];
+                            //$interestPayment[$i] =  $installPrinAmount - $principalPayment[$i];
                             $temLoanAmount = 0.00;
                         }
                     } else {
