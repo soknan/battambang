@@ -171,7 +171,10 @@ class ScheduleWeekly
                     // Calculate principal balance
                     $principalBalance[$i] = $temLoanAmount;
                 }else{
-                    $interestPayment[$i] = \Currency::round($currency,$temLoanAmount * $interestRate * $installmentFrequency);
+                    //NORMAL
+                    $interestPayment[$i] = \Currency::round($currency, ($temLoanAmount * $interestRateInDay * $numOfDays[$i]));
+                    // MPNT
+                    //$interestPayment[$i] = \Currency::round($currency,$temLoanAmount * $interestRate * $installmentFrequency);
                     // Calculate install principal for payment
                     if ($i == $temInstallPrinFrequency) {
                         if ($i != $numPayment) {
