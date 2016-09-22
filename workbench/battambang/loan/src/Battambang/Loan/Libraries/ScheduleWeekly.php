@@ -45,7 +45,7 @@ class ScheduleWeekly
 
         if($interestType==129){
            $tmpRate = 1-pow((1+$interestRate * $installmentFrequency),-($numPaymentPrin));
-           $installPrinAmount = ($loanAmount*$interestRate * $installmentFrequency)/$tmpRate;
+           $installPrinAmount = \Currency::round($currency,($loanAmount*$interestRate * $installmentFrequency)/$tmpRate);
         }
 
         $meetingDay = $data->ln_lv_meeting_schedule; // 12-Week(...-None, 27-Mon, 28-Tue, 29-Wed, 30-Thu, 31-Fri, 32-Sat)
@@ -171,7 +171,7 @@ class ScheduleWeekly
                     // Calculate principal balance
                     $principalBalance[$i] = $temLoanAmount;
                 }else{
-                    $interestPayment[$i] = $temLoanAmount * $interestRate * $installmentFrequency;
+                    $interestPayment[$i] = \Currency::round($currency,$temLoanAmount * $interestRate * $installmentFrequency);
                     // Calculate install principal for payment
                     if ($i == $temInstallPrinFrequency) {
                         if ($i != $numPayment) {
