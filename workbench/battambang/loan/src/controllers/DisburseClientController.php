@@ -238,8 +238,29 @@ class DisburseClientController extends BaseController
             $perform->_perform_type = 'disburse';
 
             $perform->save();
+
             // User action
             \Event::fire('user_action.add', array('disburse_client'));
+
+            // Check first due date and annunity int > total
+            if($disburseDate->round_schedule=='Y'){
+                $arr = DB::select('select * from(
+                    select sum(sd.interest) as total_int
+                    ,sum(case when s.index =1 then sd.principal + sd.interest else 0 end) as total
+                    from ln_schedule s
+                    inner join ln_schedule_dt sd on sd.ln_schedule_id = s.id
+                    where s.ln_disburse_client_id = "'.$id.'")p where p.total_int > p.total');
+                if(count($arr)>0){
+                    return Redirect::route('loan.disburse_client.index', $disburseClient->ln_disburse_id)
+                        ->with('info','Now your total interest is bigger than total payment !')
+                        ->with('success', trans('battambang/loan::disburse_client.create_success')
+                            . \Former::open(route('loan.rpt_schedule.report'))
+                            . \Former::text_hidden('ln_disburse_client_id',$id)
+                            . \Former::text_hidden('view_at',date('d-m-Y'))
+                            . \Former::primary_submit('Print Schedule') . \Former::close());
+                }
+            }
+
             if($disburseDate->ln_lv_account_type == 1){
                 return Redirect::route('loan.disburse_client.index', $disburseClient->ln_disburse_id)
                     ->with('info','Now your current account type is single, so can not add more client !')
@@ -320,6 +341,29 @@ class DisburseClientController extends BaseController
                 $perform->save();
 // User action
                 \Event::fire('user_action.edit', array('disburse_client'));
+
+             // Check first due date and annunity int > total
+                if($disburseDate->round_schedule=='Y'){
+                    $arr = DB::select('select * from(
+                    select sum(sd.interest) as total_int
+                    ,sum(case when s.index =1 then sd.principal + sd.interest else 0 end) as total
+                    from ln_schedule s
+                    inner join ln_schedule_dt sd on sd.ln_schedule_id = s.id
+                    where s.ln_disburse_client_id = "'.$id.'")p where p.total_int < p.total');
+                    if(count($arr)>0){
+                        return Redirect::route('loan.disburse_client.edit', array($id, $disburseClient->ln_disburse_id))
+                            ->with('info','Now your total interest is bigger than total payment !')
+                            ->with('success',
+                                trans('battambang/loan::disburse_client.update_success')
+                                . \Former::open(route('loan.rpt_schedule.report'))
+                                . \Former::text_hidden('ln_disburse_client_id',$id)
+                                . \Former::text_hidden('view_at',date('d-m-Y'))
+                                . \Former::primary_submit('Print Schedule') . \Former::close()
+                            );
+                    }
+
+                }
+
                 return Redirect::route('loan.disburse_client.edit', array($id, $disburseClient->ln_disburse_id))
                     ->with('success',
                         trans('battambang/loan::disburse_client.update_success')
