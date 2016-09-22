@@ -32,7 +32,7 @@ class RptScheduleController extends BaseController{
         //re-calculate amount for Mortagate Loan
         $installPrinAmount = 0;
         if($data['dis']->interest_type_code=='ANT'){
-            $tmpRate = 1-pow((1+$data['dis']->interest_rate/100 * $data['dis']->installment_frequency),-$data['dis']->num_payment);
+            $tmpRate = 1-pow((1+$data['dis']->interest_rate/100 * $data['dis']->installment_frequency),-(ceil($data['dis']->num_payment / $data['dis']->installment_frequency));
             $installPrinAmount = ($data['dis']->amount*$data['dis']->interest_rate/100 * $data['dis']->installment_frequency)/$tmpRate;
             $installPrinAmount = \Currency::round($data['dis']->cp_currency_code,$installPrinAmount);
             if($data['dis']->round_schedule =='Y'){
