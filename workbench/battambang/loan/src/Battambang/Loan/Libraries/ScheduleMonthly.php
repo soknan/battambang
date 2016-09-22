@@ -51,7 +51,7 @@ class ScheduleMonthly
         $installPrinPercentage = $data->installment_principal_percentage / 100; // of (%)
         $installPrinAmount = \Currency::round($currency, ($loanAmount / $numPaymentPrin) * $installPrinPercentage);
         if($interestType==129){
-            $tmpRate = 1-pow((1+$interestRate),-$numPayment);
+            $tmpRate = 1-pow((1+$interestRate * $installmentFrequency),-($numPayment / $numPaymentPrin));
             $installPrinAmount = ($loanAmount*$interestRate)/$tmpRate;
             //$installPrinAmount = $interestRate * -$loanAmount*pow((1+$interestRate),$numPayment)/(1-pow((1+$interestRate),$numPayment));
         }
@@ -181,7 +181,7 @@ class ScheduleMonthly
                     // Calculate install principal for payment
                     if ($i == $temInstallPrinFrequency) {
                         if ($i != $numPayment) {
-                            $principalPayment[$i] = $installPrinAmount + ($temLoanAmount * $interestRate * ($installmentFrequency -1 )) - $interestPayment[$i];
+                            $principalPayment[$i] = $installPrinAmount - $interestPayment[$i];
                             $temLoanAmount -= $principalPayment[$i];
                             $temInstallPrinFrequency += $installPrinFrequency;
 
