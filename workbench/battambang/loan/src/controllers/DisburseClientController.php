@@ -204,9 +204,16 @@ class DisburseClientController extends BaseController
 //            $disburseClient->id = \AutoCode::make('ln_disburse_client', 'id', Input::get('ln_disburse_id') . '-', 4);
             $id = $disburseClient->id;
             $this->saveData($disburseClient);
-
             $disburseDate = Disburse::where('id', '=', $disburseClient->ln_disburse_id)->first();
             $schedule = \ScheduleGenerate::make($id, $disburseDate->disburse_date);
+
+            // check int > total payment
+            if($schedule[1]['interest']==0){
+                DisburseClient::where('id','=',$id)->delete();
+                return Redirect::route('loan.disburse_client.index', $disburseClient->ln_disburse_id)
+                    ->with('info','Interest is bigger than total payment. Please change your first due date !.');
+            }
+            // end check
 
             $repay = new RepaymentSchedule();
             $perform = new LoanPerformance();
@@ -241,25 +248,6 @@ class DisburseClientController extends BaseController
 
             // User action
             \Event::fire('user_action.add', array('disburse_client'));
-
-            // Check first due date and annunity int > total
-            if($disburseDate->round_schedule=='Y'){
-                $arr = DB::select('select * from(
-                    select sum(sd.interest) as total_int
-                    ,sum(case when s.index =1 then sd.principal + sd.interest else 0 end) as total
-                    from ln_schedule s
-                    inner join ln_schedule_dt sd on sd.ln_schedule_id = s.id
-                    where s.ln_disburse_client_id = "'.$id.'")p where p.total_int > p.total');
-                if(count($arr)>0){
-                    return Redirect::route('loan.disburse_client.index', $disburseClient->ln_disburse_id)
-                        ->with('info','Now your total interest is bigger than total payment !')
-                        ->with('success', trans('battambang/loan::disburse_client.create_success')
-                            . \Former::open(route('loan.rpt_schedule.report'))
-                            . \Former::text_hidden('ln_disburse_client_id',$id)
-                            . \Former::text_hidden('view_at',date('d-m-Y'))
-                            . \Former::primary_submit('Print Schedule') . \Former::close());
-                }
-            }
 
             if($disburseDate->ln_lv_account_type == 1){
                 return Redirect::route('loan.disburse_client.index', $disburseClient->ln_disburse_id)
@@ -341,28 +329,6 @@ class DisburseClientController extends BaseController
                 $perform->save();
 // User action
                 \Event::fire('user_action.edit', array('disburse_client'));
-
-             // Check first due date and annunity int > total
-                if($disburseDate->round_schedule=='Y'){
-                    $arr = DB::select('select * from(
-                    select sum(sd.interest) as total_int
-                    ,sum(case when s.index =1 then sd.principal + sd.interest else 0 end) as total
-                    from ln_schedule s
-                    inner join ln_schedule_dt sd on sd.ln_schedule_id = s.id
-                    where s.ln_disburse_client_id = "'.$id.'")p where p.total_int < p.total');
-                    if(count($arr)>0){
-                        return Redirect::route('loan.disburse_client.edit', array($id, $disburseClient->ln_disburse_id))
-                            ->with('info','Now your total interest is bigger than total payment !')
-                            ->with('success',
-                                trans('battambang/loan::disburse_client.update_success')
-                                . \Former::open(route('loan.rpt_schedule.report'))
-                                . \Former::text_hidden('ln_disburse_client_id',$id)
-                                . \Former::text_hidden('view_at',date('d-m-Y'))
-                                . \Former::primary_submit('Print Schedule') . \Former::close()
-                            );
-                    }
-
-                }
 
                 return Redirect::route('loan.disburse_client.edit', array($id, $disburseClient->ln_disburse_id))
                     ->with('success',
