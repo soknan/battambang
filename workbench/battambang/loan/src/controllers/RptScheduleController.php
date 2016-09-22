@@ -148,6 +148,9 @@ class RptScheduleController extends BaseController{
                     }else{
                         //$installPrinAmount += ($data['dis']->amount*$data['dis']->interest_rate/100 *($data['dis']->installment_frequency -1));
                         $objWorkSheet->getCell('F'.$rowNum)->setValue($installPrinAmount);
+                        if($key==ceil($data['dis']->num_payment / $data['dis']->installment_principal_frequency)){
+                            $objWorkSheet->getCell('F'.$rowNum)->setValue('=D'.$rowNum.'+E'.$rowNum);
+                        }
                     }
                 }else{
                     $objWorkSheet->getCell('F'.$rowNum)->setValue('=D'.$rowNum.'+E'.$rowNum);
@@ -258,6 +261,9 @@ class RptScheduleController extends BaseController{
                     }else{
                         //$installPrinAmount += ($data['dis']->amount*$data['dis']->interest_rate/100 *($data['dis']->installment_frequency -1));
                         $objWorkSheet->getCell('F'.$rowNum)->setValue($installPrinAmount);
+                        if($key==ceil($data['dis']->num_payment / $data['dis']->installment_principal_frequency)){
+                            $objWorkSheet->getCell('F'.$rowNum)->setValue('=D'.$rowNum.'+E'.$rowNum);
+                        }
                     }
 
                 }else{
@@ -371,6 +377,9 @@ class RptScheduleController extends BaseController{
                     }else{
                         //$installPrinAmount += ($data['dis']->amount*$data['dis']->interest_rate/100 *($data['dis']->installment_frequency -1));
                         $objWorkSheet->getCell('F'.$rowNum)->setValue($installPrinAmount);
+                        if($key==ceil($data['dis']->num_payment / $data['dis']->installment_principal_frequency)){
+                            $objWorkSheet->getCell('F'.$rowNum)->setValue('=D'.$rowNum.'+E'.$rowNum);
+                        }
                     }
                 }else{
                     $objWorkSheet->getCell('F'.$rowNum)->setValue('=D'.$rowNum.'+E'.$rowNum);
