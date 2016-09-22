@@ -36,6 +36,7 @@ class RptScheduleController extends BaseController{
             $installPrinAmount = ($data['dis']->amount*$data['dis']->interest_rate/100)/$tmpRate;
             $installPrinAmount = \Currency::round($data['dis']->cp_currency_code,$installPrinAmount);
             if($data['dis']->round_schedule =='Y'){
+                $installPrinAmount = $installPrinAmount + ($data['dis']->amount*$data['dis']->interest_rate/100 *($data['dis']->installment_frequency -1));
                 $installPrinAmount = floor($installPrinAmount);
             }
         }
@@ -142,7 +143,7 @@ class RptScheduleController extends BaseController{
                 $objWorkSheet->getCell('D'.$rowNum)->setValue($value->principal);
                 $objWorkSheet->getCell('E'.$rowNum)->setValue($value->interest);
 
-                if($data['dis']->interest_type_code=='ANT' and $data['dis']->round_schedule =='N'){
+                if($data['dis']->interest_type_code=='ANT'){
                     if($key==0){
                         $objWorkSheet->getCell('F'.$rowNum)->setValue(0);
                     }else{
@@ -252,7 +253,7 @@ class RptScheduleController extends BaseController{
                 $objWorkSheet->getCell('C'.$rowNum)->setValue($tmpNumDay);
                 $objWorkSheet->getCell('D'.$rowNum)->setValue($value->principal);
                 $objWorkSheet->getCell('E'.$rowNum)->setValue($value->interest);
-                if($data['dis']->interest_type_code=='ANT' and $data['dis']->round_schedule =='N'){
+                if($data['dis']->interest_type_code=='ANT'){
                     if($key==0){
                         $objWorkSheet->getCell('F'.$rowNum)->setValue(0);
                     }else{
@@ -365,7 +366,7 @@ class RptScheduleController extends BaseController{
                 $objWorkSheet->getCell('D'.$rowNum)->setValue($value->principal);
                 $objWorkSheet->getCell('E'.$rowNum)->setValue($value->interest);
 
-                if($data['dis']->interest_type_code=='ANT' and $data['dis']->round_schedule =='N'){
+                if($data['dis']->interest_type_code=='ANT'){
                     if($key==0){
                         $objWorkSheet->getCell('F'.$rowNum)->setValue(0);
                     }else{
