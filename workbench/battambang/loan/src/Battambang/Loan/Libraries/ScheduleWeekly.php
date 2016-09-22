@@ -182,6 +182,10 @@ class ScheduleWeekly
                             if ($temInstallPrinFrequency > $numPayment) {
                                 $temInstallPrinFrequency = $numPayment;
                             }
+                            // interest > total payment
+                            if($interestPayment[$i] > $installPrinAmount){
+                                $interestPayment[$i] = 0;
+                            }
                         } else {
                             //$principalPayment[$i] = $temLoanAmount;
                             $principalPayment[$i] = $loanAmount - $tmpP;

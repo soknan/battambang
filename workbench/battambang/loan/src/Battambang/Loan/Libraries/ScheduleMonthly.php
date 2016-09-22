@@ -188,8 +188,8 @@ class ScheduleMonthly
                             if ($temInstallPrinFrequency > $numPayment) {
                                 $temInstallPrinFrequency = $numPayment;
                             }
-
-                            if($interestPayment[$i] < $installPrinAmount){
+                            // interest > total payment
+                            if($interestPayment[$i] > $installPrinAmount){
                                 $interestPayment[$i] = 0;
                             }
                         } else {
