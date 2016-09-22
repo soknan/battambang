@@ -51,7 +51,7 @@ class ScheduleMonthly
         $installPrinPercentage = $data->installment_principal_percentage / 100; // of (%)
         $installPrinAmount = \Currency::round($currency, ($loanAmount / $numPaymentPrin) * $installPrinPercentage);
         if($interestType==129){
-            $tmpRate = 1-pow((1+$interestRate * $installmentFrequency),-$numPayment);
+            $tmpRate = 1-pow((1+$interestRate * $installmentFrequency),-($numPaymentPrin));
             $installPrinAmount = ($loanAmount*$interestRate * $installmentFrequency)/$tmpRate;
             //$installPrinAmount = $interestRate * -$loanAmount*pow((1+$interestRate),$numPayment)/(1-pow((1+$interestRate),$numPayment));
         }
