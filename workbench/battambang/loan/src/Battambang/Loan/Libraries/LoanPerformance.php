@@ -387,7 +387,7 @@ class LoanPerformance
                         return $this;
                 }
                     //echo $row->activated_at; echo $this->_activated_at;
-                if ($this->_isEqualDate($row->activated_at, $this->_activated_at)) { //echo 'yes'; exit;
+                if ($this->_isEqualDate($row->due_date, $this->_activated_at)) { //echo 'yes'; exit;
                     if($this->_arrears['cur']['principal']+$this->_arrears['cur']['interest']>0){
 
                         if($this->_due['principal'] > $this->_arrears['cur']['principal'] ){
@@ -730,7 +730,7 @@ WHERE ln_disburse_client.id = "'.$this->_disburse_client_id.'" ');
             //$second = $second;
         }elseif($this->_disburse->ln_lv_repay_frequency == 4){
             $first_s = $date->createFromFormat('Y-m-d',$date1)->startOfMonth();
-            $first = $first->addMonths($this->_disburse->installment_frequency - 1)->endOfMonth();
+            $first = $first->addMonths($this->_disburse->installment_frequency-1)->endOfMonth();
             //$second = $second->endOfMonth();
         }
         //echo $first_s.'</br>'; echo $first; exit;
