@@ -46,6 +46,7 @@ class LoanPerformance
     public $_disburse;
     public $_accru_int;
     public $error='';
+    public $org_last_repayment;
 
     public $late = false;
 
@@ -317,6 +318,7 @@ class LoanPerformance
                 $this->_repayment['last']['fee'] = $row->last_repayment_fee;
                 $this->_repayment['last']['penalty'] = $row->last_repayment_penalty;
                 $this->_repayment['last']['type'] = $row->last_repayment_type;
+                $this->org_last_repayment = $row->repayment_type;
 
                 $this->_current_product_status = $row->current_product_status;
                 $this->_current_product_status_date = $row->current_product_status_date;
@@ -686,7 +688,6 @@ class LoanPerformance
             return $this;
         }
 
-
     }
 
     private function _getDisburse()
@@ -919,7 +920,7 @@ WHERE ln_disburse_client.id = "'.$this->_disburse_client_id.'" ');
         $int = 0;
         $total =0;
         $tmp_principal = $principal;
-        if($this->_perform_type!='writeoff'){
+        if($this->_repayment['cur']['voucher_id'] != ''){
             $this->_perform_type = 'repayment';
         }
 
@@ -930,7 +931,7 @@ WHERE ln_disburse_client.id = "'.$this->_disburse_client_id.'" ');
             $this->_repayment['last']['principal'] = $this->_repayment['cur']['principal'];
             $this->_repayment['last']['interest'] = $this->_repayment['cur']['interest'];
             $this->_repayment['last']['penalty'] = $this->_repayment['cur']['penalty'];
-            $this->_repayment['last']['type'] = $this->_repayment['cur']['type'];
+            $this->_repayment['last']['type'] = $this->org_last_repayment;//$this->_repayment['cur']['type'];
         }
 
         $total = $this->_arrears['cur']['principal'] + $this->_arrears['cur']['interest'];
@@ -942,7 +943,7 @@ WHERE ln_disburse_client.id = "'.$this->_disburse_client_id.'" ');
                 $arrearsIndex =1;
                 $arrearsDate ='';
 
-                if($this->_new_due['product_status'] == 5){
+                if($this->_new_due['product_status'] == 5 and $this->_repayment['cur']['voucher_id'] == ''){
                     $this->_perform_type = 'writeoff';
                     $wof_pri=0;
                     $wof_int=0;
