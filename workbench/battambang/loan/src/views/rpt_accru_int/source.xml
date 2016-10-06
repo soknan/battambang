@@ -375,7 +375,7 @@
     <Cell ss:StyleID="s75"><Data ss:Type="String">Classify</Data></Cell>
        <Cell ss:StyleID="s75"><Data ss:Type="String">CO</Data></Cell>
        <Cell ss:StyleID="s75"><Data ss:Type="String">Vill</Data></Cell>
-    <Cell ss:StyleID="s75"><Data ss:Type="String">Due Date</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="String">Accru Date</Data></Cell>
     <Cell ss:StyleID="s75"><Data ss:Type="String">Accru Num Day</Data></Cell>
     <Cell ss:StyleID="s75"><Data ss:Type="String">Accru Int</Data></Cell>
     <Cell ss:StyleID="s75"><Data ss:Type="String">Loan Out Prin</Data></Cell>
@@ -410,13 +410,10 @@
            $con_cur = new Battambang\Cpanel\Libraries\Currency();
            foreach($result as $key=>$row){
 
+           $num_due = $row->_arrears['cur']['num_day'];
+
            if(Carbon::createFromFormat('Y-m-d', $as_date) > Carbon::createFromFormat('Y-m-d', $row->_maturity_date)){
            $as_date = $row->_maturity_date;
-           }
-
-           $num_due = Carbon::createFromFormat('Y-m-d', $row->_due['date'])->diffInDays(Carbon::createFromFormat('Y-m-d', $as_date));
-           if(Carbon::createFromFormat('Y-m-d', $row->_due['date']) > Carbon::createFromFormat('Y-m-d', $as_date)){
-           $num_due = $num_due * (-1);
            }
 
            if($row->_disburse->ln_lv_repay_frequency == 3){
@@ -474,8 +471,8 @@
     <Cell ss:StyleID="s78"><Data ss:Type="String"><?php echo $classify;?></Data></Cell>
        <Cell ss:StyleID="s78"><Data ss:Type="String"><?php echo $staff->kh_last_name.' '.$staff->kh_first_name;?></Data></Cell>
        <Cell ss:StyleID="s78"><Data ss:Type="String"><?php echo $location->kh_name;?></Data></Cell>
-    <Cell ss:StyleID="s81"><Data ss:Type="DateTime"><?php echo $row->_due['date'];?></Data></Cell>
-    <Cell ss:StyleID="s78"><Data ss:Type="Number"><?php echo $num_due;?></Data></Cell>
+    <Cell ss:StyleID="s81"><Data ss:Type="DateTime"><?php echo $row->_arrears['cur']['date'];?></Data></Cell>
+    <Cell ss:StyleID="s78"><Data ss:Type="Number"><?php echo $row->_arrears['cur']['num_day'];?></Data></Cell>
     <Cell ss:StyleID="s101"><Data ss:Type="Number"><?php echo $int;?></Data></Cell>
     <Cell ss:StyleID="s100"><Data ss:Type="Number"><?php echo $bal_pri;?></Data></Cell>
     <Cell ss:StyleID="s101"><Data ss:Type="Number"><?php echo $bal_int;?></Data></Cell>
