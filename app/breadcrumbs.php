@@ -843,6 +843,14 @@ Breadcrumbs::register(
         $bc->push('Loan Network Information', URL::route('loan.rpt_nbc_11.index'));
     }
 );
+// Accru int
+Breadcrumbs::register(
+    'loan.rpt_accru_int.index',
+    function ($bc) {
+        $bc->parent('cpanel.package.home');
+        $bc->push('Accru Interest', URL::route('loan.rpt_accru_int.index'));
+    }
+);
 
 /*
 |--------------------------------------------------------------------------

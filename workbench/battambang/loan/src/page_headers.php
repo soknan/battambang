@@ -431,6 +431,13 @@ PageHeader::make(
 |--------------------------------------------------------------------------
 */
 PageHeader::make(
+    'loan.rpt_accru_int.index',
+    function (PageHeardItem $header) {
+        $header->iconFloppyDisk();
+        $header->add('Accru Interest Report');
+    }
+);
+PageHeader::make(
     'loan.rpt_loan_prepaid_bal.index',
     function (PageHeardItem $header) {
         $header->iconFloppyDisk();

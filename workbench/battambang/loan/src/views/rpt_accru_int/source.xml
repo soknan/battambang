@@ -1,0 +1,727 @@
+<?xml version="1.0"?>
+<?mso-application progid="Excel.Sheet"?>
+<Workbook xmlns="urn:schemas-microsoft-com:office:spreadsheet"
+ xmlns:o="urn:schemas-microsoft-com:office:office"
+ xmlns:x="urn:schemas-microsoft-com:office:excel"
+ xmlns:ss="urn:schemas-microsoft-com:office:spreadsheet"
+ xmlns:html="http://www.w3.org/TR/REC-html40">
+ <DocumentProperties xmlns="urn:schemas-microsoft-com:office:office">
+  <Author>SOKNAN</Author>
+  <LastAuthor>SOKNAN</LastAuthor>
+  <LastPrinted>2014-03-31T06:41:23Z</LastPrinted>
+  <Created>2014-02-13T00:49:01Z</Created>
+  <LastSaved>2014-04-01T07:29:06Z</LastSaved>
+  <Version>14.00</Version>
+ </DocumentProperties>
+ <OfficeDocumentSettings xmlns="urn:schemas-microsoft-com:office:office">
+  <AllowPNG/>
+ </OfficeDocumentSettings>
+ <ExcelWorkbook xmlns="urn:schemas-microsoft-com:office:excel">
+  <WindowHeight>6030</WindowHeight>
+  <WindowWidth>14355</WindowWidth>
+  <WindowTopX>120</WindowTopX>
+  <WindowTopY>285</WindowTopY>
+  <RefModeR1C1/>
+  <ProtectStructure>False</ProtectStructure>
+  <ProtectWindows>False</ProtectWindows>
+ </ExcelWorkbook>
+ <Styles>
+  <Style ss:ID="Default" ss:Name="Normal">
+   <Alignment ss:Vertical="Bottom"/>
+   <Borders/>
+   <Font ss:FontName="Calibri" x:Family="Swiss" ss:Size="11" ss:Color="#000000"/>
+   <Interior/>
+   <NumberFormat/>
+   <Protection/>
+  </Style>
+  <Style ss:ID="s16" ss:Name="Comma">
+   <NumberFormat ss:Format="_(* #,##0.00_);_(* \(#,##0.00\);_(* &quot;-&quot;??_);_(@_)"/>
+  </Style>
+  <Style ss:ID="m66289928">
+   <Alignment ss:Horizontal="Right" ss:Vertical="Center" ss:WrapText="1"/>
+   <Borders>
+    <Border ss:Position="Bottom" ss:LineStyle="Continuous" ss:Weight="1"
+     ss:Color="#000000"/>
+    <Border ss:Position="Left" ss:LineStyle="Continuous" ss:Weight="1"
+     ss:Color="#000000"/>
+    <Border ss:Position="Right" ss:LineStyle="Continuous" ss:Weight="1"
+     ss:Color="#000000"/>
+    <Border ss:Position="Top" ss:LineStyle="Continuous" ss:Weight="1"
+     ss:Color="#000000"/>
+   </Borders>
+   <Font ss:FontName="Calibri" x:Family="Swiss" ss:Size="8" ss:Color="#000000"
+    ss:Bold="1"/>
+  </Style>
+  <Style ss:ID="m66289948">
+   <Alignment ss:Horizontal="Right" ss:Vertical="Center" ss:WrapText="1"/>
+   <Borders>
+    <Border ss:Position="Bottom" ss:LineStyle="Continuous" ss:Weight="1"
+     ss:Color="#000000"/>
+    <Border ss:Position="Left" ss:LineStyle="Continuous" ss:Weight="1"
+     ss:Color="#000000"/>
+    <Border ss:Position="Right" ss:LineStyle="Continuous" ss:Weight="1"
+     ss:Color="#000000"/>
+    <Border ss:Position="Top" ss:LineStyle="Continuous" ss:Weight="1"
+     ss:Color="#000000"/>
+   </Borders>
+   <Font ss:FontName="Calibri" x:Family="Swiss" ss:Size="8" ss:Color="#000000"
+    ss:Bold="1"/>
+  </Style>
+  <Style ss:ID="m66289968">
+   <Alignment ss:Horizontal="Right" ss:Vertical="Center" ss:WrapText="1"/>
+   <Borders>
+    <Border ss:Position="Bottom" ss:LineStyle="Continuous" ss:Weight="1"
+     ss:Color="#000000"/>
+    <Border ss:Position="Left" ss:LineStyle="Continuous" ss:Weight="1"
+     ss:Color="#000000"/>
+    <Border ss:Position="Right" ss:LineStyle="Continuous" ss:Weight="1"
+     ss:Color="#000000"/>
+    <Border ss:Position="Top" ss:LineStyle="Continuous" ss:Weight="1"
+     ss:Color="#000000"/>
+   </Borders>
+   <Font ss:FontName="Calibri" x:Family="Swiss" ss:Size="8" ss:Color="#000000"
+    ss:Bold="1"/>
+  </Style>
+  <Style ss:ID="m66289988">
+   <Alignment ss:Horizontal="Right" ss:Vertical="Center" ss:WrapText="1"/>
+   <Borders>
+    <Border ss:Position="Bottom" ss:LineStyle="Continuous" ss:Weight="1"
+     ss:Color="#000000"/>
+    <Border ss:Position="Left" ss:LineStyle="Continuous" ss:Weight="1"
+     ss:Color="#000000"/>
+    <Border ss:Position="Right" ss:LineStyle="Continuous" ss:Weight="1"
+     ss:Color="#000000"/>
+    <Border ss:Position="Top" ss:LineStyle="Continuous" ss:Weight="1"
+     ss:Color="#000000"/>
+   </Borders>
+   <Font ss:FontName="Calibri" x:Family="Swiss" ss:Size="8" ss:Color="#000000"
+    ss:Bold="1"/>
+  </Style>
+  <Style ss:ID="s62">
+   <Alignment ss:Horizontal="Left" ss:Vertical="Bottom"/>
+  </Style>
+  <Style ss:ID="s63">
+   <Alignment ss:Horizontal="Left" ss:Vertical="Center"/>
+   <Font ss:FontName="Calibri" x:Family="Swiss" ss:Size="12" ss:Color="#000000"
+    ss:Bold="1"/>
+  </Style>
+  <Style ss:ID="s64">
+   <Alignment ss:Horizontal="Left" ss:Vertical="Bottom"/>
+   <Font ss:FontName="Calibri" x:Family="Swiss" ss:Size="11" ss:Color="#000000"/>
+  </Style>
+  <Style ss:ID="s65">
+   <Alignment ss:Horizontal="Left" ss:Vertical="Center"/>
+   <Font ss:FontName="Calibri" x:Family="Swiss" ss:Size="11" ss:Color="#000000"
+    ss:Bold="1"/>
+  </Style>
+  <Style ss:ID="s66">
+   <Alignment ss:Horizontal="Left" ss:Vertical="Top"/>
+   <Font ss:FontName="Calibri" x:Family="Swiss" ss:Size="11" ss:Color="#000000"
+    ss:Bold="1"/>
+  </Style>
+  <Style ss:ID="s68">
+   <Alignment ss:Horizontal="Left" ss:Vertical="Center"/>
+  </Style>
+  <Style ss:ID="s69">
+   <Font ss:FontName="Calibri" x:Family="Swiss" ss:Color="#000000"/>
+  </Style>
+  <Style ss:ID="s70">
+   <Alignment ss:Vertical="Center"/>
+   <Font ss:FontName="Calibri" x:Family="Swiss" ss:Color="#000000" ss:Bold="1"/>
+  </Style>
+  <Style ss:ID="s71">
+   <Alignment ss:Vertical="Bottom"/>
+   <Font ss:FontName="Calibri" x:Family="Swiss" ss:Color="#000000"/>
+  </Style>
+  <Style ss:ID="s73">
+   <Alignment ss:Vertical="Center"/>
+   <Borders/>
+  </Style>
+  <Style ss:ID="s74">
+   <Alignment ss:Horizontal="Center" ss:Vertical="Center"/>
+   <Borders>
+    <Border ss:Position="Bottom" ss:LineStyle="Continuous" ss:Weight="1"/>
+    <Border ss:Position="Left" ss:LineStyle="Continuous" ss:Weight="1"/>
+    <Border ss:Position="Right" ss:LineStyle="Continuous" ss:Weight="1"
+     ss:Color="#000000"/>
+    <Border ss:Position="Top" ss:LineStyle="Continuous" ss:Weight="1"/>
+   </Borders>
+   <Font ss:FontName="Calibri" x:Family="Swiss" ss:Size="9" ss:Color="#000000"/>
+   <Interior ss:Color="#CCCCCC" ss:Pattern="Solid"/>
+  </Style>
+  <Style ss:ID="s75">
+   <Alignment ss:Horizontal="Center" ss:Vertical="Center"/>
+   <Borders>
+    <Border ss:Position="Bottom" ss:LineStyle="Continuous" ss:Weight="1"/>
+    <Border ss:Position="Left" ss:LineStyle="Continuous" ss:Weight="1"
+     ss:Color="#000000"/>
+    <Border ss:Position="Right" ss:LineStyle="Continuous" ss:Weight="1"
+     ss:Color="#000000"/>
+    <Border ss:Position="Top" ss:LineStyle="Continuous" ss:Weight="1"/>
+   </Borders>
+   <Font ss:FontName="Calibri" x:Family="Swiss" ss:Size="9" ss:Color="#000000"/>
+   <Interior ss:Color="#CCCCCC" ss:Pattern="Solid"/>
+  </Style>
+  <Style ss:ID="s76">
+   <Alignment ss:Horizontal="Center" ss:Vertical="Center"/>
+   <Borders>
+    <Border ss:Position="Bottom" ss:LineStyle="Continuous" ss:Weight="1"/>
+    <Border ss:Position="Left" ss:LineStyle="Continuous" ss:Weight="1"
+     ss:Color="#000000"/>
+    <Border ss:Position="Right" ss:LineStyle="Continuous" ss:Weight="1"/>
+    <Border ss:Position="Top" ss:LineStyle="Continuous" ss:Weight="1"/>
+   </Borders>
+   <Font ss:FontName="Calibri" x:Family="Swiss" ss:Size="9" ss:Color="#000000"/>
+   <Interior ss:Color="#CCCCCC" ss:Pattern="Solid"/>
+  </Style>
+  <Style ss:ID="s77">
+   <Interior/>
+  </Style>
+  <Style ss:ID="s78">
+   <Alignment ss:Horizontal="Center" ss:Vertical="Center"/>
+   <Borders>
+    <Border ss:Position="Bottom" ss:LineStyle="Continuous" ss:Weight="1"/>
+    <Border ss:Position="Left" ss:LineStyle="Continuous" ss:Weight="1"/>
+    <Border ss:Position="Right" ss:LineStyle="Continuous" ss:Weight="1"/>
+    <Border ss:Position="Top" ss:LineStyle="Continuous" ss:Weight="1"/>
+   </Borders>
+   <Font ss:FontName="Calibri" x:Family="Swiss" ss:Size="8" ss:Color="#000000"/>
+   <Interior/>
+  </Style>
+  <Style ss:ID="s79">
+   <Alignment ss:Horizontal="Center" ss:Vertical="Center"/>
+   <Borders>
+    <Border ss:Position="Bottom" ss:LineStyle="Continuous" ss:Weight="1"/>
+    <Border ss:Position="Left" ss:LineStyle="Continuous" ss:Weight="1"/>
+    <Border ss:Position="Right" ss:LineStyle="Continuous" ss:Weight="1"/>
+    <Border ss:Position="Top" ss:LineStyle="Continuous" ss:Weight="1"/>
+   </Borders>
+   <Font ss:FontName="Calibri" x:Family="Swiss" ss:Size="8" ss:Color="#000000"/>
+  </Style>
+  <Style ss:ID="s80">
+   <Alignment ss:Vertical="Center"/>
+   <Borders>
+    <Border ss:Position="Bottom" ss:LineStyle="Continuous" ss:Weight="1"/>
+    <Border ss:Position="Left" ss:LineStyle="Continuous" ss:Weight="1"/>
+    <Border ss:Position="Right" ss:LineStyle="Continuous" ss:Weight="1"/>
+    <Border ss:Position="Top" ss:LineStyle="Continuous" ss:Weight="1"/>
+   </Borders>
+   <Font ss:FontName="Calibri" x:Family="Swiss" ss:Size="8" ss:Color="#000000"/>
+  </Style>
+  <Style ss:ID="s81">
+   <Alignment ss:Horizontal="Center" ss:Vertical="Center"/>
+   <Borders>
+    <Border ss:Position="Bottom" ss:LineStyle="Continuous" ss:Weight="1"
+     ss:Color="#000000"/>
+    <Border ss:Position="Left" ss:LineStyle="Continuous" ss:Weight="1"
+     ss:Color="#000000"/>
+    <Border ss:Position="Right" ss:LineStyle="Continuous" ss:Weight="1"
+     ss:Color="#000000"/>
+   </Borders>
+   <Font ss:FontName="Calibri" x:Family="Swiss" ss:Size="9" ss:Color="#000000"/>
+   <NumberFormat ss:Format="Medium Date"/>
+  </Style>
+  <Style ss:ID="s94">
+   <Alignment ss:Vertical="Center" ss:WrapText="1"/>
+   <Borders>
+    <Border ss:Position="Top" ss:LineStyle="Continuous" ss:Weight="1"
+     ss:Color="#000000"/>
+   </Borders>
+  </Style>
+  <Style ss:ID="s95">
+   <Alignment ss:Horizontal="Center" ss:Vertical="Center"/>
+   <Font ss:FontName="Calibri" x:Family="Swiss" ss:Size="9" ss:Color="#000000"/>
+  </Style>
+  <Style ss:ID="s97">
+   <Alignment ss:Vertical="Bottom"/>
+   <Font ss:FontName="Calibri" x:Family="Swiss" ss:Size="9" ss:Color="#000000"/>
+  </Style>
+  <Style ss:ID="s98" ss:Parent="s16">
+   <Alignment ss:Vertical="Center"/>
+   <Borders>
+    <Border ss:Position="Bottom" ss:LineStyle="Continuous" ss:Weight="1"/>
+    <Border ss:Position="Left" ss:LineStyle="Continuous" ss:Weight="1"/>
+    <Border ss:Position="Right" ss:LineStyle="Continuous" ss:Weight="1"/>
+    <Border ss:Position="Top" ss:LineStyle="Continuous" ss:Weight="1"/>
+   </Borders>
+   <Font ss:FontName="Calibri" x:Family="Swiss" ss:Size="8" ss:Color="#000000"/>
+  </Style>
+  <Style ss:ID="s100" ss:Parent="s16">
+   <Alignment ss:Horizontal="Right" ss:Vertical="Center"/>
+   <Borders>
+    <Border ss:Position="Bottom" ss:LineStyle="Continuous" ss:Weight="1"/>
+    <Border ss:Position="Left" ss:LineStyle="Continuous" ss:Weight="1"/>
+    <Border ss:Position="Right" ss:LineStyle="Continuous" ss:Weight="1"/>
+    <Border ss:Position="Top" ss:LineStyle="Continuous" ss:Weight="1"/>
+   </Borders>
+   <Font ss:FontName="Calibri" x:Family="Swiss" ss:Size="8" ss:Color="#000000"/>
+   <Interior/>
+  </Style>
+  <Style ss:ID="s101" ss:Parent="s16">
+   <Alignment ss:Horizontal="Right" ss:Vertical="Center" ss:WrapText="1"/>
+   <Borders>
+    <Border ss:Position="Bottom" ss:LineStyle="Continuous" ss:Weight="1"
+     ss:Color="#000000"/>
+    <Border ss:Position="Left" ss:LineStyle="Continuous" ss:Weight="1"
+     ss:Color="#000000"/>
+    <Border ss:Position="Right" ss:LineStyle="Continuous" ss:Weight="1"
+     ss:Color="#000000"/>
+    <Border ss:Position="Top" ss:LineStyle="Continuous" ss:Weight="1"
+     ss:Color="#000000"/>
+   </Borders>
+   <Font ss:FontName="Calibri" x:Family="Swiss" ss:Size="8" ss:Color="#000000"
+    ss:Bold="1"/>
+  </Style>
+ </Styles>
+ <Worksheet ss:Name="AccruInt">
+  <Table x:FullColumns="1"
+   x:FullRows="1" ss:DefaultRowHeight="15">
+   <Column ss:AutoFitWidth="0" ss:Width="27"/>
+   <Column ss:AutoFitWidth="0" ss:Width="78"/>
+   <Column ss:AutoFitWidth="0" ss:Width="70.5"/>
+   <Column ss:AutoFitWidth="0" ss:Width="23.25"/>
+   <Column ss:AutoFitWidth="0" ss:Width="42.75"/>
+   <Column ss:AutoFitWidth="0" ss:Width="51.75"/>
+   <Column ss:AutoFitWidth="0" ss:Width="54"/>
+   <Column ss:AutoFitWidth="0" ss:Width="57"/>
+   <Column ss:AutoFitWidth="0" ss:Width="51"/>
+   <Column ss:AutoFitWidth="0" ss:Width="25.5"/>
+   <Column ss:AutoFitWidth="0" ss:Width="55.5"/>
+   <Column ss:AutoFitWidth="0" ss:Width="49.5"/>
+   <Column ss:AutoFitWidth="0" ss:Width="55.5"/>
+   <Column ss:Width="40"/>
+   <Column ss:AutoFitWidth="0" ss:Width="53.25"/>
+   <Row ss:AutoFitHeight="0" ss:Height="15.75" ss:StyleID="s62">
+    <Cell ss:StyleID="s63"><Data ss:Type="String"><?php echo $company_name;?></Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0" ss:StyleID="s64">
+    <Cell ss:StyleID="s65"><Data ss:Type="String">Branch Office : <?php echo $cp_office;?></Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0" ss:StyleID="s64">
+    <Cell ss:StyleID="s66"><Data ss:Type="String">Accru Interest Report</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0" ss:StyleID="s64">
+    <Cell ss:StyleID="s66"><Data ss:Type="String">Period : <?php echo date('d-M-Y',strtotime($as_date));?></Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0" ss:StyleID="s62">
+    <Cell ss:MergeAcross="14" ss:StyleID="s68"/>
+   </Row>
+   <Row ss:AutoFitHeight="0" ss:Height="12.75" ss:StyleID="s69">
+    <Cell ss:StyleID="s70"><ss:Data ss:Type="String"
+      xmlns="http://www.w3.org/TR/REC-html40"><B><Font html:Color="#000000">Staff Code :&#160;</Font></B><Font
+       html:Color="#000000"> <?php echo $ln_staff;?></Font></ss:Data></Cell>
+    <Cell ss:StyleID="s71"/>
+    <Cell ss:Index="5" ss:StyleID="s71"/>
+    <Cell ss:StyleID="s71"/>
+    <Cell ss:Index="9" ss:StyleID="s70"><ss:Data ss:Type="String"
+      xmlns="http://www.w3.org/TR/REC-html40"><B><Font html:Color="#000000">Currency :&#160;</Font></B><Font
+       html:Color="#000000"> <?php echo $cp_currency;?></Font></ss:Data></Cell>
+    <Cell ss:StyleID="s71"/>
+    <Cell ss:StyleID="s71"/>
+    <Cell ss:Index="13" ss:StyleID="s70"><ss:Data ss:Type="String"
+      xmlns="http://www.w3.org/TR/REC-html40"><B><Font html:Color="#000000">Fund :&#160;</Font></B><Font
+       html:Color="#000000"> <?php echo $ln_fund;?></Font></ss:Data></Cell>
+    <Cell ss:StyleID="s71"/>
+    <Cell ss:StyleID="s71"/>
+   </Row>
+   <Row ss:AutoFitHeight="0" ss:Height="12.75" ss:StyleID="s69">
+    <Cell ss:StyleID="s70"><ss:Data ss:Type="String"
+      xmlns="http://www.w3.org/TR/REC-html40"><B><Font html:Color="#000000">Repay Frequency :&#160;</Font></B><Font
+       html:Color="#000000"> <?php echo $repay_frequency;?></Font></ss:Data></Cell>
+    <Cell ss:StyleID="s71"/>
+    <Cell ss:Index="5" ss:StyleID="s71"/>
+    <Cell ss:StyleID="s71"/>
+    <Cell ss:Index="9" ss:StyleID="s70"><ss:Data ss:Type="String"
+      xmlns="http://www.w3.org/TR/REC-html40"><B><Font html:Color="#000000">Product :&#160;</Font></B><Font
+       html:Color="#000000"> <?php echo $ln_product;?></Font></ss:Data></Cell>
+    <Cell ss:StyleID="s71"/>
+    <Cell ss:StyleID="s71"/>
+    <Cell ss:Index="13" ss:StyleID="s70"><ss:Data ss:Type="String"
+      xmlns="http://www.w3.org/TR/REC-html40"><B><Font html:Color="#000000">Classify :&#160;</Font></B><Font
+       html:Color="#000000"> <?php echo $classify;?></Font></ss:Data></Cell>
+    <Cell ss:StyleID="s71"/>
+    <Cell ss:StyleID="s71"/>
+   </Row>
+   <Row ss:AutoFitHeight="0" ss:Height="12.75" ss:StyleID="s69">
+    <Cell ss:StyleID="s70"><ss:Data ss:Type="String"
+      xmlns="http://www.w3.org/TR/REC-html40"><B><Font html:Color="#000000">Exchange Rate :&#160;</Font></B><Font
+       html:Color="#000000"><?php echo $exchange_rate;?></Font></ss:Data></Cell>
+    <Cell ss:StyleID="s71"/>
+    <Cell ss:Index="5" ss:StyleID="s71"/>
+    <Cell ss:StyleID="s71"/>
+    <Cell ss:Index="9" ss:StyleID="s70"><ss:Data ss:Type="String"
+      xmlns="http://www.w3.org/TR/REC-html40"><B><Font html:Color="#000000">Location :&#160;</Font></B><Font
+       html:Color="#000000"> <?php echo $cp_location;?></Font></ss:Data></Cell>
+    <Cell ss:StyleID="s71"/>
+    <Cell ss:StyleID="s71"/>
+    <Cell ss:StyleID="s71"/>
+    <Cell ss:StyleID="s71"/>
+    <Cell ss:StyleID="s71"/>
+    <Cell ss:StyleID="s71"/>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell ss:MergeAcross="14" ss:StyleID="s73"/>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell ss:StyleID="s74"><Data ss:Type="String">No</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="String">LA Code</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="String">Kh Client Name</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="String">CRC</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="String">Acc Type</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="String">Dis Date</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="String">Mat Date</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="String">Loan Amount</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="String">Pro Int</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="String">Classify</Data></Cell>
+       <Cell ss:StyleID="s75"><Data ss:Type="String">CO</Data></Cell>
+       <Cell ss:StyleID="s75"><Data ss:Type="String">Vill</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="String">Due Date</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="String">Accru Num Day</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="String">Accru Int</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="String">Loan Out Prin</Data></Cell>
+    <Cell ss:StyleID="s76"><Data ss:Type="String">Loan Out Int</Data></Cell>
+   </Row>
+   <?php
+
+           $pri_khr=0;
+           $int_khr=0;
+           $bal_pri_khr=0;
+           $bal_int_khr=0;
+           $total_arrears_khr=0;
+
+           $pri_usd=0;
+           $int_usd=0;
+           $bal_pri_usd=0;
+           $bal_int_usd=0;
+           $total_arrears_usd=0;
+
+           $pri_thb=0;
+           $int_thb=0;
+           $bal_pri_thb=0;
+           $bal_int_thb=0;
+           $total_arrears_thb=0;
+
+           $pri = 0;
+           $int =0;
+           $bal_pri=0;
+           $bal_int = 0;
+           $num_due = 0;
+           $int_in_day = 0 ;
+           $con_cur = new Battambang\Cpanel\Libraries\Currency();
+           foreach($result as $key=>$row){
+
+           if(Carbon::createFromFormat('Y-m-d', $as_date) > Carbon::createFromFormat('Y-m-d', $row->_maturity_date)){
+           $as_date = $row->_maturity_date;
+           }
+
+           $num_due = Carbon::createFromFormat('Y-m-d', $row->_due['date'])->diffInDays(Carbon::createFromFormat('Y-m-d', $as_date));
+           if(Carbon::createFromFormat('Y-m-d', $row->_due['date']) > Carbon::createFromFormat('Y-m-d', $as_date)){
+           $num_due = $num_due * (-1);
+           }
+
+           if($row->_disburse->ln_lv_repay_frequency == 3){
+           $int_in_day = $row->_disburse->interest_rate / 100 / 7;
+           }else{
+           $int_in_day = $row->_disburse->interest_rate / 100 / 30;
+           }
+
+               switch ($row->_disburse->cp_currency_id){
+                   case 1:
+
+                       $int_khr+=$con_cur->round($row->_disburse->cp_currency_id,($row->_balance_principal * $int_in_day * $num_due) + $row->_arrears['last']['interest']);
+                       $bal_pri_khr+=$row->_balance_principal;
+                       $bal_int_khr+=$row->_balance_interest;
+
+                   break;
+                   case 2:
+
+           $int_usd+=$con_cur->round($row->_disburse->cp_currency_id,($row->_balance_principal * $int_in_day * $num_due) + $row->_arrears['last']['interest']);
+           $bal_pri_usd+=$row->_balance_principal;
+           $bal_int_usd+=$row->_balance_interest;
+
+                   break;
+                   case 3:
+
+                       $int_thb+=$con_cur->round($row->_disburse->cp_currency_id,($row->_balance_principal * $int_in_day * $num_due) + $row->_arrears['last']['interest']);
+                       $bal_pri_thb+=$row->_balance_principal;
+                       $bal_int_thb+=$row->_balance_interest;
+
+
+                   break;
+               }
+
+
+           $int= $con_cur->round($row->_disburse->cp_currency_id,($row->_balance_principal * $int_in_day * $num_due) + $row->_arrears['last']['interest']);
+           $bal_pri=$row->_balance_principal;
+           $bal_int=$row->_balance_interest;
+           if($row->_current_product_status!=''){
+           $classify = Battambang\Loan\ProductStatus::where('id',$row->_current_product_status)->first()->code;
+           }
+           $staff = Battambang\Loan\Staff::where('id',$row->_disburse->ln_staff_id)->first();
+
+           $location = Battambang\Loan\Location::where('id',$row->_disburse->cp_location_id)->first();
+           ?>
+   <Row ss:AutoFitHeight="0" ss:StyleID="s77">
+    <Cell ss:StyleID="s78"><Data ss:Type="Number"><?php echo $key+1;?></Data></Cell>
+    <Cell ss:StyleID="s79"><Data ss:Type="String"><?php echo $row->_disburse_client_id;?></Data></Cell>
+    <Cell ss:StyleID="s80"><Data ss:Type="String"><?php echo $row->_disburse->client_name;?></Data></Cell>
+    <Cell ss:StyleID="s78"><Data ss:Type="Number"><?php echo $row->_disburse->cp_currency_id;?></Data></Cell>
+    <Cell ss:StyleID="s78"><Data ss:Type="String"><?php echo $row->_disburse->account_type;?></Data></Cell>
+    <Cell ss:StyleID="s81"><Data ss:Type="DateTime"><?php echo $row->_disburse->disburse_date;?></Data></Cell>
+    <Cell ss:StyleID="s81"><Data ss:Type="DateTime"><?php echo $row->_maturity_date;?></Data></Cell>
+    <Cell ss:StyleID="s98"><Data ss:Type="Number"><?php echo $row->_disburse->amount;?></Data></Cell>
+    <Cell ss:StyleID="s98"><Data ss:Type="Number"><?php echo $row->_project_interest;?></Data></Cell>
+    <Cell ss:StyleID="s78"><Data ss:Type="String"><?php echo $classify;?></Data></Cell>
+       <Cell ss:StyleID="s78"><Data ss:Type="String"><?php echo $staff->kh_last_name.' '.$staff->kh_first_name;?></Data></Cell>
+       <Cell ss:StyleID="s78"><Data ss:Type="String"><?php echo $location->kh_name;?></Data></Cell>
+    <Cell ss:StyleID="s81"><Data ss:Type="DateTime"><?php echo $row->_due['date'];?></Data></Cell>
+    <Cell ss:StyleID="s78"><Data ss:Type="Number"><?php echo $num_due;?></Data></Cell>
+    <Cell ss:StyleID="s101"><Data ss:Type="Number"><?php echo $int;?></Data></Cell>
+    <Cell ss:StyleID="s100"><Data ss:Type="Number"><?php echo $bal_pri;?></Data></Cell>
+    <Cell ss:StyleID="s101"><Data ss:Type="Number"><?php echo $bal_int;?></Data></Cell>
+   </Row>
+      <?php }
+
+
+              $total_arrears_khr = $int_khr;
+              $total_arrears_usd =  $int_usd;
+              $total_arrears_thb =  $int_thb;
+
+
+              $sub_int_khr_usd= $con_cur->toUSD(1,$int_khr,$exchange_rate_id);
+              $sub_total_khr_usd= $con_cur->toUSD(1,$total_arrears_khr,$exchange_rate_id);
+              $sub_bal_pri_khr_usd = $con_cur->toUSD(1,$bal_pri_khr,$exchange_rate_id);
+              $sub_bal_int_khr_usd = $con_cur->toUSD(1,$bal_int_khr,$exchange_rate_id);
+
+
+              $sub_int_usd_usd=$con_cur->toUSD(2,$int_usd,$exchange_rate_id);
+              $sub_total_usd_usd= $con_cur->toUSD(2,$total_arrears_usd,$exchange_rate_id);
+              $sub_bal_pri_usd_usd=$con_cur->toUSD(2,$bal_pri_usd,$exchange_rate_id);
+              $sub_bal_int_usd_usd=$con_cur->toUSD(2,$bal_int_usd,$exchange_rate_id);
+
+
+              $sub_int_thb_usd=$con_cur->toUSD(3,$int_thb,$exchange_rate_id);
+              $sub_total_thb_usd= $con_cur->toUSD(3,$total_arrears_thb,$exchange_rate_id);
+              $sub_bal_pri_thb_usd=$con_cur->toUSD(3,$bal_pri_thb,$exchange_rate_id);
+              $sub_bal_int_thb_usd=$con_cur->toUSD(3,$bal_int_thb,$exchange_rate_id);
+
+
+              $int_to_USD = $sub_int_khr_usd + $sub_int_usd_usd + $sub_int_thb_usd;
+              $total_arrears_to_USD = $sub_total_usd_usd + $sub_total_thb_usd;
+              $bal_pri_to_USD = $sub_bal_pri_khr_usd + $sub_bal_pri_usd_usd + $sub_bal_pri_thb_usd;
+              $bal_int_to_USD = $sub_bal_int_khr_usd + $sub_bal_int_usd_usd + $sub_bal_int_thb_usd;
+              ?>
+   <Row ss:AutoFitHeight="0">
+    <Cell ss:MergeAcross="13" ss:StyleID="m66289928"><Data ss:Type="String">Subtotal-KHR&#160;</Data></Cell>
+
+    <Cell ss:StyleID="s101"><Data ss:Type="Number"><?php echo $total_arrears_khr;?></Data></Cell>
+    <Cell ss:StyleID="s101"><Data ss:Type="Number"><?php echo $bal_pri_khr;?></Data></Cell>
+    <Cell ss:StyleID="s101"><Data ss:Type="Number"><?php echo $bal_int_khr;?></Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell ss:MergeAcross="13" ss:StyleID="m66289948"><Data ss:Type="String">Subtotal-USD&#160;</Data></Cell>
+
+    <Cell ss:StyleID="s101"><Data ss:Type="Number"><?php echo $total_arrears_usd;?></Data></Cell>
+    <Cell ss:StyleID="s101"><Data ss:Type="Number"><?php echo $bal_pri_usd;?></Data></Cell>
+    <Cell ss:StyleID="s101"><Data ss:Type="Number"><?php echo $bal_int_usd;?></Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell ss:MergeAcross="13" ss:StyleID="m66289968"><Data ss:Type="String">Subtotal-THB&#160;</Data></Cell>
+
+    <Cell ss:StyleID="s101"><Data ss:Type="Number"><?php echo $total_arrears_thb;?></Data></Cell>
+    <Cell ss:StyleID="s101"><Data ss:Type="Number"><?php echo $bal_pri_thb;?></Data></Cell>
+    <Cell ss:StyleID="s101"><Data ss:Type="Number"><?php echo $bal_int_thb;?></Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell ss:MergeAcross="13" ss:StyleID="m66289988"><Data ss:Type="String">Total-USD&#160;</Data></Cell>
+
+    <Cell ss:StyleID="s101"><Data ss:Type="Number"><?php echo $total_arrears_to_USD;?></Data></Cell>
+    <Cell ss:StyleID="s101"><Data ss:Type="Number"><?php echo $bal_pri_to_USD;?></Data></Cell>
+    <Cell ss:StyleID="s101"><Data ss:Type="Number"><?php echo $bal_int_to_USD;?></Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell ss:MergeAcross="14" ss:StyleID="s94"/>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell ss:MergeAcross="14" ss:StyleID="s95"><Data ss:Type="String">                                              Seen By                                                                                                  Verified By                                                                                               Prepared By                                                   </Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0" ss:Hidden="1">
+    <Cell ss:StyleID="s95"/>
+    <Cell ss:StyleID="s95"/>
+    <Cell ss:StyleID="s95"/>
+    <Cell ss:StyleID="s95"/>
+    <Cell ss:StyleID="s95"/>
+    <Cell ss:StyleID="s95"/>
+    <Cell ss:StyleID="s95"/>
+    <Cell ss:StyleID="s95"/>
+    <Cell ss:StyleID="s95"/>
+    <Cell ss:StyleID="s95"/>
+    <Cell ss:StyleID="s95"/>
+    <Cell ss:StyleID="s95"/>
+    <Cell ss:StyleID="s95"/>
+    <Cell ss:StyleID="s95"/>
+    <Cell ss:StyleID="s95"/>
+   </Row>
+   <Row ss:AutoFitHeight="0" ss:Hidden="1">
+    <Cell ss:StyleID="s95"/>
+    <Cell ss:StyleID="s95"/>
+    <Cell ss:StyleID="s95"/>
+    <Cell ss:StyleID="s95"/>
+    <Cell ss:StyleID="s95"/>
+    <Cell ss:StyleID="s95"/>
+    <Cell ss:StyleID="s95"/>
+    <Cell ss:StyleID="s95"/>
+    <Cell ss:StyleID="s95"/>
+    <Cell ss:StyleID="s95"/>
+    <Cell ss:StyleID="s95"/>
+    <Cell ss:StyleID="s95"/>
+    <Cell ss:StyleID="s95"/>
+    <Cell ss:StyleID="s95"/>
+    <Cell ss:StyleID="s95"/>
+   </Row>
+   <Row ss:AutoFitHeight="0" ss:Hidden="1">
+    <Cell ss:StyleID="s95"/>
+    <Cell ss:StyleID="s95"/>
+    <Cell ss:StyleID="s95"/>
+    <Cell ss:StyleID="s95"/>
+    <Cell ss:StyleID="s95"/>
+    <Cell ss:StyleID="s95"/>
+    <Cell ss:StyleID="s95"/>
+    <Cell ss:StyleID="s95"/>
+    <Cell ss:StyleID="s95"/>
+    <Cell ss:StyleID="s95"/>
+    <Cell ss:StyleID="s95"/>
+    <Cell ss:StyleID="s95"/>
+    <Cell ss:StyleID="s95"/>
+    <Cell ss:StyleID="s95"/>
+    <Cell ss:StyleID="s95"/>
+   </Row>
+   <Row ss:AutoFitHeight="0" ss:Hidden="1">
+    <Cell ss:StyleID="s95"/>
+    <Cell ss:StyleID="s95"/>
+    <Cell ss:StyleID="s95"/>
+    <Cell ss:StyleID="s95"/>
+    <Cell ss:StyleID="s95"/>
+    <Cell ss:StyleID="s95"/>
+    <Cell ss:StyleID="s95"/>
+    <Cell ss:StyleID="s95"/>
+    <Cell ss:StyleID="s95"/>
+    <Cell ss:StyleID="s95"/>
+    <Cell ss:StyleID="s95"/>
+    <Cell ss:StyleID="s95"/>
+    <Cell ss:StyleID="s95"/>
+    <Cell ss:StyleID="s95"/>
+    <Cell ss:StyleID="s95"/>
+   </Row>
+   <Row ss:AutoFitHeight="0" ss:Hidden="1">
+    <Cell ss:StyleID="s95"/>
+    <Cell ss:StyleID="s97"/>
+    <Cell ss:StyleID="s97"/>
+    <Cell ss:Index="5" ss:StyleID="s95"/>
+    <Cell ss:StyleID="s97"/>
+    <Cell ss:Index="10" ss:StyleID="s95"/>
+    <Cell ss:StyleID="s95"/>
+    <Cell ss:StyleID="s97"/>
+    <Cell ss:StyleID="s97"/>
+    <Cell ss:StyleID="s97"/>
+    <Cell ss:StyleID="s97"/>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell ss:StyleID="s95"/>
+    <Cell ss:StyleID="s97"/>
+    <Cell ss:StyleID="s97"/>
+    <Cell ss:Index="5" ss:StyleID="s95"/>
+    <Cell ss:StyleID="s97"/>
+    <Cell ss:Index="10" ss:StyleID="s95"/>
+    <Cell ss:StyleID="s95"/>
+    <Cell ss:StyleID="s97"/>
+    <Cell ss:StyleID="s97"/>
+    <Cell ss:StyleID="s97"/>
+    <Cell ss:StyleID="s97"/>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell ss:StyleID="s95"/>
+    <Cell ss:StyleID="s97"/>
+    <Cell ss:StyleID="s97"/>
+    <Cell ss:Index="5" ss:StyleID="s95"/>
+    <Cell ss:StyleID="s97"/>
+    <Cell ss:Index="10" ss:StyleID="s95"/>
+    <Cell ss:StyleID="s95"/>
+    <Cell ss:StyleID="s97"/>
+    <Cell ss:StyleID="s97"/>
+    <Cell ss:StyleID="s97"/>
+    <Cell ss:StyleID="s97"/>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell ss:StyleID="s95"/>
+    <Cell ss:StyleID="s97"/>
+    <Cell ss:StyleID="s97"/>
+    <Cell ss:Index="5" ss:StyleID="s95"/>
+    <Cell ss:StyleID="s97"/>
+    <Cell ss:Index="10" ss:StyleID="s95"/>
+    <Cell ss:StyleID="s95"/>
+    <Cell ss:StyleID="s97"/>
+    <Cell ss:StyleID="s97"/>
+    <Cell ss:StyleID="s97"/>
+    <Cell ss:StyleID="s97"/>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell ss:StyleID="s95"/>
+    <Cell ss:StyleID="s97"/>
+    <Cell ss:StyleID="s97"/>
+    <Cell ss:Index="5" ss:StyleID="s95"/>
+    <Cell ss:StyleID="s97"/>
+    <Cell ss:Index="10" ss:StyleID="s95"/>
+    <Cell ss:StyleID="s95"/>
+    <Cell ss:StyleID="s97"/>
+    <Cell ss:StyleID="s97"/>
+    <Cell ss:StyleID="s97"/>
+    <Cell ss:StyleID="s97"/>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell ss:StyleID="s95"/>
+    <Cell ss:StyleID="s97"/>
+    <Cell ss:StyleID="s97"/>
+    <Cell ss:Index="5" ss:StyleID="s95"/>
+    <Cell ss:StyleID="s97"/>
+    <Cell ss:Index="10" ss:StyleID="s95"/>
+    <Cell ss:StyleID="s95"/>
+    <Cell ss:StyleID="s97"/>
+    <Cell ss:StyleID="s97"/>
+    <Cell ss:StyleID="s97"/>
+    <Cell ss:StyleID="s97"/>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell ss:MergeAcross="14" ss:StyleID="s95"><Data ss:Type="String">________________________                                                                ________________________                                                                  ________________________</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell ss:MergeAcross="14" ss:StyleID="s95"><Data ss:Type="String">                       Date: &#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;/&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;/&#160;                                                                                  Date: &#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;/&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;/                                                                                    Date: &#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;/&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;/                                    </Data></Cell>
+   </Row>
+  </Table>
+  <WorksheetOptions xmlns="urn:schemas-microsoft-com:office:excel">
+   <PageSetup>
+    <Layout x:Orientation="Landscape"/>
+    <Header x:Margin="0.3"/>
+    <Footer x:Margin="0.3"/>
+    <PageMargins x:Bottom="0.25" x:Left="0.2" x:Right="0.2" x:Top="0.5"/>
+   </PageSetup>
+   <Unsynced/>
+   <Print>
+    <ValidPrinterInfo/>
+    <PaperSizeIndex>9</PaperSizeIndex>
+    <HorizontalResolution>600</HorizontalResolution>
+    <VerticalResolution>600</VerticalResolution>
+   </Print>
+   <Selected/>
+   <Panes>
+    <Pane>
+     <Number>3</Number>
+     <ActiveRow>12</ActiveRow>
+     <ActiveCol>16</ActiveCol>
+    </Pane>
+   </Panes>
+   <ProtectObjects>False</ProtectObjects>
+   <ProtectScenarios>False</ProtectScenarios>
+  </WorksheetOptions>
+ </Worksheet>
+</Workbook>

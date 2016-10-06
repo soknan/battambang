@@ -1309,6 +1309,22 @@ Route::group(
             )
         );
 
+        // Accru Interest
+        Route::get(
+            'rpt_accru_int',
+            array(
+                'as' => 'loan.rpt_accru_int.index',
+                'uses' => 'Battambang\Loan\RptAccruIntController@index'
+            )
+        );
+        Route::post(
+            'rpt_accru_int',
+            array(
+                'as' => 'loan.rpt_accru_int.report',
+                'uses' => 'Battambang\Loan\RptAccruIntController@report'
+            )
+        );
+
         /*
         |--------------------------------------------------------------------------
         | Tool Routes
