@@ -46,6 +46,9 @@ class ScheduleWeekly
         if($interestType==129){
            $tmpRate = 1-pow((1+$interestRate * $installmentFrequency),-($numPaymentPrin));
            $installPrinAmount = \Currency::round($currency,($loanAmount*$interestRate * $installmentFrequency)/$tmpRate);
+            if($data->round_schedule =='Y'){
+                $installPrinAmount = floor($installPrinAmount);
+            }
         }
 
         $meetingDay = $data->ln_lv_meeting_schedule; // 12-Week(...-None, 27-Mon, 28-Tue, 29-Wed, 30-Thu, 31-Fri, 32-Sat)

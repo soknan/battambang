@@ -54,6 +54,9 @@ class ScheduleMonthly
             $tmpRate = 1-pow((1+$interestRate * $installmentFrequency),-($numPaymentPrin));
             $installPrinAmount = \Currency::round($currency,($loanAmount*$interestRate * $installmentFrequency)/$tmpRate);
             //$installPrinAmount = $interestRate * -$loanAmount*pow((1+$interestRate),$numPayment)/(1-pow((1+$interestRate),$numPayment));
+            if($data->round_schedule =='Y'){
+                $installPrinAmount = floor($installPrinAmount);
+            }
         }
 
         $meetingDay = $data->ln_lv_meeting_schedule; // 13-Month(...-None, 33-1, 34-2,..., 57-25...28)
