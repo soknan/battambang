@@ -920,7 +920,7 @@ WHERE ln_disburse_client.id = "'.$this->_disburse_client_id.'" ');
         $int = 0;
         $total =0;
         $tmp_principal = $principal;
-        if($this->_repayment['cur']['voucher_id'] != ''){
+        if($voucher != ''){
             $this->_perform_type = 'repayment';
         }
 
@@ -1179,6 +1179,8 @@ WHERE ln_disburse_client.id = "'.$this->_disburse_client_id.'" ');
 
                 break;
             case 'fee':
+
+                $this->_perform_type ='repayment';
                 $this->_repayment['cur']['date'] = $this->_due['date'];
                 $this->_repayment['cur']['voucher_id'] = $voucher;
                 $this->_repayment['cur']['status'] = 1;
