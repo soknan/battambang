@@ -31,14 +31,14 @@ class RptScheduleController extends BaseController{
 //var_dump($data['dis']);exit;
         //re-calculate amount for Mortagate Loan
         $installPrinAmount = 0;
-        if($data['dis']->interest_type_code=='ANT'){
+        /*if($data['dis']->interest_type_code=='ANT'){
             $tmpRate = 1-pow((1+($data['dis']->interest_rate/100) * $data['dis']->installment_frequency),-(ceil($data['dis']->num_payment / $data['dis']->installment_principal_frequency)));
             $installPrinAmount = ($data['dis']->amount * ($data['dis']->interest_rate/100) * $data['dis']->installment_frequency) / $tmpRate;
             $installPrinAmount = \Currency::round($data['dis']->cp_currency_code,$installPrinAmount);
             if($data['dis']->round_schedule =='Y'){
                 $installPrinAmount = floor($installPrinAmount);
             }
-        }
+        }*/
 
         ($data['dis']->repayment_frequency_type_code == 'W')? $data['dis']->repayment_frequency_type_code = 'សប្ដាហ៍': $data['dis']->repayment_frequency_type_code ='ខែ';
 
@@ -142,7 +142,7 @@ class RptScheduleController extends BaseController{
                 $objWorkSheet->getCell('D'.$rowNum)->setValue($value->principal);
                 $objWorkSheet->getCell('E'.$rowNum)->setValue($value->interest);
 
-                if($data['dis']->interest_type_code=='ANT'){
+                /*if($data['dis']->interest_type_code=='ANT'){
                     if($key==0){
                         $objWorkSheet->getCell('F'.$rowNum)->setValue(0);
                     }else{
@@ -152,9 +152,9 @@ class RptScheduleController extends BaseController{
                             $objWorkSheet->getCell('F'.$rowNum)->setValue('=D'.$rowNum.'+E'.$rowNum);
                         }
                     }
-                }else{
+                }else{*/
                     $objWorkSheet->getCell('F'.$rowNum)->setValue('=D'.$rowNum.'+E'.$rowNum);
-                }
+                //}
                 $objWorkSheet->getCell('G'.$rowNum)->setValue($value->balance);
             }
 
@@ -255,7 +255,7 @@ class RptScheduleController extends BaseController{
                 $objWorkSheet->getCell('C'.$rowNum)->setValue($tmpNumDay);
                 $objWorkSheet->getCell('D'.$rowNum)->setValue($value->principal);
                 $objWorkSheet->getCell('E'.$rowNum)->setValue($value->interest);
-                if($data['dis']->interest_type_code=='ANT'){
+                /*if($data['dis']->interest_type_code=='ANT'){
                     if($key==0){
                         $objWorkSheet->getCell('F'.$rowNum)->setValue(0);
                     }else{
@@ -266,9 +266,9 @@ class RptScheduleController extends BaseController{
                         }
                     }
 
-                }else{
+                }else{*/
                     $objWorkSheet->getCell('F'.$rowNum)->setValue('=D'.$rowNum.'+E'.$rowNum);
-                }
+                //}
                 $objWorkSheet->getCell('G'.$rowNum)->setValue($value->balance);
             }
 
@@ -371,7 +371,7 @@ class RptScheduleController extends BaseController{
                 $objWorkSheet->getCell('D'.$rowNum)->setValue($value->principal);
                 $objWorkSheet->getCell('E'.$rowNum)->setValue($value->interest);
 
-                if($data['dis']->interest_type_code=='ANT'){
+                /*if($data['dis']->interest_type_code=='ANT'){
                     if($key==0){
                         $objWorkSheet->getCell('F'.$rowNum)->setValue(0);
                     }else{
@@ -381,9 +381,9 @@ class RptScheduleController extends BaseController{
                             $objWorkSheet->getCell('F'.$rowNum)->setValue('=D'.$rowNum.'+E'.$rowNum);
                         }
                     }
-                }else{
+                }else{*/
                     $objWorkSheet->getCell('F'.$rowNum)->setValue('=D'.$rowNum.'+E'.$rowNum);
-                }
+                //}
                 $objWorkSheet->getCell('G'.$rowNum)->setValue($value->balance);
             }
 
