@@ -134,7 +134,7 @@ class ScheduleWeekly
                         $temDueDate = $firstDueDate->copy()->addWeeks($temInstallmentFrequency - $installmentFrequency);
                     }
                     if($i>1 && $data->ln_lv_meeting_schedule!=125){
-                        $temDueDate = $temDisburseDate->copy()->addWeeks($temInstallmentFrequency - $installmentFrequency);
+                        $temDueDate = $temDisburseDate->copy()->addWeeks($temInstallmentFrequency - $installmentFrequency + 1);
                     }
                 }
 
