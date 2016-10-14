@@ -45,8 +45,11 @@ class ScheduleDaily
         $installPrinAmount = \Currency::round($currency, ($loanAmount / $numPaymentPrin) * $installPrinPercentage);
 
         if($interestType==129){
-            $tmpRate = 1-pow((1+$interestRate),-$numPayment);
-            $installPrinAmount = ($loanAmount*$interestRate)/$tmpRate;
+            $tmpRate = 1-pow((1+$interestRate * $installmentFrequency),-($numPaymentPrin));
+            $installPrinAmount = \Currency::round($currency,($loanAmount*$interestRate * $installmentFrequency)/$tmpRate);
+            if($data->round_schedule =='Y'){
+                $installPrinAmount = floor($installPrinAmount);
+            }
         }
 
         $meetingDay = $data->ln_lv_meeting_schedule; // 12-Week(...-None, 27-Mon, 28-Tue, 29-Wed, 30-Thu, 31-Fri, 32-Sat)
@@ -101,6 +104,7 @@ class ScheduleDaily
         $feePayment = array();
         $principalBalance = array();
         $schedule = array();
+        $tmpP=0;
 
 //        for ($i = 1; $i <= $numPayment; $i++) {
         for ($i = 0; $i <= $numPayment; $i++) {
@@ -120,7 +124,7 @@ class ScheduleDaily
                         $temDueDate = $firstDueDate;
                     }
                     if($i>1){
-                        $temDueDate = $firstDueDate->copy()->addDays($temInstallmentFrequency-1);
+                        $temDueDate = $firstDueDate->copy()->addDays($temInstallmentFrequency - $installmentFrequency);
                     }
                 }
                 //echo $temDueDate; exit;
@@ -159,7 +163,10 @@ class ScheduleDaily
                     // Calculate principal balance
                     $principalBalance[$i] = $temLoanAmount;
                 }else{
-                    $interestPayment[$i] = $temLoanAmount * $interestRate;
+                    //NORMAL
+                    $interestPayment[$i] = \Currency::round($currency, ($temLoanAmount * $interestRateInDay * $numOfDays[$i]));
+                    // MPNT
+                    //$interestPayment[$i] = \Currency::round($currency,$temLoanAmount * $interestRate * $installmentFrequency);
                     // Calculate install principal for payment
                     if ($i == $temInstallPrinFrequency) {
                         if ($i != $numPayment) {
@@ -170,8 +177,14 @@ class ScheduleDaily
                             if ($temInstallPrinFrequency > $numPayment) {
                                 $temInstallPrinFrequency = $numPayment;
                             }
+                            // interest > total payment
+                            if($interestPayment[$i] > $installPrinAmount){
+                                $interestPayment[$i] = 0;
+                            }
                         } else {
-                            $principalPayment[$i] = $temLoanAmount;
+                            //$principalPayment[$i] = $temLoanAmount;
+                            $principalPayment[$i] = $loanAmount - $tmpP;
+                            //$interestPayment[$i] =  $installPrinAmount-$principalPayment[$i];
                             $temLoanAmount = 0.00;
                         }
                     } else {
