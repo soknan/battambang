@@ -21,6 +21,10 @@ echo FormPanel2::make(
         ->required()
         ->placeholder('--Select One--')
         ->disabled()
+    . Former::select('ln_lv_round_type', 'Round Schedule Type')
+            ->options(array('N'=>'NO','Y'=>'YES'),$row->round_schedule)
+            ->required()->disabled()
+            ->placeholder('--Select One--')
     ,
     Former::select('cp_currency_id', 'Currency')
         ->options($currency_arr, $row->cp_currency_id)
