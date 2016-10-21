@@ -724,14 +724,17 @@ WHERE ln_disburse_client.id = "'.$this->_disburse_client_id.'" ');
         $date = new Carbon();
         $first = $date->createFromFormat('Y-m-d',$date1);
         $second = $date->createFromFormat('Y-m-d',$date2);
+        $maturity = $date->createFromFormat('Y-m-d',$this->_maturity_date);
         //$this->_disburse->installment_frequency
         if($this->_disburse->ln_lv_repay_frequency == 3){
             $first_s = $date->createFromFormat('Y-m-d',$date1)->startOfWeek();
-            $first = $first->addWeeks($this->_disburse->installment_frequency - 1)->endOfWeek();
+            $first = $first->addWeeks($this->_disburse->installment_frequency-1)->endOfWeek();
+            if($first > $maturity) $first = $first->addWeeks(-1);
             //$second = $second;
         }elseif($this->_disburse->ln_lv_repay_frequency == 4){
             $first_s = $date->createFromFormat('Y-m-d',$date1)->startOfMonth();
             $first = $first->addMonths($this->_disburse->installment_frequency-1)->endOfMonth();
+            if($first > $maturity) $first = $first->addMonths(-1);
             //$second = $second->endOfMonth();
         }
         //echo $first_s.'</br>'; echo $first; exit;
