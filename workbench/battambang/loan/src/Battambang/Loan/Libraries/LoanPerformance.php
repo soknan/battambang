@@ -695,6 +695,7 @@ class LoanPerformance
         $data = \DB::select('SELECT *,ln_disburse.ln_staff_id,ln_center.cp_location_id,
 CONCAT(ln_client.kh_last_name," ",ln_client.kh_first_name) as client_name,
 account_type.`code` as account_type,
+ln_product.name as product_name,
 COUNT(ln_disburse_client.id) as num_account,
 COUNT(ln_lv_account_type) as num_account_type,
 COUNT(ln_lv_gender) as num_gender,
