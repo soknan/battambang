@@ -696,6 +696,7 @@ class LoanPerformance
 CONCAT(ln_client.kh_last_name," ",ln_client.kh_first_name) as client_name,
 account_type.`code` as account_type,
 ln_product.name as product_name,
+collate_type.name as collateral_type,
 COUNT(ln_disburse_client.id) as num_account,
 COUNT(ln_lv_account_type) as num_account_type,
 COUNT(ln_lv_gender) as num_gender,
@@ -705,6 +706,7 @@ ln_disburse on ln_disburse_client.ln_disburse_id = ln_disburse.id
 left JOIN ln_product on ln_product.id = ln_disburse.ln_product_id
 left JOIN ln_client on ln_client.id = ln_disburse_client.ln_client_id
 left JOIN ln_lookup_value account_type on account_type.id = ln_disburse.ln_lv_account_type
+left JOIN ln_lookup_value collate_type on collate_type.id = ln_disburse_client.ln_lv_collateral_type
 left JOIN ln_center ON ln_center.id = ln_disburse.ln_center_id
 WHERE ln_disburse_client.id = "'.$this->_disburse_client_id.'" ');
         $arr = new \stdClass();
