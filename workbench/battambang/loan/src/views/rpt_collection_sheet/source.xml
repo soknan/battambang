@@ -268,8 +268,9 @@
    <Column ss:AutoFitWidth="0" ss:Width="60" ss:Span="1"/>
    <Column ss:Index="9" ss:AutoFitWidth="0" ss:Width="55.5"/>
    <Column ss:AutoFitWidth="0" ss:Width="72"/>
-   <Column ss:AutoFitWidth="0" ss:Width="66"/>
-   <Column ss:AutoFitWidth="0" ss:Width="73.5"/>
+   <Column ss:AutoFitWidth="0" ss:Width="166"/>
+   <Column ss:AutoFitWidth="0" ss:Width="73"/>
+   <Column ss:AutoFitWidth="0" ss:Width="60"/>
    <Column ss:AutoFitWidth="0" ss:Width="60"/>
    <Column ss:AutoFitWidth="0" ss:Width="40.5"/>
    <Row ss:Height="15.75">
@@ -404,6 +405,7 @@
     <Cell ss:StyleID="s78"><Data ss:Type="String">Mat Date</Data></Cell>
     <Cell ss:StyleID="s78"><Data ss:Type="String">Due L Date</Data></Cell>
     <Cell ss:StyleID="s78"><Data ss:Type="String">Due Date</Data></Cell>
+    <Cell ss:StyleID="s78"><Data ss:Type="String">Address</Data></Cell>
     <Cell ss:StyleID="s78"><Data ss:Type="String">Sum Due Prin</Data></Cell>
     <Cell ss:StyleID="s78"><Data ss:Type="String">Sum Due Int</Data></Cell>
     <Cell ss:StyleID="s78"><Data ss:Type="String">Total Sum Due</Data></Cell>
@@ -478,6 +480,7 @@
     <Cell ss:StyleID="s74"><Data ss:Type="DateTime"><?php echo $row->_maturity_date;?></Data></Cell>
     <Cell ss:StyleID="s74"><Data ss:Type="DateTime"><?php echo $due_date;?></Data></Cell>
     <Cell ss:StyleID="s74"><Data ss:Type="<?php echo $type;?>"><?php echo $row->_due['date'];?></Data></Cell>
+    <Cell ss:StyleID="s76"><Data ss:Type="String"><?php echo $row->_disburse->address;?></Data></Cell>
     <Cell ss:StyleID="s69"><Data ss:Type="Number"><?php echo $due_pri;?></Data></Cell>
     <Cell ss:StyleID="s69"><Data ss:Type="Number"><?php echo $due_int;?></Data></Cell>
     <Cell ss:StyleID="s69"><Data ss:Type="Number"><?php echo $total_due;?></Data></Cell>
@@ -508,7 +511,7 @@
 
               ?>
    <Row>
-    <Cell ss:MergeAcross="9" ss:StyleID="m114618956"><Data ss:Type="String">Subtotal-KHR&#160;</Data></Cell>
+    <Cell ss:MergeAcross="10" ss:StyleID="m114618956"><Data ss:Type="String">Subtotal-KHR&#160;</Data></Cell>
     <Cell ss:StyleID="s70"><Data ss:Type="Number"><?php echo $col_pri_khr;?></Data></Cell>
     <Cell ss:StyleID="s70"><Data ss:Type="Number"><?php echo $col_int_khr;?></Data></Cell>
     <Cell ss:StyleID="s70"><Data ss:Type="Number"><?php echo $total_col_khr;?></Data></Cell>
@@ -516,7 +519,7 @@
     <Cell ss:StyleID="s69"/>
    </Row>
    <Row>
-    <Cell ss:MergeAcross="9" ss:StyleID="m114618976"><Data ss:Type="String">Subtotal-USD&#160;</Data></Cell>
+    <Cell ss:MergeAcross="10" ss:StyleID="m114618976"><Data ss:Type="String">Subtotal-USD&#160;</Data></Cell>
     <Cell ss:StyleID="s70"><Data ss:Type="Number"><?php echo $col_pri_usd;?></Data></Cell>
     <Cell ss:StyleID="s70"><Data ss:Type="Number"><?php echo $col_int_usd;?></Data></Cell>
     <Cell ss:StyleID="s70"><Data ss:Type="Number"><?php echo $total_col_usd;?></Data></Cell>
@@ -524,7 +527,7 @@
     <Cell ss:StyleID="s69"/>
    </Row>
    <Row>
-    <Cell ss:MergeAcross="9" ss:StyleID="m114618996"><Data ss:Type="String">Subtotal-THB&#160;</Data></Cell>
+    <Cell ss:MergeAcross="10" ss:StyleID="m114618996"><Data ss:Type="String">Subtotal-THB&#160;</Data></Cell>
     <Cell ss:StyleID="s70"><Data ss:Type="Number"><?php echo $col_pri_thb;?></Data></Cell>
     <Cell ss:StyleID="s70"><Data ss:Type="Number"><?php echo $col_int_thb;?></Data></Cell>
     <Cell ss:StyleID="s70"><Data ss:Type="Number"><?php echo $total_col_thb;?></Data></Cell>
@@ -532,7 +535,7 @@
     <Cell ss:StyleID="s69"/>
    </Row>
    <Row>
-    <Cell ss:MergeAcross="9" ss:StyleID="m114619040"><Data ss:Type="String">Total-USD&#160;</Data></Cell>
+    <Cell ss:MergeAcross="10" ss:StyleID="m114619040"><Data ss:Type="String">Total-USD&#160;</Data></Cell>
     <Cell ss:StyleID="s70"><Data ss:Type="Number"><?php echo $pri_to_USD;?></Data></Cell>
     <Cell ss:StyleID="s70"><Data ss:Type="Number"><?php echo $int_to_USD;?></Data></Cell>
     <Cell ss:StyleID="s70"><Data ss:Type="Number"><?php echo $total_to_USD;?></Data></Cell>

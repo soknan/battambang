@@ -99,6 +99,7 @@ class RptDisburseClientController extends BaseController
         if ($data['location_cat'] != 0) {
             $subLocation = substr($data['cp_location'], 0, ($data['location_cat'] * 2));
             $condition .= " AND cn.cp_location_id like '" . $subLocation . "%'";
+            $data['cp_sub'] = $subLocation;
             $data['cp_location'] = array_get(\LookupValueList::getLocation($data['location_cat'], array($subLocation)), $subLocation);
         }else{
             $data['cp_location'] = 'All';
@@ -145,6 +146,7 @@ dc.cycle as cycle,
 dc.amount as amount,
 p.project_interest as project_interest,
 account_type.`code` AS `account_type`,
+cn.cp_location_id,
 (dc.`amount` + sum(p.repayment_fee) + p.project_interest) AS `total_due`,
 sum(p.repayment_fee) as fee from ln_disburse_client dc
 LEFT JOIN ln_disburse d on dc.ln_disburse_id = d.id

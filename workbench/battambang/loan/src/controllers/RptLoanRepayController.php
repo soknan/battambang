@@ -114,6 +114,7 @@ class RptLoanRepayController extends BaseController
         ln_disburse_client.id as ln_disburse_client_id,
 concat(`ln_client`.`kh_last_name`,' ',`ln_client`.`kh_first_name`) AS `client_name`,
 account_type.`code` as account_type
+,ln_disburse_client.address as address
 FROM
 ln_disburse_client
 INNER JOIN ln_disburse ON ln_disburse_client.ln_disburse_id = ln_disburse.id

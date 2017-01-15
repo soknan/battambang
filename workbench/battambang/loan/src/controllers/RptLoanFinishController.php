@@ -115,6 +115,7 @@ class RptLoanFinishController extends BaseController
 concat(`ln_client`.`kh_last_name`,' ',`ln_client`.`kh_first_name`) AS `client_name`,
 concat(st.`kh_last_name`,' ',st.`kh_first_name`) AS `kh_staff_name`,
 account_type.`code` as account_type
+,ln_disburse_client.address as address
 FROM
 ln_disburse_client
 INNER JOIN ln_disburse ON ln_disburse_client.ln_disburse_id = ln_disburse.id

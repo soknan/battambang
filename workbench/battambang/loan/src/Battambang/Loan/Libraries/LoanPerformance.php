@@ -701,6 +701,7 @@ COUNT(ln_disburse_client.id) as num_account,
 COUNT(ln_lv_account_type) as num_account_type,
 COUNT(ln_lv_gender) as num_gender,
 COUNT(cp_location_id) as num_location
+,ln_disburse_client.address as address
 FROM ln_disburse_client left JOIN
 ln_disburse on ln_disburse_client.ln_disburse_id = ln_disburse.id
 left JOIN ln_product on ln_product.id = ln_disburse.ln_product_id
