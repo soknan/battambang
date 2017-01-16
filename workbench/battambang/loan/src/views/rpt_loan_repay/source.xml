@@ -409,6 +409,7 @@
               $int =0;
               $pen = 0;
               $con_cur = new Battambang\Cpanel\Libraries\Currency();
+              $lov = new Battambang\Loan\Libraries\LookupValueList();
               foreach($result as $key=>$row){
                   switch ($row->cp_currency_id){
                       case 1:
@@ -433,7 +434,7 @@
               $pri=$row->repayment_principal;
               $int=$row->repayment_interest;
               $pen=$row->repayment_penalty;
-
+              $add  = array_get($lov->getLocation(4, array($row->cp_location_id)), $row->cp_location_id);
               ?>
    <Row ss:AutoFitHeight="0">
     <Cell ss:StyleID="s77"><Data ss:Type="Number"><?php echo $key+1;?></Data></Cell>
@@ -448,7 +449,7 @@
     <Cell ss:StyleID="s81"><Data ss:Type="Number"><?php echo $row->project_interest;?></Data></Cell>
     <Cell ss:StyleID="s79"><Data ss:Type="DateTime"><?php echo $row->repayment_date;?></Data></Cell>
     <Cell ss:StyleID="s77"><Data ss:Type="String"><?php echo $row->repayment_type;?></Data></Cell>
-    <Cell ss:StyleID="s77"><Data ss:Type="String"><?php echo $row->address;?></Data></Cell>
+    <Cell ss:StyleID="s77"><Data ss:Type="String"><?php echo $add;?></Data></Cell>
     <Cell ss:StyleID="s81"><Data ss:Type="Number"><?php echo $pri;?></Data></Cell>
     <Cell ss:StyleID="s81"><Data ss:Type="Number"><?php echo $int;?></Data></Cell>
     <Cell ss:StyleID="s81"><Data ss:Type="Number"><?php echo $pri + $int;?></Data></Cell>

@@ -404,6 +404,7 @@
               $pro_int_to_USD = 0;
               $total_due_to_USD =0;
               $con_cur = new Battambang\Cpanel\Libraries\Currency();
+              $lov = new Battambang\Loan\Libraries\LookupValueList();
               foreach($result as $key=> $row){
 
 
@@ -425,7 +426,7 @@
                   break;
 
               }
-
+              $add  = array_get($lov->getLocation(4, array($row->cp_location_id)), $row->cp_location_id);
               ?>
    <Row ss:AutoFitHeight="0">
     <Cell ss:StyleID="s78"><Data ss:Type="Number"><?php echo $key+1;?></Data></Cell>
@@ -440,7 +441,7 @@
     <Cell ss:StyleID="s79"><Data ss:Type="Number"><?php echo $row->num_installment;?></Data></Cell>
     <Cell ss:StyleID="s78"><Data ss:Type="Number"><?php echo $row->interest_rate;?></Data></Cell>
     <Cell ss:StyleID="s79"><Data ss:Type="Number"><?php echo $row->cycle;?></Data></Cell>
-    <Cell ss:StyleID="s78"><Data ss:Type="String"><?php echo $row->address;?></Data></Cell>
+    <Cell ss:StyleID="s78"><Data ss:Type="String"><?php echo $add;?></Data></Cell>
     <Cell ss:StyleID="s82"><Data ss:Type="Number"><?php echo $row->amount;?></Data></Cell>
     <Cell ss:StyleID="s82"><Data ss:Type="Number"><?php echo $row->fee;?></Data></Cell>
     <Cell ss:StyleID="s82"><Data ss:Type="Number"><?php echo $row->project_interest;?></Data></Cell>

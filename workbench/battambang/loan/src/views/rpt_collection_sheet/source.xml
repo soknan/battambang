@@ -414,6 +414,7 @@
    </Row>
       <?php
               $con_cur = new Battambang\Cpanel\Libraries\Currency();
+              $lov = new Battambang\Loan\Libraries\LookupValueList();
               $col_pri_khr=0;
               $col_int_khr=0;
               $col_pen_khr=0;
@@ -467,6 +468,7 @@
                   break;
               }
               $location = Battambang\Loan\Location::where('id','=',$row->_disburse->cp_location_id)->first()->kh_name;
+              $add  = array_get($lov->getLocation(4, array($row->_disburse->cp_location_id)), $row->_disburse->cp_location_id);
               ?>
    <Row>
     <Cell ss:StyleID="s75"><Data ss:Type="Number"><?php echo $key+1;?></Data></Cell>
@@ -480,7 +482,7 @@
     <Cell ss:StyleID="s74"><Data ss:Type="DateTime"><?php echo $row->_maturity_date;?></Data></Cell>
     <Cell ss:StyleID="s74"><Data ss:Type="DateTime"><?php echo $due_date;?></Data></Cell>
     <Cell ss:StyleID="s74"><Data ss:Type="<?php echo $type;?>"><?php echo $row->_due['date'];?></Data></Cell>
-    <Cell ss:StyleID="s76"><Data ss:Type="String"><?php echo $row->_disburse->address;?></Data></Cell>
+    <Cell ss:StyleID="s76"><Data ss:Type="String"><?php echo $add;?></Data></Cell>
     <Cell ss:StyleID="s69"><Data ss:Type="Number"><?php echo $due_pri;?></Data></Cell>
     <Cell ss:StyleID="s69"><Data ss:Type="Number"><?php echo $due_int;?></Data></Cell>
     <Cell ss:StyleID="s69"><Data ss:Type="Number"><?php echo $total_due;?></Data></Cell>

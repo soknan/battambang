@@ -387,6 +387,7 @@
    </Row>
    <?php
            $con_cur = new Battambang\Cpanel\Libraries\Currency();
+           $lov = new Battambang\Loan\Libraries\LookupValueList();
            $pri_khr=0;
            $int_khr=0;
            $bal_pri_khr=0;
@@ -447,6 +448,7 @@
            $staff = Battambang\Loan\Staff::where('id',$row->_disburse->ln_staff_id)->first();
 
            $location = Battambang\Loan\Location::where('id',$row->_disburse->cp_location_id)->first();
+           $add  = array_get($lov->getLocation(4, array($row->_disburse->cp_location_id)), $row->_disburse->cp_location_id);
            ?>
    <Row ss:AutoFitHeight="0" ss:StyleID="s77">
     <Cell ss:StyleID="s78"><Data ss:Type="Number"><?php echo $key+1;?></Data></Cell>
@@ -462,7 +464,7 @@
        <Cell ss:StyleID="s78"><Data ss:Type="String"><?php echo $classify;?></Data></Cell>
        <Cell ss:StyleID="s98"><Data ss:Type="String"><?php echo $staff->kh_last_name.' '.$staff->kh_first_name;?></Data></Cell>
        <Cell ss:StyleID="s78"><Data ss:Type="String"><?php echo $location->kh_name;?></Data></Cell>
-    <Cell ss:StyleID="s80"><Data ss:Type="String"><?php echo $row->_disburse->address;?></Data></Cell>
+    <Cell ss:StyleID="s80"><Data ss:Type="String"><?php echo $add;?></Data></Cell>
     <Cell ss:StyleID="s78"><Data ss:Type="String"><?php echo $row->_disburse->product_name;?></Data></Cell>
     <Cell ss:StyleID="s101"><Data ss:Type="Number"><?php echo $pri;?></Data></Cell>
     <Cell ss:StyleID="s101"><Data ss:Type="Number"><?php echo $int;?></Data></Cell>
