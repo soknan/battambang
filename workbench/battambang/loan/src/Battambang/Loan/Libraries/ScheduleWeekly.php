@@ -126,8 +126,8 @@ class ScheduleWeekly
                 $temDueDate = $temDisburseDate->copy()->addWeeks($temInstallmentFrequency);
                 // if set first due date
                 if($this->_isDate($data->first_due_date)){
-                    $firstDueDate = Carbon::createFromFormat('Y-m-d', $data->first_due_date);
                     if($i==1){
+                        $firstDueDate = Carbon::createFromFormat('Y-m-d', $data->first_due_date);
                         $temDueDate = $firstDueDate;
                     }
                     if($i>1 && $data->ln_lv_meeting_schedule=='125'){
