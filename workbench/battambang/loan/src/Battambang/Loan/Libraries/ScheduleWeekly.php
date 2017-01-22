@@ -130,18 +130,20 @@ class ScheduleWeekly
                         $firstDueDate = Carbon::createFromFormat('Y-m-d', $data->first_due_date);
                         $temDueDate = $firstDueDate;
                     }
+
                     if($i>1 && $data->ln_lv_meeting_schedule=='125'){
                         $temDueDate = $firstDueDate->copy()->addWeeks($temInstallmentFrequency - $installmentFrequency);
                     }
                     if($i>1 && $data->ln_lv_meeting_schedule!='125'){
                         $meetingDay = LookupValue::find($data->ln_lv_meeting_schedule)->code;
-
                         // Calculate diff meeting day with disburse day
-                        $diffMeetingDay = $meetingDay - $firstDueDate->day;
+                        $diffMeetingDay = $meetingDay - $firstDueDate->dayOfWeek;
                         if ($diffMeetingDay != 0) {
                             $firstDueDate = $firstDueDate->addDays($diffMeetingDay);
                         }
+
                         $temDueDate = $firstDueDate->copy()->addWeeks($temInstallmentFrequency - $installmentFrequency );
+
                     }
                 }
 
