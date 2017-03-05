@@ -1,0 +1,7 @@
+--- Set up Microfis
+1. Clone project from Github
+2. Copy vendor --> php artisan dump-autoload
+3. Go to workbench/battambang/ --> composer update
+4. Go to workbench/battambang/cpanel/ --> composer update
+5. Go to workbench/battambang/loan/ --> composer update
+
