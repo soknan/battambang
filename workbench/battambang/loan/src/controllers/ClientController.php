@@ -184,7 +184,7 @@ class ClientController extends BaseController
     public function getDatatable()
     {
         $item = array('id', 'en_name', 'kh_name','gender_code','dob');
-        $arr = DB::table('view_client')->where('id','like',\UserSession::read()->sub_branch.'%');
+        $arr = DB::table('view_client')->where('cp_office_id','=',\UserSession::read()->sub_branch);
 
         return \Datatable::query($arr)
             ->addColumn('action', function ($model) {

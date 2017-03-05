@@ -309,6 +309,7 @@ class DisburseController extends BaseController
         $data->interest_rate = Input::get('interest_rate');
         $data->ln_fund_id = Input::get('ln_fund_id');
         $data->round_schedule = Input::get('ln_lv_round_type');
+        $data->cp_office_id = \UserSession::read()->sub_branch;
         if(Input::get('first_due_date')!=null){
             $data->first_due_date = \Carbon::createFromFormat('d-m-Y',Input::get('first_due_date'))->toDateString();
         }else{
@@ -367,7 +368,7 @@ class DisburseController extends BaseController
     public function getDatatable()
     {
         $item = array('id','disburse_date', 'center_name', 'staff_en_name', 'product_name', 'account_type_name','currency_code');
-        $arr = DB::table('view_disburse')->where('id','like',\UserSession::read()->sub_branch.'%');
+        $arr = DB::table('view_disburse')->where('cp_office_id','=',\UserSession::read()->sub_branch);
 
         return \Datatable::query($arr)
             ->addColumn('action', function ($model) {

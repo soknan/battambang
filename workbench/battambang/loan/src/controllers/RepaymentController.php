@@ -649,7 +649,7 @@ class RepaymentController extends BaseController
             ->where('id', 'like', \UserSession::read()->sub_branch . '%')
             ->orderBy('activated_at', 'DESC');*/
         $arr = DB::table("view_repayment")
-            ->whereRaw('SUBSTR(id,1,4) = "'.\UserSession::read()->sub_branch .'" ');
+            ->whereRaw('cp_office_id = "'.\UserSession::read()->sub_branch .'" ');
 
         return \Datatable::query($arr)
             ->addColumn('action', function ($model) {
@@ -679,7 +679,7 @@ class RepaymentController extends BaseController
     private function _checkAction($id, $disburse)
     {
         $data = Perform::where('ln_disburse_client_id', '=', $disburse)
-            ->orderBy('id', 'desc')
+            ->orderBy('created_at', 'desc')
             ->limit(1)
             ->first();
         if ($data->id == $id) {
@@ -692,7 +692,7 @@ class RepaymentController extends BaseController
         $bal = 0;
         $data = PrePaid::where('ln_disburse_client_id', '=', $id)
             ->where('activated_at', '<=',$activated_at)
-            ->orderBy('id', 'DESC')->limit(1)->first();
+            ->orderBy('created_at', 'DESC')->limit(1)->first();
         if($data!=null) $bal = $data->bal;
         return $bal;
     }

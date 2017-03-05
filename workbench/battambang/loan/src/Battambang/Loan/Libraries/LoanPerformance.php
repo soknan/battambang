@@ -47,6 +47,7 @@ class LoanPerformance
     public $_accru_int;
     public $error='';
     public $org_last_repayment;
+    public $_cp_office_id;
 
     public $late = false;
 
@@ -142,7 +143,7 @@ class LoanPerformance
                 'fee' => 0,
                 'penalty' => 0)
         );
-
+        $this->_cp_office_id = \UserSession::read()->sub_branch;
         //$this->_current_product_status = 1;
     }
 
@@ -232,7 +233,7 @@ class LoanPerformance
 
         $perform->balance_principal = $this->_balance_principal;
         $perform->balance_interest = $this->_balance_interest;
-
+        $perform->cp_office_id = $this->_cp_office_id;
         $perform->save();
     }
 
@@ -244,7 +245,7 @@ class LoanPerformance
 
         $data = Perform::where('ln_disburse_client_id', '=', $this->_disburse_client_id)
             ->where('activated_at', '<=',$this->_activated_at)
-            ->orderBy('id', 'DESC')->limit(1)->get();
+            ->orderBy('created_at', 'DESC')->limit(1)->get();
 
         if (count($data) > 0) {
             foreach ($data as $row) {
@@ -1221,7 +1222,7 @@ WHERE ln_disburse_client.id = "'.$this->_disburse_client_id.'" ');
     }
 
     public function _getLastPerform($id){
-        $data = Perform::where('ln_disburse_client_id','=',$id)->orderBy('id','desc')->limit(1)->first();
+        $data = Perform::where('ln_disburse_client_id','=',$id)->orderBy('created_at','desc')->limit(1)->first();
         return $data;
     }
 

@@ -171,7 +171,7 @@ class CenterController extends BaseController
     {
         $item = array('id', 'joining_date', 'center_name', 'meeting_weekly_name', 'meeting_monthly_name', 'staff_kh_last_name', 'staff_kh_first_name');
         $arr = DB::table('view_center')
-            ->where('id', 'like', \UserSession::read()->sub_branch . '%');
+            ->where('office_id', '=', \UserSession::read()->sub_branch);
 
         return \Datatable::query($arr)
             ->addColumn('action', function ($model) {

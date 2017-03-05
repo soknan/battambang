@@ -130,19 +130,23 @@ class PrePaidController extends BaseController
         }
     }
 
-    private function saveData($data,$save = true)
+    private function saveData($data,$store = true)
     {
+        if ($store==true) {
+            $data->id = \AutoCode::make('ln_pre_paid', 'id', UserSession::read()->sub_branch . '-', 5);
+
+        }
         $data->activated_at = \Carbon::createFromFormat('d-m-Y',Input::get('date'))->toDateString();
         $data->ln_disburse_client_id = Input::get('ln_disburse_client_id');
         $data->amount_pre_paid = Input::get('amount_pre_paid');
         $data->bal = Input::get('amount_pre_paid');
-
+        $data->cp_office_id = \UserSession::read()->sub_branch;
         $ccy = Disburse::where('id',substr(Input::get('ln_disburse_client_id'),0,11))->first();
 
         $data->voucher_code = \UserSession::read()->sub_branch
         . '-' . date('Y') . '-' . $ccy->cp_currency_id . '-' . sprintf('%06d', Input::get('voucher_code'));
 
-        if($save){
+        if($store){
             if($this->_existsAcc(Input::get('ln_disburse_client_id'))!=null){
                 $data->bal = $this->_existsAcc(Input::get('ln_disburse_client_id'))->bal +Input::get('amount_pre_paid');
             }

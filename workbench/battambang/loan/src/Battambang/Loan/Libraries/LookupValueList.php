@@ -408,7 +408,7 @@ LEFT JOIN ln_disburse d
 on dc.ln_disburse_id = d.id
 LEFT JOIN ln_client c
 on c.id = dc.ln_client_id
-WHERE SUBSTR(dc.id,1,4) = '".\UserSession::read()->sub_branch."'
+WHERE dc.cp_office_id = '".\UserSession::read()->sub_branch."'
 and dc.id not in (select p.ln_disburse_client_id from ln_perform p where p.repayment_type = 'closing'
 and (p.balance_principal <=0 or p.balance_interest <=0))
 GROUP BY dc.id
@@ -432,7 +432,7 @@ LEFT JOIN ln_disburse d
 on dc.ln_disburse_id = d.id
 LEFT JOIN ln_client c
 on c.id = dc.ln_client_id
-WHERE SUBSTR(dc.id,1,4) = '".\UserSession::read()->sub_branch."'
+WHERE dc.cp_office_id = '".\UserSession::read()->sub_branch."'
 GROUP BY dc.id
 ORDER BY d.disburse_date desc");
 

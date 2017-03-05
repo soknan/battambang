@@ -44,6 +44,7 @@ class RepaymentSchedule {
             $schedule->due_date = $value['due_date'];
             $schedule->num_day = $value['num_day'];
             $schedule->ln_disburse_client_id = $value['ln_disburse_client_id'];
+            $schedule->cp_office_id = \UserSession::read()->sub_branch;
             //write to schedule detail
             $scheduleDt->id = \AutoCode::make('ln_schedule_dt', 'id', \UserSession::read()->sub_branch . '-', 10);
             $scheduleDt->activated_at = $date;
@@ -52,6 +53,7 @@ class RepaymentSchedule {
             $scheduleDt->fee = $value['fee'];
             $scheduleDt->balance = $value['balance'];
             $scheduleDt->ln_schedule_id = $schedule->id;
+            $scheduleDt->cp_office_id = \UserSession::read()->sub_branch;
 
             if($key==0){
                 $this->_balance_principal = $value['balance'];

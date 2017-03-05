@@ -43,20 +43,20 @@ class BackupRestoreController extends BaseController
                 'ln_product_status'=>array('PRS','Product Status'),
                 'ln_category'=>array('PCG','Product Category'),
                 'ln_product'=>array('PRO','Product'),
-                'ln_staff'=>array('STF','Staff',"cp_office_id LIKE '[office]%'"),
+                'ln_staff'=>array('STF','Staff',"cp_office_id = '[office]'"),
             ),
             'default'=>array(
-                'ln_center'=>array('CET','Center',"id LIKE '[office]%'"),
-                'ln_client'=>array('CLN','Client',"id LIKE '[office]%'"),
-                'ln_disburse'=>array('DIS','Disbursement',"id LIKE '[office]%'"),
-                'ln_disburse_client'=>array('DISC','Disburse Client',"id LIKE '[office]%'"),
-                'ln_schedule'=>array('SCD','Schedule',"id LIKE '[office]%'"),
-                'ln_schedule_dt'=>array('SCD','Schedule Detail',"id LIKE '[office]%'"),
-                'ln_perform'=>array('PEF','Perform',"id LIKE '[office]%'"),
-                'ln_pre_paid'=>array('PRP','PrePaid',"ln_disburse_client_id LIKE '[office]%'"),
+                'ln_center'=>array('CET','Center',"cp_office_id = '[office]'"),
+                'ln_client'=>array('CLN','Client',"cp_office_id = '[office]'"),
+                'ln_disburse'=>array('DIS','Disbursement',"cp_office_id = '[office]'"),
+                'ln_disburse_client'=>array('DISC','Disburse Client',"cp_office_id = '[office]'"),
+                'ln_schedule'=>array('SCD','Schedule',"cp_office_id = '[office]'"),
+                'ln_schedule_dt'=>array('SCD','Schedule Detail',"cp_office_id = '[office]'"),
+                'ln_perform'=>array('PEF','Perform',"cp_office_id = '[office]'"),
+                'ln_pre_paid'=>array('PRP','PrePaid',"cp_office_id = '[office]'"),
             ),
             'user_action'=>array(
-                'cp_user_action'=>array('CUA','User Action',"cp_office_id LIKE '[office]%'"),
+                'cp_user_action'=>array('CUA','User Action',"cp_office_id = '[office]'"),
             ),
         ),
         'cpanel'=>array(
@@ -72,7 +72,7 @@ class BackupRestoreController extends BaseController
                 'cp_workday'=>array('CWD','Workday'),
             ),
             'user_action'=>array(
-                'cp_user_action'=>array('CUA','User Action',"cp_office_id LIKE '[office]%'"),
+                'cp_user_action'=>array('CUA','User Action',"cp_office_id = '[office]'"),
             ),
         )
     );

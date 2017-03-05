@@ -403,13 +403,14 @@ class DisburseClientController extends BaseController
         $data->pay_down = Input::get('pay_down');
         $data->discount = Input::get('discount');
         $data->pre_amount = Input::get('pre_amount');
+        $data->cp_office_id = \UserSession::read()->sub_branch;
         $data->save();
     }
 
     public function getDatatable($disburse)
     {
         $item = array('id', 'client_id','client_kh_name', 'center_name', 'product_name', 'amount', 'currency_code', 'voucher_id', 'cycle');
-        $arr = DB::table('view_disburse_client')->where('ln_disburse_id', '=', $disburse)->where('id','like',\UserSession::read()->sub_branch.'%');;
+        $arr = DB::table('view_disburse_client')->where('ln_disburse_id', '=', $disburse)->where('cp_office_id','=',\UserSession::read()->sub_branch);
 
         return \Datatable::query($arr)
             ->addColumn('action', function ($model) {
@@ -443,7 +444,7 @@ class DisburseClientController extends BaseController
 
     public  function _getClientList($more='')
     {
-        $data = DB::select('select * from ln_client where 1=1 and id like "'.UserSession::read()->sub_branch.'%"'. $more);
+        $data = DB::select('select * from ln_client where 1=1 and cp_office_id = "'.UserSession::read()->sub_branch.'"'. $more);
         $arr = array();
         if (count($data) > 0) {
             foreach ($data as $row) {

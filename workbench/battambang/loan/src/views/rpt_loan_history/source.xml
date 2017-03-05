@@ -673,7 +673,7 @@
       <?php
               $perform = array();
               $perform = Battambang\Loan\Perform::where('ln_disburse_client_id','=',$dis_data->id)
-                        ->where('perform_type','=','repayment')->get();
+                        ->where('perform_type','=','repayment')->orderBy('created_at','asc')->get();
               $pri_total = 0;
               $int_total = 0;
               $pen_total = 0;
