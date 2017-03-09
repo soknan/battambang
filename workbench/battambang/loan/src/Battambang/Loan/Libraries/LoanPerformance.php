@@ -522,16 +522,17 @@ class LoanPerformance
         $date = new Carbon();
         $first = $date->createFromFormat('Y-m-d',$this->_last_perform_date);
         $second = $date->createFromFormat('Y-m-d',$this->_activated_at);
-        if($second >= $this->_maturity_date){
-            $second = $date->createFromFormat('Y-m-d',$this->_maturity_date);
-        }
-        if($this->_disburse->ln_lv_repay_frequency == 3){
-            $first = $first->endOfWeek();
-            $second = $second->endOfWeek();
-        }elseif($this->_disburse->ln_lv_repay_frequency == 4){
-            $first = $first->endOfMonth();
-            $second = $second->endOfMonth();
 
+        if ($this->_isEqualDate($this->_activated_at, $this->_maturity_date)) {
+            $second = $date->createFromFormat('Y-m-d',$this->_maturity_date);
+        }else{
+            if($this->_disburse->ln_lv_repay_frequency == 3){
+                $first = $first->endOfWeek();
+                $second = $second->endOfWeek();
+            }elseif($this->_disburse->ln_lv_repay_frequency == 4){
+                $first = $first->endOfMonth();
+                $second = $second->endOfMonth();
+            }
         }
         //echo $first;
         //echo $second; exit;
@@ -950,7 +951,7 @@ WHERE ln_disburse_client.id = "'.$this->_disburse_client_id.'" ');
                 $arrearsIndex =1;
                 $arrearsDate ='';
 
-                if($this->_new_due['product_status'] == 5 and $this->_repayment['cur']['voucher_id'] == ''){
+                if($this->_new_due['product_status'] == 5 and $this->_repayment['cur']['voucher_id'] == '' and $this->_perform_type != 'repayment'){
                     $this->_perform_type = 'writeoff';
                     $wof_pri=0;
                     $wof_int=0;
