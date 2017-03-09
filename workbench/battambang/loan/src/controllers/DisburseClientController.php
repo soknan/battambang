@@ -208,11 +208,11 @@ class DisburseClientController extends BaseController
             $schedule = \ScheduleGenerate::make($id, $disburseDate->disburse_date);
 
             // check int > total payment
-            if($schedule[1]['interest']==0){
+            /*if($schedule[1]['interest']==0){
                 DisburseClient::where('id','=',$id)->delete();
                 return Redirect::route('loan.disburse_client.index', $disburseClient->ln_disburse_id)
                     ->with('error','Interest is bigger than total payment. Please change your first due date !.');
-            }
+            }*/
             // end check
 
             $repay = new RepaymentSchedule();
