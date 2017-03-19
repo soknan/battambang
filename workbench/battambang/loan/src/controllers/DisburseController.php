@@ -242,21 +242,26 @@ class DisburseController extends BaseController
 
     public function store()
     {
-        $validation = $this->getValidationService('disburse');
-        if ($validation->passes()) {
-            $disburse = new Disburse();
-            $disburse->id = \AutoCode::make('ln_disburse', 'id', UserSession::read()->sub_branch . '-', 6);
-            $disburse_id = $disburse->id;
-            $this->saveData($disburse);
-            // User action
-            \Event::fire('user_action.add', array('disburse'));
-            return Redirect::route('loan.disburse.add')
-                ->with('success', trans('battambang/loan::disburse.create_success')
-                    .' '.\HTML::link(route('loan.disburse_client.add',$disburse_id),'Add Disburse Client')
-                );
+        try{
+            $validation = $this->getValidationService('disburse');
+            if ($validation->passes()) {
+                $disburse = new Disburse();
+                $disburse->id = \AutoCode::make('ln_disburse', 'id', UserSession::read()->sub_branch . '-', 6);
+                $disburse_id = $disburse->id;
+                $this->saveData($disburse);
+                // User action
+                \Event::fire('user_action.add', array('disburse'));
+                return Redirect::route('loan.disburse.add')
+                    ->with('success', trans('battambang/loan::disburse.create_success')
+                        .' '.\HTML::link(route('loan.disburse_client.add',$disburse_id),'Add Disburse Client')
+                    );
 
+            }
+            return Redirect::back()->withInput()->withErrors($validation->getErrors());
+        }catch (\Exception $e){
+            return Redirect::route('loan.disburse.index')->with('error', trans('battambang/cpanel::db_error.fail'));
         }
-        return Redirect::back()->withInput()->withErrors($validation->getErrors());
+
     }
 
     public function update($id)
